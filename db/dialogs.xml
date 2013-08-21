@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<utterance>
+<utterances>
+  <utterance>
+    <question>привет Дживко</question>
+    <answer>Здарова парни</answer>
+  </utterance>
+  <utterance>
+    <question>как у тебя настроение</question>
+    <answer>У меня все отлично!</answer>
+  </utterance>
+  <utterance>
+    <question>привет</question>
+    <answer>Здарова</answer>
+    <utterances>
+      <utterance>
+        <question>как дела?</question>
+        <answer>нормально</answer>
+        <utterances>
+          <utterance>
+            <question>что делаешь?</question>
+            <answer>собираюсь кушать</answer>
+          </utterance>
+        </utterances>
+      </utterance>
+    </utterances>  
+  </utterance>    
+  <utterance>
+    <question>давай покажем миниатюру про волка</question>
+    <answer>давай</answer>
+    <utterances>
+      <utterance>
+        <question>готов?</question>
+        <answer>да</answer>
+        <utterances>
+          <utterance>
+            <question>что будешь делать?</question>
+            <answer>показывать</answer>
+          </utterance>
+          <utterance>
+            <question>а завтра что делать будешь?</question>
+            <answer>завязывать</answer>
+          </utterance>
+        </utterances>
+      </utterance>
+    </utterances>  
+  </utterance>
+  <joke>Астматик перепутал лекарство с экстази и 2 часа танцевал под свой кашель</joke>
+  <sketch name = "">Астматик перепутал лекарство с экстази и 2 часа танцевал под свой кашель</sketch>
+</utterances>
+</utterance>

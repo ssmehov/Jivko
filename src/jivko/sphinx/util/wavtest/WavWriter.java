@@ -17,6 +17,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
 import java.net.URL;
+import jivko.brain.speech.DialogsMemory;
 import jivko.dictionary.Dictionary;
 import jivko.recognizer.Recognizer;
 import jivko.recognizer.impl.RecognizerGoogleImpl;
@@ -269,7 +270,8 @@ public class WavWriter extends BaseDataProcessor {
                 String response = recognizer.recognize(wavName);
                 System.err.println(response);
 
-                String answer = dictionary.findAnswer(response);
+                //String answer = dictionary.findAnswer(response);
+                String answer = DialogsMemory.getInstance().findAnswer(response);
                 //String answer = response;
                 
                 /*URL configURL = Segmenter.class.getResource("frontend.config2.xml");

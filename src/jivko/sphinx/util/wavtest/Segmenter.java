@@ -14,6 +14,15 @@ import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.ConfigurationManagerUtils;
 
+
+//TODO: 
+//1. Split into different parts like jokes, sketches, utterances. 
+//2. Implement commands and transitions
+//3. Implemet sphinx recognizer part
+//4. Simplify libraries and interfaces
+//5. Jokes creator
+//6. Speach vizualizator - face could be already drawn, we need to show only speech aplitude
+//7. Speach syntezator for linux 
 public class Segmenter {
 
     public static void main(String[] argv) throws MalformedURLException,
