@@ -14,6 +14,5 @@ public interface Recognizer {
   
   public String recognize(final String fileName) throws Exception;
   
-  public String recognize(InputStream inputStream) throws Exception;
-  
+  public String recognize(InputStream inputStream) throws Exception;      
 }

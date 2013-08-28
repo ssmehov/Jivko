@@ -1,13 +1,12 @@
 package jivko;
 
-import jivko.dictionary.Dictionary;
+import jivko.unused.dictionary.Dictionary;
 import jivko.recognizer.Recognizer;
 import jivko.recognizer.impl.RecognizerGoogleImpl;
 import jivko.synthesizer.Synthesizer;
 import jivko.synthesizer.impl.SyntesizerCloudGardenImpl;
 import jivko.util.recorder.Recorder;
 import jivko.util.recorder.impl.RecorderImpl;
-import jivko.dictionary.*;
 
 /**
  *

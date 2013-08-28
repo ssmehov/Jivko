@@ -13,9 +13,14 @@ import edu.cmu.sphinx.frontend.util.AudioFileDataSource;
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.ConfigurationManagerUtils;
-
+import jivko.brain.speech.DialogsMemory;
+import jivko.sphinx.util.UtteranceData;
+import jivko.synthesizer.SynthesizerFactory;
 
 //TODO: 
+//0. Simplify interface + add cmu sphinx recognition!
+//Add scetches with autotranmittion
+//Add jokes logic!
 //1. Split into different parts like jokes, sketches, utterances. 
 //2. Implement commands and transitions
 //3. Implemet sphinx recognizer part
@@ -25,118 +30,44 @@ import edu.cmu.sphinx.util.props.ConfigurationManagerUtils;
 //7. Speach syntezator for linux 
 public class Segmenter {
 
-    public static void main(String[] argv) throws MalformedURLException,
-            IOException {
+  public static void main(String[] argv) throws MalformedURLException,
+          IOException {
+    processFile();
+  }
 
-        String inputFile = "D:/tmp/1/test.wav";
-        String outputFile = "D:/tmp/1/test2";
-        
-        String configFile = null;
-        
-        String inputCtl = null;
-        
-        boolean noSplit = false;
+  static private void processFile() throws MalformedURLException, IOException {
 
-        for (int i = 0; i < argv.length; i++) {
-            if (argv[i].equals("-c")) {
-                configFile = argv[++i];
-            }
-            if (argv[i].equals("-i")) {
-                inputFile = argv[++i];
-            }
-            if (argv[i].equals("-ctl")) {
-                inputCtl = argv[++i];
-            }
-            if (argv[i].equals("-o")) {
-                outputFile = argv[++i];
-            }
-            if (argv[i].equals("-no-split")) {
-                noSplit = Boolean.parseBoolean(argv[i]);
-            }
-        }
+    URL configURL = Segmenter.class.getResource("frontend.config2.xml");
 
-        if ((inputFile == null && inputCtl == null) || outputFile == null) {
-            System.out
-                    .println("Usage: java  -cp lib/batch.jar:lib/sphinx4.jar edu.cmu.sphinx.tools.endpoint.Segmenter "
-                            + "[ -config configFile ] -name frontendName "
-                            + "< -i input File -o outputFile | -ctl inputCtl -i inputFolder -o outputFolder >");
-            System.exit(1);
-        }
+    ConfigurationManager cm = new ConfigurationManager(configURL);
 
-        URL configURL;
-        if (configFile == null)
-            configURL = Segmenter.class.getResource("frontend.config2.xml");
-        else
-            configURL = new File(configFile).toURI().toURL();
+    FrontEnd frontend = (FrontEnd) cm.lookup("endpointer");
 
-        ConfigurationManager cm = new ConfigurationManager(configURL);
+    Microphone microphone = (Microphone) cm.lookup("microphone");
 
-        if (noSplit) {
-            ConfigurationManagerUtils.setProperty(cm, "wavWriter",
-                    "captureUtterances", "false");
-        }
-        if (inputCtl != null) {
-            ConfigurationManagerUtils.setProperty(cm, "wavWriter",
-                    "isCompletePath", "true");
-        }
+    WavWriter wavWriter = (WavWriter) cm.lookup("wavWriter");
 
-        if (inputCtl == null)
-            processFile(inputFile, outputFile, cm);
-        else
-            processCtl(inputCtl, inputFile, outputFile, cm);
+    frontend.initialize();
+
+    if (!microphone.startRecording()) {
+      System.out.println("Cannot start microphone.");
+      System.exit(1);
     }
 
-    static private void processFile(String inputFile, String outputFile,
-            ConfigurationManager cm) throws MalformedURLException, IOException {
+    Data data = null;
+    do {
+      data = frontend.getData();
 
-        FrontEnd frontend = (FrontEnd) cm.lookup("endpointer");        
-        
-        Microphone microphone = (Microphone) cm.lookup("microphone");
-        
-        WavWriter wavWriter = (WavWriter) cm.lookup("wavWriter");
-        wavWriter.setOutFilePattern(outputFile);                
-        
-        frontend.initialize();
-        
-        if (!microphone.startRecording()) {
-            System.out.println("Cannot start microphone.");        
-            System.exit(1);
+      try {
+        if (data instanceof UtteranceData) {
+          String utterance = ((UtteranceData) data).getUtterence();
+          String answer = DialogsMemory.getInstance().findAnswer(utterance);
+          SynthesizerFactory.getSynthesizer().talk(answer);
         }
-        
-        for (int i = 0; i < 10; i++) {
-          System.err.println(i);
-        }
-        
-        Data data = null;
-        do {
-            data = frontend.getData();
-        } while (data != null);
-               
-        /*AudioFileDataSource dataSource = (AudioFileDataSource) cm
-                .lookup("audioFileDataSource");
-        System.out.println(inputFile);
-        dataSource.setAudioFile(new File(inputFile), null);
-        WavWriter wavWriter = (WavWriter) cm.lookup("wavWriter");
-        wavWriter.setOutFilePattern(outputFile);
-
-        frontend.initialize();
-
-        Data data = null;
-        do {
-            data = frontend.getData();
-        } while (data != null);*/
-    }
-
-    static private void processCtl(String inputCtl, String inputFolder,
-            String outputFolder, ConfigurationManager cm)
-            throws MalformedURLException, IOException {
-
-        Scanner scanner = new Scanner(new File(inputCtl));
-        while (scanner.hasNext()) {
-            String fileName = scanner.next();
-            String inputFile = inputFolder + "/" + fileName + ".wav";
-            String outputFile = outputFolder + "/" + fileName + ".wav";
-            processFile(inputFile, outputFile, cm);
-        }
-    }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      
+    } while (data != null);
+  }
 }

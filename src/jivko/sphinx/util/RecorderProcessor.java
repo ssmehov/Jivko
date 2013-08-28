@@ -11,7 +11,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
-import jivko.dictionary.Dictionary;
+import jivko.unused.dictionary.Dictionary;
 import jivko.recognizer.Recognizer;
 import jivko.recognizer.impl.RecognizerGoogleImpl;
 import jivko.synthesizer.Synthesizer;

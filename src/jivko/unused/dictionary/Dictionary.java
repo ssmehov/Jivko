@@ -1,4 +1,4 @@
-package jivko.dictionary;
+package jivko.unused.dictionary;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
