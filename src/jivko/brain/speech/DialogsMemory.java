@@ -27,6 +27,10 @@ public class DialogsMemory {
   
   private Utterance rootUtterance = new Utterance();
   private Utterance currentUtterance = null;
+  
+  JokesManager jokesManager;
+  SketchesManager sketchesManager;
+  
 
   public Utterance getRootUtterance() {
     return rootUtterance;
