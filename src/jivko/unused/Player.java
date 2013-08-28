@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package jivko.util.player;
+package jivko.unused;
 
 import java.io.InputStream;
 
@@ -12,7 +12,7 @@ import java.io.InputStream;
  */
 public interface Player {
   
-  public void play(final String fileName, jivko.util.recorder.Recorder.FileType fileType);
+  public void play(final String fileName, jivko.unused.Recorder.FileType fileType);
   
   public void play(final String fileName, InputStream inputStream);
 }

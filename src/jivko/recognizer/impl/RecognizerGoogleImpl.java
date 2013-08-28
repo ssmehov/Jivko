@@ -3,8 +3,6 @@ package jivko.recognizer.impl;
 import com.darkprograms.speech.recognizer.GoogleResponse;
 import java.io.InputStream;
 import jivko.recognizer.Recognizer;
-import jivko.util.recorder.Recorder;
-import jivko.util.recorder.impl.RecorderImpl;
 
 /**
  *

@@ -10,7 +10,7 @@
  *
  */
 
-package jivko.sphinx.util.recognizertest;
+package jivko.sphinx.test.rec;
 
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;

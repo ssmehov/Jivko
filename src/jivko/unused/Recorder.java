@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package jivko.util.recorder;
+package jivko.unused;
 
 import java.io.InputStream;
 

@@ -1,9 +1,8 @@
-package jivko.util.recorder.impl;
+package jivko.unused;
 
 import com.darkprograms.speech.microphone.Microphone;
 import java.io.InputStream;
 import javax.sound.sampled.AudioFileFormat;
-import jivko.util.recorder.Recorder;
 
 /**
  *
