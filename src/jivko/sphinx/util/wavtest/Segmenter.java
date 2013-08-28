@@ -37,15 +37,13 @@ public class Segmenter {
 
   static private void processFile() throws MalformedURLException, IOException {
 
-    URL configURL = Segmenter.class.getResource("frontend.config2.xml");
+    URL configURL = Segmenter.class.getResource("frontend.config.xml");
 
     ConfigurationManager cm = new ConfigurationManager(configURL);
 
     FrontEnd frontend = (FrontEnd) cm.lookup("endpointer");
 
-    Microphone microphone = (Microphone) cm.lookup("microphone");
-
-    WavWriter wavWriter = (WavWriter) cm.lookup("wavWriter");
+    Microphone microphone = (Microphone) cm.lookup("microphone");    
 
     frontend.initialize();
 

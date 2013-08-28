@@ -10,7 +10,7 @@
             <item>speechClassifier</item>
             <item>speechMarker</item>
             <item>nonSpeechDataFilter</item>
-            <item>wavWriter</item>
+            <item>utteranceRecognizer</item>
         </propertylist>
     </component>
         
@@ -34,7 +34,7 @@
     	<property name="speechTrailer" value="20"/>
  	</component>
  	
-    <component name="wavWriter" type="jivko.sphinx.util.wavtest.WavWriter">
+    <component name="utteranceRecognizer" type="jivko.sphinx.util.wavtest.UtteranceRecognizer">
 		<property name="outFilePattern" value="test-seg000000"/>
 		<property name="captureUtterances" value="true"/>
     </component>

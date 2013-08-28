@@ -17,14 +17,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
 import java.net.URL;
-import jivko.brain.speech.DialogsMemory;
-import jivko.unused.dictionary.Dictionary;
-import jivko.recognizer.Recognizer;
-import jivko.recognizer.impl.RecognizerGoogleImpl;
+
 import jivko.sphinx.util.UtteranceFromWavData;
-import jivko.synthesizer.Synthesizer;
-import jivko.synthesizer.SynthesizerFactory;
-import jivko.synthesizer.impl.SyntesizerCloudGardenImpl;
 
 /**
  * Stores audio data into numbered (MS-)wav files. TODO: currently the WavWriter
@@ -32,9 +26,8 @@ import jivko.synthesizer.impl.SyntesizerCloudGardenImpl;
  *
  * @author Holger Brandl
  */
-public class WavWriter extends BaseDataProcessor {
-
-  Dictionary dictionary = new Dictionary();
+public class UtteranceRecognizer extends BaseDataProcessor {
+  
   /**
    * The pathname which must obey the pattern: pattern + i + .wav. After each
    * DataEndSignal the smallest unused 'i' is determined. Pattern is padded to
@@ -69,7 +62,7 @@ public class WavWriter extends BaseDataProcessor {
   protected boolean captureUtts;
   private boolean isCompletePath;
 
-  public WavWriter(String dumpFilePath, boolean isCompletePath, int bitsPerSample, boolean isSigned, boolean captureUtts) {
+  public UtteranceRecognizer(String dumpFilePath, boolean isCompletePath, int bitsPerSample, boolean isSigned, boolean captureUtts) {
     initLogger();
 
     this.outFileNamePattern = dumpFilePath;
@@ -86,7 +79,7 @@ public class WavWriter extends BaseDataProcessor {
     initialize();
   }
 
-  public WavWriter() {
+  public UtteranceRecognizer() {
   }
 
   /*
