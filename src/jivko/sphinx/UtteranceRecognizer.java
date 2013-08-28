@@ -1,4 +1,4 @@
-package jivko.sphinx.util.wavtest;
+package jivko.sphinx;
 
 import edu.cmu.sphinx.frontend.*;
 import edu.cmu.sphinx.frontend.endpoint.SpeechEndSignal;
@@ -18,7 +18,7 @@ import javax.sound.sampled.AudioSystem;
 import java.io.*;
 import java.net.URL;
 
-import jivko.sphinx.util.UtteranceFromWavData;
+import jivko.sphinx.UtteranceFromWavData;
 
 /**
  * Stores audio data into numbered (MS-)wav files. TODO: currently the WavWriter

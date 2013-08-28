@@ -1,4 +1,4 @@
-package jivko.sphinx.util;
+package jivko.sphinx;
 
 import jivko.recognizer.RecognizerFactory;
 

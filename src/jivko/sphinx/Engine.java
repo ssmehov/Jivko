@@ -1,6 +1,6 @@
-package jivko.sphinx.util.wavtest;
+package jivko.sphinx;
 
-import jivko.sphinx.util.wavtest.Segmenter;
+import jivko.sphinx.Engine;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -14,7 +14,7 @@ import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.ConfigurationManagerUtils;
 import jivko.brain.speech.DialogsMemory;
-import jivko.sphinx.util.UtteranceData;
+import jivko.sphinx.UtteranceData;
 import jivko.synthesizer.SynthesizerFactory;
 
 //TODO: 
@@ -28,16 +28,12 @@ import jivko.synthesizer.SynthesizerFactory;
 //5. Jokes creator
 //6. Speach vizualizator - face could be already drawn, we need to show only speech aplitude
 //7. Speach syntezator for linux 
-public class Segmenter {
+public class Engine {
 
-  public static void main(String[] argv) throws MalformedURLException,
+  public static void run(String[] argv) throws MalformedURLException,
           IOException {
-    processFile();
-  }
-
-  static private void processFile() throws MalformedURLException, IOException {
-
-    URL configURL = Segmenter.class.getResource("frontend.config.xml");
+    
+    URL configURL = Engine.class.getResource("frontend.config.xml");
 
     ConfigurationManager cm = new ConfigurationManager(configURL);
 

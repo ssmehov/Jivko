@@ -34,7 +34,7 @@
     	<property name="speechTrailer" value="20"/>
  	</component>
  	
-    <component name="utteranceRecognizer" type="jivko.sphinx.util.wavtest.UtteranceRecognizer">
+    <component name="utteranceRecognizer" type="jivko.sphinx.UtteranceRecognizer">
 		<property name="outFilePattern" value="test-seg000000"/>
 		<property name="captureUtterances" value="true"/>
     </component>
