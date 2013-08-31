@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
 <configuraion>
   <item name="DialogsDB">D:\work\Jivko\db\dialogs.xml</item>
+  <item name="JokesDB">D:\work\Jivko\db\jokes.xml</item>
+  <item name="SketchesDB">D:\work\Jivko\db\sketches.xml</item>
 </configuraion>

@@ -19,12 +19,23 @@ public class ConfigurationManager {
   private final String XML_DOM_NODE_ITEM_NAME_ATTR = "name";
 
   private final String CFG_PATH = "D:/work/Jivko/config/config.xml";
-  private final String DIALOGS_DB_PATH_MARKER = "DialogsDB";  
+  
+  private final String XML_DOM_DIALOGS_DB_PATH_MARKER = "DialogsDB";  
+  private final String XML_DOM_JOKES_DB_PATH_MARKER = "JokesDB";
+  private final String XML_DOM_SCETCHES_DB_PATH_MARKER = "SketchesDB";
 
   private Map<String, String> properties = new HashMap<String, String>();
   
   public String getDialogsDBPath() {
-    return properties.get(DIALOGS_DB_PATH_MARKER);
+    return properties.get(XML_DOM_DIALOGS_DB_PATH_MARKER);    
+  }  
+  
+  public String getJokesDBPath() {
+    return properties.get(XML_DOM_JOKES_DB_PATH_MARKER);    
+  }
+  
+  public String getScetchesDBPath() {
+    return properties.get(XML_DOM_SCETCHES_DB_PATH_MARKER);    
   }  
 
   private ConfigurationManager() throws Exception {

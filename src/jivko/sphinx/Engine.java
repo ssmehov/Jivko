@@ -13,18 +13,12 @@ import edu.cmu.sphinx.frontend.util.AudioFileDataSource;
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.ConfigurationManagerUtils;
-import jivko.brain.speech.DialogsMemory;
+import jivko.brain.Brain;
 import jivko.sphinx.UtteranceData;
 import jivko.synthesizer.SynthesizerFactory;
 
 //TODO: 
-//0. Simplify interface + add cmu sphinx recognition!
-//Add scetches with autotranmittion
-//Add jokes logic!
-//1. Split into different parts like jokes, sketches, utterances. 
 //2. Implement commands and transitions
-//3. Implemet sphinx recognizer part
-//4. Simplify libraries and interfaces
 //5. Jokes creator
 //6. Speach vizualizator - face could be already drawn, we need to show only speech aplitude
 //7. Speach syntezator for linux 
@@ -55,7 +49,7 @@ public class Engine {
       try {
         if (data instanceof UtteranceData) {
           String utterance = ((UtteranceData) data).getUtterence();
-          String answer = DialogsMemory.getInstance().findAnswer(utterance);
+          String answer = Brain.getInstance().findAnswer(utterance);
           SynthesizerFactory.getSynthesizer().talk(answer);
         }
       } catch (Exception e) {

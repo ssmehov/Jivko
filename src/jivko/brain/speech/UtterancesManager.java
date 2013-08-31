@@ -7,7 +7,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.config.ConfigurationManager;
 import jivko.util.Tree;
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -15,22 +14,16 @@ import org.w3c.dom.NodeList;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class DialogsMemory {
+public class UtterancesManager {
   static private final String XML_DOM_NODE_UTTERANCE = "utterance";
-  static private final String XML_DOM_NODE_UTTERANCES = "utterances";  
+  static private final String XML_DOM_NODE_UTTERANCES = "utterances";
   static private final String XML_DOM_NODE_QUESTION = "question";
   static private final String XML_DOM_NODE_ANSWER = "answer";
   
-  
-  static private final String DATABASE_PATH = "D:/work/Jivko/db";
   static private final String FAIL_ANSWER = "Ниче страшного";
   
   private Utterance rootUtterance = new Utterance();
   private Utterance currentUtterance = null;
-  
-  JokesManager jokesManager;
-  SketchesManager sketchesManager;
-  
 
   public Utterance getRootUtterance() {
     return rootUtterance;
@@ -46,22 +39,15 @@ public class DialogsMemory {
 
   public void setCurrentUtterance(Utterance currentUtterance) {
     this.currentUtterance = currentUtterance;
-  }
-
-  private DialogsMemory() throws Exception {
-    initialize();
-  }
-
-  private void initialize() throws Exception {
-    currentUtterance = rootUtterance;
-    readDialogList();
+  }  
+  
+  public void initialize(String path) throws Exception {    
+    readDialogList(path);    
     print();
   }
 
-  private void readDialogList() throws Exception {
-    ConfigurationManager cm = ConfigurationManager.getInstance();
-    String path = cm.getDialogsDBPath();
-
+  private void readDialogList(String path) throws Exception {
+    
     DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
     f.setValidating(false);
     DocumentBuilder builder = f.newDocumentBuilder();
@@ -123,7 +109,7 @@ public class DialogsMemory {
     String answer = null;
 
     if (question == null) {
-      return DialogsMemory.getFailAnswer();
+      return getFailAnswer();
     }
 
     answer = findAnswer(currentUtterance, question);
@@ -148,18 +134,7 @@ public class DialogsMemory {
     return answer;
   }
   
-  
-  private static DialogsMemory instance = null;
-
-  public static DialogsMemory getInstance() throws Exception {
-    if (instance == null) {
-      instance = new DialogsMemory();  
-    }
-    
-    return instance;
-  }
-  
-  public void print() {    
+  public void print() {
     String identity = "";
     printNode(rootUtterance, identity);
   }
@@ -176,7 +151,5 @@ public class DialogsMemory {
     for (Tree t : chNodes) {
       printNode((Utterance)t, identity);
     }
-    
-    
   }
 }

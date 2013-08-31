@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import jivko.util.BestAnswerFinder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -18,7 +19,7 @@ public class JokesManager {
   
   List<String> jokes = new ArrayList<String>();
   
-  public void init(String path) throws Exception {
+  public void initialize(String path) throws Exception {
     readJokes(path);
   }
   
@@ -26,7 +27,7 @@ public class JokesManager {
     jokes.add(joke);
   }
   
-  public void readJokes(String path) throws Exception {
+  private void readJokes(String path) throws Exception {
     DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
     f.setValidating(false);
     DocumentBuilder builder = f.newDocumentBuilder();
@@ -42,18 +43,31 @@ public class JokesManager {
     
     Node jokeNode = jokesNode.getFirstChild();
     
-    do {
-      if (jokesNode.getNodeType() != Document.ELEMENT_NODE)
-        continue;            
-      
+    while (jokeNode != null) {
+      if (jokeNode.getNodeType() != Document.ELEMENT_NODE) {
+        jokeNode = jokeNode.getNextSibling();
+        
+        if (jokeNode != null)
+          continue;
+        else
+          break;
+      }
+              
       addJoke(jokeNode.getTextContent());      
       
-      jokesNode = jokesNode.getNextSibling();
-      
-    } while (jokesNode.getNextSibling() != null);              
+      jokeNode = jokeNode.getNextSibling();      
+    }
   }
   
-  public String findJoke(List<String> keyWords) {
-    return "";
+  public String findJoke(String keyWords) {
+    BestAnswerFinder baf = new BestAnswerFinder(keyWords);
+    
+    for (String j : jokes) {
+      baf.testCandidate(j, j);
+    }
+    
+    String result = (String)baf.getBestCandidate();
+    
+    return result;
   }
 }
