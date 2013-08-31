@@ -38,6 +38,10 @@ public class SketchesManager {
     readSketchList(path);
     print();
   }
+  
+  public void reset() {
+    activeSketch = null;
+  }
 
   private void readSketchList(String path) throws Exception {
 

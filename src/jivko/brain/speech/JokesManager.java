@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.util.BestAnswerFinder;
+import jivko.util.LexicalUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -21,6 +22,9 @@ public class JokesManager {
   
   public void initialize(String path) throws Exception {
     readJokes(path);
+  }
+  
+  public void reset() {    
   }
   
   void addJoke(String joke) {
@@ -60,6 +64,8 @@ public class JokesManager {
   }
   
   public String findJoke(String keyWords) {
+    keyWords = LexicalUtils.stripServiceWords(keyWords);
+    
     BestAnswerFinder baf = new BestAnswerFinder(keyWords);
     
     for (String j : jokes) {

@@ -45,6 +45,10 @@ public class UtterancesManager {
     readDialogList(path);    
     print();
   }
+  
+  public void reset() {
+    currentUtterance = rootUtterance;
+  }
 
   private void readDialogList(String path) throws Exception {
     

@@ -25,7 +25,7 @@ import jivko.synthesizer.SynthesizerFactory;
 public class Engine {
 
   public static void run(String[] argv) throws MalformedURLException,
-          IOException {
+          IOException, Exception {
     
     URL configURL = Engine.class.getResource("frontend.config.xml");
 
@@ -42,6 +42,8 @@ public class Engine {
       System.exit(1);
     }
 
+    Brain.getInstance().initialize();
+    
     Data data = null;
     do {
       data = frontend.getData();
