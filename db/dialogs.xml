@@ -8,42 +8,10 @@
   <utterance>
     <question>как у тебя настроение</question>
     <answer>У меня все отлично!</answer>
-  </utterance>
-  <utterance>
-    <question>привет</question>
-    <answer>Здарова</answer>
-    <utterances>
-      <utterance>
-        <question>как дела?</question>
-        <answer>нормально</answer>
-        <utterances>
-          <utterance>
-            <question>что делаешь?</question>
-            <answer>собираюсь кушать</answer>
-          </utterance>
-        </utterances>
-      </utterance>
-    </utterances>  
-  </utterance>    
-  <utterance>
-    <question>давай покажем миниатюру про волка</question>
-    <answer>давай</answer>
-    <utterances>
-      <utterance>
-        <question>готов?</question>
-        <answer>да</answer>
-        <utterances>
-          <utterance>
-            <question>что будешь делать?</question>
-            <answer>показывать</answer>
-          </utterance>
-          <utterance>
-            <question>а завтра что делать будешь?</question>
-            <answer>завязывать</answer>
-          </utterance>
-        </utterances>
-      </utterance>
-    </utterances>  
   </utterance>  
+  <utterance>
+    <question>будем зажигать?</question>
+    <answer>мы просто порвем сегодня всех</answer>
+  </utterance>
 </utterances>
 </utterance>

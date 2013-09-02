@@ -107,6 +107,10 @@ public class SketchesManager {
     }
     
   }
+
+  public Sketch getActiveSketch() {
+    return activeSketch;
+  }    
   
   public void setActiveSketch(String name) {
     BestAnswerFinder baf = new BestAnswerFinder(name);

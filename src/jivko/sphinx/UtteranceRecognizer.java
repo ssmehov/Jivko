@@ -136,6 +136,10 @@ public class UtteranceRecognizer extends BaseDataProcessor {
       } catch (Exception e) {
         e.printStackTrace();
       }
+      
+      //delete tmp file
+      File f = new File(wavName);
+      f.delete();
 
     }
 

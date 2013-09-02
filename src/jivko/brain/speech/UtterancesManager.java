@@ -44,6 +44,7 @@ public class UtterancesManager {
   public void initialize(String path) throws Exception {    
     readDialogList(path);    
     print();
+    currentUtterance = rootUtterance;
   }
   
   public void reset() {

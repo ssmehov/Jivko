@@ -24,11 +24,34 @@ import org.w3c.dom.NodeList;
 public class Brain {
 
   static private final String DATABASE_PATH = "D:/work/Jivko/db";
-  StateMachineHolder stateMachineHolder = new StateMachineHolder();
-  UtterancesManager utterancesManager = new UtterancesManager();
-  JokesManager jokesManager = new JokesManager();
-  SketchesManager sketchesManager = new SketchesManager();
+  private StateMachineHolder stateMachineHolder = new StateMachineHolder();
+  private UtterancesManager utterancesManager = new UtterancesManager();
+  private JokesManager jokesManager = new JokesManager();
+  private SketchesManager sketchesManager = new SketchesManager();
+  
+  private String question = "";
+  private Command activeCommand = Command.DIALOG;
 
+  public String getQuestion() {
+    return question;
+  }
+
+  public void setQuestion(String question) {
+    this.question = question;
+  }  
+
+  public UtterancesManager getUtterancesManager() {
+    return utterancesManager;
+  }
+
+  public JokesManager getJokesManager() {
+    return jokesManager;
+  }
+
+  public SketchesManager getSketchesManager() {
+    return sketchesManager;
+  }
+    
   private Brain() {
   }
 
@@ -47,66 +70,23 @@ public class Brain {
   }
 
   public String findAnswer(String question) {
+    String result = "";
     
     if (question == null) 
       return "";
     
-    Command command = CommandRecognizer.getCommand(question);
-
-    if (command != Command.UNKNOWN_COMMAND) {
-      stateMachineHolder.execute(command);
-    }
-
-    StateMachineHolder.State state = stateMachineHolder.getState();
-
-    if (state == StateMachineHolder.State.PAUSED) {
-      if (stateMachineHolder.getPrevState() != StateMachineHolder.State.PAUSED) {
-        return "";
-      }
-      
-      stateMachineHolder.setPrevState();
-    }
-
-    if (state == StateMachineHolder.State.SKETCH_CHOICE) {
-      if (stateMachineHolder.getPrevState() != StateMachineHolder.State.SKETCH_CHOICE) {
-        stateMachineHolder.execute(Command.START);
-        return "Какую миниатюру?";
-      } else {
-        sketchesManager.setActiveSketch(question);
-        stateMachineHolder.execute(Command.SKETCH);
-
-        return sketchesManager.findAnswer(question);
-      }
-    }
-
-    if (state == StateMachineHolder.State.SKETCHING) {
-      String result = sketchesManager.findAnswer(question);
-      if (result == null) {
-        result = "спасибо за внимание";
-        stateMachineHolder.execute(Command.RESET);
-      }
-      return result;
-    }
-
-    if (state == StateMachineHolder.State.JOKE_CHOICE) {      
-      if (stateMachineHolder.getPrevState() != StateMachineHolder.State.JOKE_CHOICE) {
-        stateMachineHolder.execute(Command.START);
-        return "Шутку про что?";//add question: more joke?
-      } else {
-        String joke = jokesManager.findJoke(question);
-        stateMachineHolder.execute(Command.RESET);
-        return joke;
-      }
-    }   
+    setQuestion(question);
     
-    if (state == StateMachineHolder.State.JOKING) {            
-      String joke = jokesManager.findJoke(question);
-      stateMachineHolder.execute(Command.RESET);
-      return "хорошо. слушайте." + joke;   
+    Command command = CommandRecognizer.getCommand(question);
+    if (command != Command.UNKNOWN_COMMAND) {
+      activeCommand = command;      
     }
 
-    return utterancesManager.findAnswer(question);
+    result = stateMachineHolder.execute(activeCommand);
+
+    return result;
   }
+  
   private static Brain instance = null;
 
   public static Brain getInstance() {

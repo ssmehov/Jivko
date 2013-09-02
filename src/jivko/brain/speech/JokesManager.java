@@ -18,13 +18,24 @@ public class JokesManager {
   static private final String XML_DOM_NODE_JOKES = "jokes";
   static private final String XML_DOM_NODE_JOKE = "joke";
   
+  String activeJoke;
+
+  public String getActiveJoke() {
+    return activeJoke;
+  }
+
+  public void setActiveJoke(String activeJoke) {
+    this.activeJoke = activeJoke;
+  }
+    
   List<String> jokes = new ArrayList<String>();
   
   public void initialize(String path) throws Exception {
     readJokes(path);
   }
   
-  public void reset() {    
+  public void reset() {
+    setActiveJoke(null);
   }
   
   void addJoke(String joke) {
@@ -63,7 +74,7 @@ public class JokesManager {
     }
   }
   
-  public String findJoke(String keyWords) {
+  public String findAnswer(String keyWords) {
     keyWords = LexicalUtils.stripServiceWords(keyWords);
     
     BestAnswerFinder baf = new BestAnswerFinder(keyWords);
@@ -75,5 +86,11 @@ public class JokesManager {
     String result = (String)baf.getBestCandidate();
     
     return result;
+  }
+  
+  public String findJoke(String keyWords) {
+    
+    setActiveJoke(findAnswer(keyWords));
+    return getActiveJoke();
   }
 }
