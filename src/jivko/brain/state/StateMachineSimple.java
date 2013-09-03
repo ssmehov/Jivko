@@ -1,7 +1,7 @@
 package jivko.brain.state;
 
-import com.tecacet.math.fsm.InvalidTransitionException;
-import com.tecacet.math.fsm.StateTransitionTable;
+//import com.tecacet.math.fsm.InvalidTransitionException;
+//import com.tecacet.math.fsm.StateTransitionTable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
