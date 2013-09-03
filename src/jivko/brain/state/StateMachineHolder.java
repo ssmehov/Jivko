@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jivko.brain.Brain;
+import jivko.brain.speech.sketch.Sketch;
 import org.customsoft.stateless4j.StateMachine;
 import org.customsoft.stateless4j.delegates.Action;
 
@@ -40,34 +41,50 @@ public class StateMachineHolder {
     public void doIt() {
 
       if (Brain.getInstance().getSketchesManager().getActiveSketch() == null) {
-        actionResult = "Какую миниатюру бля?";
-        return;
+        actionResult = "Какую миниатюру?";        
       }
-
-      try {
-        stateMachine.Fire(Command.START);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+     
+      setNextCommand(Command.START);
     }
   };
   
   Action sketchTellAction = new Action() {
     @Override
-    public void doIt() {
-      actionResult = Brain.getInstance().getSketchesManager().findAnswer(
-              Brain.getInstance().getQuestion());
+    public void doIt() {            
+      actionResult = "";
+      
+      setNextCommand(Command.SKETCH);
+              
+      if (Brain.getInstance().getSketchesManager().getActiveSketch() == null) {
+        
+        Sketch sketch = Brain.getInstance().getSketchesManager().findSketch(
+                Brain.getInstance().getQuestion());
+        
+        if (sketch == null) {
+          actionResult = "повтори еще раз, какую миниатюру?";
+          return;
+        }
+                
+        Brain.getInstance().getSketchesManager().setActiveSketch(sketch);
 
-      if (actionResult == null) {
-        actionResult = "спасибо за внимание";
-
-        try {
-          stateMachine.Fire(Command.RESET);
-        } catch (Exception e) {
-          e.printStackTrace();
+        if (sketch.doesHumanStart()) {
+          actionResult = "ок! начинай";
+          return;
+        } else {
+          actionResult = "окей. погнали.  ";
         }
       }
-    }
+
+      String answer = Brain.getInstance().getSketchesManager().findAnswer(
+              Brain.getInstance().getQuestion());
+
+      if (answer == null) {
+        actionResult = "спасибо за внимание";       
+        setNextCommand(Command.RESET);        
+      } else {
+        actionResult += answer;
+      }      
+    }    
   };
   
   Action jokeChooseAction = new Action() {
@@ -75,12 +92,11 @@ public class StateMachineHolder {
     public void doIt() {     
       
       if (Brain.getInstance().getJokesManager().getActiveJoke() == null) {
-        actionResult = "Шутку про что?";
-        return;
+        actionResult = "Шутку про что?";        
       }
 
       try {
-        stateMachine.Fire(Command.START);
+        setNextCommand(Command.START);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -96,12 +112,8 @@ public class StateMachineHolder {
       if (actionResult == null) {
         actionResult = "повторите, про что шутку?";
       } else {
-        actionResult = "слушайте. " + actionResult;
-        try {
-          stateMachine.Fire(Command.RESET);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+        actionResult = "слушайте. " + actionResult;        
+        setNextCommand(Command.RESET);
       }
     }
   };
@@ -147,6 +159,7 @@ public class StateMachineHolder {
               .OnEntry(jokeChooseAction);
 
       stateMachine.Configure(State.JOKING)
+              .PermitReentry(Command.START)
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
               .OnEntry(jokeTellAction);
@@ -157,11 +170,25 @@ public class StateMachineHolder {
   }
   private State prevState = State.INITIAL;
 
+  private Command nextCommand = Command.DIALOG;
+
+  public void setNextCommand(Command nextCommand) {
+    this.nextCommand = nextCommand;
+  }  
+
+  public Command getNextCommand() {
+    return nextCommand;
+  }
+        
   public String execute(Command command) {
 
+    if (command != Command.UNKNOWN_COMMAND) {
+      setNextCommand(command);
+    }      
+    
     try {
       State curState = stateMachine.getState();
-      stateMachine.Fire(command);
+      stateMachine.Fire(getNextCommand());
       prevState = curState;
     } catch (Exception e) {
       e.printStackTrace();

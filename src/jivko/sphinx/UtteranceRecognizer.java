@@ -123,7 +123,8 @@ public class UtteranceRecognizer extends BaseDataProcessor {
       if (isCompletePath) {
         wavName = outFileNamePattern;
       } else {
-        wavName = getNextFreeIndex(outFileNamePattern);
+        //wavName = getNextFreeIndex(outFileNamePattern);
+        wavName = outFileNamePattern + ".wav";
       }
 
       writeFile(wavName);
@@ -136,11 +137,6 @@ public class UtteranceRecognizer extends BaseDataProcessor {
       } catch (Exception e) {
         e.printStackTrace();
       }
-      
-      //delete tmp file
-      File f = new File(wavName);
-      f.delete();
-
     }
 
     if (data instanceof SpeechStartSignal) {

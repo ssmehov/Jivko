@@ -112,22 +112,32 @@ public class SketchesManager {
     return activeSketch;
   }    
   
-  public void setActiveSketch(String name) {
+  
+  public void setActiveSketch(Sketch s) {
+    activeSketch = s;
+  }
+  
+  public Sketch findSketch(String name) {
     BestAnswerFinder baf = new BestAnswerFinder(name);
     
     for (Sketch s : sketches) {
       baf.testCandidate(s, s.getName());
     }
     
-    activeSketch = (Sketch)baf.getBestCandidate();
-  }
+    Sketch bestCandidate = (Sketch)baf.getBestCandidate();
+    return bestCandidate;
+  }    
   
   public String findAnswer(String question) {
     String result = null;
     
     if (activeSketch != null) {
       RobotBoff answer = activeSketch.nextRobotBoff();
-      result = answer.getValue();
+      
+      if (answer == null) 
+        setActiveSketch(null);
+      else
+        result = answer.getValue();
     }
 
     return result;

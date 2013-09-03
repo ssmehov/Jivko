@@ -69,6 +69,10 @@ public class Sketch extends Utterance {
           
     return (RobotBoff)result;
   }
+  
+  public boolean doesHumanStart() {
+    return (boffs.get(0) instanceof HumanBoff);
+  }
 }
 
 

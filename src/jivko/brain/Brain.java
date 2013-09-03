@@ -30,8 +30,7 @@ public class Brain {
   private SketchesManager sketchesManager = new SketchesManager();
   
   private String question = "";
-  private Command activeCommand = Command.DIALOG;
-
+  
   public String getQuestion() {
     return question;
   }
@@ -78,11 +77,7 @@ public class Brain {
     setQuestion(question);
     
     Command command = CommandRecognizer.getCommand(question);
-    if (command != Command.UNKNOWN_COMMAND) {
-      activeCommand = command;      
-    }
-
-    result = stateMachineHolder.execute(activeCommand);
+    result = stateMachineHolder.execute(command);        
 
     return result;
   }
