@@ -23,7 +23,11 @@ public class CommandRecognizer {
     commands.put("Остановись", Command.PAUSE);
             
     commands.put("Расскажи шутку", Command.JOKE);
+    commands.put("Расскажи шутка", Command.JOKE);
+    
     commands.put("Давай покажем миниатюру", Command.SKETCH);    
+    commands.put("Давай покажем миниатюра", Command.SKETCH);
+    commands.put("Давай покажем", Command.SKETCH);
     
     commands.put("поехали", Command.START);    
     
