@@ -1,4 +1,4 @@
-package jivko.util;
+package jivko.brain.morpher;
 
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
  
+
 public class Morpher {
   private Document doc = null;
  
@@ -30,7 +31,6 @@ public class Morpher {
     return result;
   }
  
- 
   public String getMorph(String p) {
     String result = "";
     if (null != doc) {
@@ -47,5 +47,6 @@ public class Morpher {
       }
     }
     return result;
-  }
+  }    
 }
+

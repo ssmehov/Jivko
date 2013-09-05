@@ -25,13 +25,28 @@ public class Dictionary {
   private static final String ADJECTIVES_FILE = "adjectives.txt";
   private static final String PERSONAS_FILE = "personas.txt";
   private static final String PLACES_FILE = "places.txt";
-  Random rand = new Random();
+  
+  private static Random rand = new Random();
 
-  public class Component {
+  static public class Component {
 
+    private String contentFileName;
+    private String value;
     private List<String> values;
 
-    public Component(String contentFileName) throws Exception {
+    public String getValue() {
+      return value;
+    }
+
+    public void setValue(String value) {
+      this.value = value;
+    }
+        
+    public Component(String contentFileName) {
+      this.contentFileName = contentFileName;
+    }
+
+    public void initializeFromDb() throws Exception {
       String dbPath = ConfigurationManager.getInstance().getDictionariesDBPath();
       dbPath += "/";
       values = readTextFile(dbPath + contentFileName);
@@ -60,50 +75,51 @@ public class Dictionary {
     }
   }
 
-  public class Verbs extends Component {
+  static public class Verbs extends Component {
 
     private static final String CONTENT_FILE = "verbs.txt";
 
-    private Verbs() throws Exception {
+    public Verbs() throws Exception {
       super(CONTENT_FILE);
     }
   }
 
-  public class Nouns extends Component {
+  static public class Nouns extends Component {
 
     private static final String CONTENT_FILE = "nouns.txt";
 
-    private Nouns() throws Exception {
+    public Nouns() throws Exception {
       super(CONTENT_FILE);
     }
   }
 
-  public class Adjectives extends Component {
+  static public class Adjectives extends Component {
 
     private static final String CONTENT_FILE = "adjectives.txt";
 
-    private Adjectives() throws Exception {
+    public Adjectives() throws Exception {
       super(CONTENT_FILE);
     }
   }
 
-  public class Personas extends Component {
+  static public class Personas extends Component {
 
     private static final String CONTENT_FILE = "personas.txt";
 
-    private Personas() throws Exception {
+    public Personas() throws Exception {
       super(CONTENT_FILE);
     }
   }
 
-  public class Places extends Component {
+  static public class Places extends Component {
 
     private static final String CONTENT_FILE = "places.txt";
 
-    private Places() throws Exception {
+    public Places() throws Exception {
       super(CONTENT_FILE);
     }
   }
+  
   private Verbs verbs;
   private Nouns nouns;
   private Adjectives adjectives;
@@ -112,10 +128,19 @@ public class Dictionary {
 
   public Dictionary() throws Exception {
     verbs = new Verbs();
+    verbs.initializeFromDb();
+    
     nouns = new Nouns();
+    nouns.initializeFromDb();
+    
     adjectives = new Adjectives();
+    adjectives.initializeFromDb();
+    
     personas = new Personas();
+    personas.initializeFromDb();
+    
     places = new Places();
+    places.initializeFromDb();
   }
 
   public Verbs getVerbs() {

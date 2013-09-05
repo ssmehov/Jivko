@@ -6,7 +6,6 @@ import jivko.brain.improvisation.JokeCreator;
 
 import jivko.sphinx.Engine;
 import jivko.synthesizer.impl.RHVoiceOnLinuxSynthesizer;
-import jivko.util.Morpher;
 
 
 /**
@@ -20,10 +19,14 @@ public class Main {
    */
   public static void main(String[] args) throws MalformedURLException, IOException, Exception {            
     
+    String joke;
     for (int i = 0; i < 10; ++i) {
-      String joke = JokeCreator.getInstance().createJoke();
+      joke = JokeCreator.getInstance().createJoke();
       System.err.println(joke);
     }
+    
+    joke = JokeCreator.getInstance().createJokeWHoWhere("Янукович", "во дворе");
+    System.err.println(joke);
     
     Engine.run(args);       
   }

@@ -1,7 +1,10 @@
 package jivko.brain.improvisation;
 
+import com.sun.org.apache.bcel.internal.generic.CHECKCAST;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import jivko.brain.morpher.Morpher;
 
 /**
  *
@@ -36,17 +39,80 @@ public class JokeCreator {
     commonScheme.addComponent(Dictionary.getInstance().getPlaces());
   }
   
-  public String createJoke() {
+  public String createJoke() throws Exception {
     return createJoke(commonScheme);
   }
   
-  public String createJoke(Scheme scheme) {
+  public String createJokeWHoWhere(String who, String where) throws Exception {
+    Dictionary.Personas persona = new Dictionary.Personas();
+    persona.setValue(who);
+            
+    Dictionary.Places place = new Dictionary.Places();
+    place.setValue(where);
+    
+    return createJoke(persona, place);
+  }
+  
+  public String createJoke(Dictionary.Personas personas, Dictionary.Places places) throws Exception {
+    List<Dictionary.Component> presetComponents = new ArrayList<>();
+    presetComponents.add(personas);
+    presetComponents.add(places);
+    
+    return createJoke(presetComponents);
+  }
+  
+  public String createJoke(List<Dictionary.Component> presetComponents) throws Exception {
+    
+    Scheme scheme = new Scheme();
+    
+    for (Dictionary.Component schemeComponent : commonScheme.getComponents()) {      
+      
+      int idx = 0;
+      boolean isAdded = false;
+      
+      while (idx < presetComponents.size()) {        
+        
+        Dictionary.Component presetComponent = presetComponents.get(idx);
+                
+        if (schemeComponent.getClass().equals(presetComponent.getClass())) {
+          scheme.addComponent(presetComponent);
+          presetComponents.remove(presetComponent);
+          isAdded = true;
+          break;
+        } else {          
+          ++idx;
+        }
+      }
+      
+      if (!isAdded) 
+        scheme.addComponent(schemeComponent);
+    }
+    
+    return createJoke(scheme);
+  }
+          
+  public String createJoke(Scheme scheme) throws Exception {
     String joke = "";
     
+    Dictionary.Component prev = null;
     for (Dictionary.Component component : scheme.getComponents()) {
       
-      joke += component.getRandValue();
+      String word;
+      if (component.getValue() != null) {
+        word = component.getValue();
+      } else {
+        word = component.getRandValue();
+
+        if (prev instanceof Dictionary.Verbs) {
+          Morpher m = new Morpher(word);
+          word = m.getMorph("Р");
+        }
+      }
+      
+      joke += word;
       joke += " ";
+      
+      prev = component;
     }
     
     return joke;
