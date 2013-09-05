@@ -21,6 +21,7 @@ public class ConfigurationManager {
   private final String XML_DOM_NODE_ITEM = "item";
   private final String XML_DOM_NODE_ITEM_NAME_ATTR = "name";  
   
+  private final String XML_DOM_DICTIONARIES_DB_PATH_MARKER = "DictionariesDB";  
   private final String XML_DOM_DIALOGS_DB_PATH_MARKER = "DialogsDB";  
   private final String XML_DOM_JOKES_DB_PATH_MARKER = "JokesDB";
   private final String XML_DOM_SCETCHES_DB_PATH_MARKER = "SketchesDB";
@@ -35,7 +36,11 @@ public class ConfigurationManager {
     
     return path + CFG_NAME;
   }
-  
+    
+  public String getDictionariesDBPath() {
+    return properties.get(XML_DOM_DICTIONARIES_DB_PATH_MARKER);    
+  }
+          
   public String getDialogsDBPath() {
     return properties.get(XML_DOM_DIALOGS_DB_PATH_MARKER);    
   }  
