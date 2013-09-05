@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import jivko.brain.Brain;
+import jivko.brain.improvisation.JokeCreator;
 import jivko.brain.speech.sketch.Sketch;
 import org.customsoft.stateless4j.StateMachine;
 import org.customsoft.stateless4j.delegates.Action;
@@ -20,7 +21,7 @@ public class StateMachineHolder {
   private String actionResult = "";
 
   public enum State {
-    INITIAL, DIALOG, PAUSED, SKETCH_CHOICE, SKETCHING, JOKE_CHOICE, JOKING
+    INITIAL, DIALOG, PAUSED, SKETCH_CHOICE, SKETCHING, JOKE_CHOICE, JOKING, IMPROVISE_CHOICE, IMPROVISE
   }
   
   Action resetAction = new Action() {
@@ -116,6 +117,25 @@ public class StateMachineHolder {
         setNextCommand(Command.RESET);
       }
     }
+  };     
+  
+  Action improviseTellAction = new Action() {
+    @Override
+    public void doIt() {
+      
+      try {
+        actionResult = JokeCreator.getInstance().createJokeWHoWhere(Brain.getInstance().getQuestion());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      if (actionResult == null) {
+        actionResult = "повторите, про что шутку?";
+      } else {
+        actionResult = "слушайте. " + actionResult;        
+        setNextCommand(Command.RESET);
+      }
+    }
   };
       
   Action dialogTellAction = new Action() {
@@ -163,6 +183,17 @@ public class StateMachineHolder {
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
               .OnEntry(jokeTellAction);
+      
+      stateMachine.Configure(State.IMPROVISE_CHOICE)
+              .Permit(Command.RESET, State.INITIAL)
+              .Permit(Command.START, State.IMPROVISE)
+              .OnEntry(jokeChooseAction);
+
+      stateMachine.Configure(State.IMPROVISE)
+              .PermitReentry(Command.START)
+              .Permit(Command.RESET, State.INITIAL)
+              .Permit(Command.PAUSE, State.PAUSED)
+              .OnEntry(improviseTellAction);
 
     } catch (Exception e) {
       e.printStackTrace();

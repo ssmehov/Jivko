@@ -43,6 +43,21 @@ public class JokeCreator {
     return createJoke(commonScheme);
   }
   
+  public String createJokeWHoWhere(String whowhere) throws Exception {
+    String result = null;
+    
+    String[] whowhereSplitted = whowhere.split("где ");
+    
+    if (whowhereSplitted.length == 2) {
+      String who = whowhereSplitted[0];
+      String where = whowhereSplitted[1];
+      
+      result = createJokeWHoWhere(who, where);
+    }
+    
+    return result;
+  }
+  
   public String createJokeWHoWhere(String who, String where) throws Exception {
     Dictionary.Personas persona = new Dictionary.Personas();
     persona.setValue(who);

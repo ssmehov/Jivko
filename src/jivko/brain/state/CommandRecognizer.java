@@ -25,6 +25,9 @@ public class CommandRecognizer {
     commands.put("Расскажи шутку", Command.JOKE);
     commands.put("Расскажи шутка", Command.JOKE);
     
+    commands.put("Придумай шутку", Command.IMPROVISE);
+    commands.put("Придумай шутка", Command.IMPROVISE);
+    
     commands.put("Давай покажем миниатюру", Command.SKETCH);    
     commands.put("Давай покажем миниатюра", Command.SKETCH);
     commands.put("Давай покажем", Command.SKETCH);
