@@ -107,8 +107,12 @@ public class StateMachineHolder {
   Action jokeTellAction = new Action() {
     @Override
     public void doIt() {
-      actionResult = Brain.getInstance().getJokesManager().findAnswer(
+      try {
+        actionResult = Brain.getInstance().getJokesManager().findAnswer(
               Brain.getInstance().getQuestion());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
       if (actionResult == null) {
         actionResult = "повторите, про что шутку?";

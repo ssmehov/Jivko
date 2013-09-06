@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import jivko.brain.command.Command;
+import jivko.brain.command.CommandsCenter;
 import jivko.util.BestAnswerFinder;
 import jivko.util.LexicalUtils;
 import org.w3c.dom.Document;
@@ -18,17 +20,17 @@ public class JokesManager {
   static private final String XML_DOM_NODE_JOKES = "jokes";
   static private final String XML_DOM_NODE_JOKE = "joke";
   
-  String activeJoke;
+  Joke activeJoke;
 
-  public String getActiveJoke() {
+  public Joke getActiveJoke() {
     return activeJoke;
   }
 
-  public void setActiveJoke(String activeJoke) {
+  public void setActiveJoke(Joke activeJoke) {
     this.activeJoke = activeJoke;
   }
     
-  List<String> jokes = new ArrayList<String>();
+  List<Joke> jokes = new ArrayList<Joke>();
   
   public void initialize(String path) throws Exception {
     readJokes(path);
@@ -38,7 +40,7 @@ public class JokesManager {
     setActiveJoke(null);
   }
   
-  void addJoke(String joke) {
+  void addJoke(Joke joke) {
     jokes.add(joke);
   }
   
@@ -67,30 +69,35 @@ public class JokesManager {
         else
           break;
       }
+      
+      List<Command> jokeCommands = CommandsCenter.getInstance().getCommandsFromXmlElement(jokeNode);      
+      String jokeContent = jokeNode.getTextContent();
+      Joke joke = new Joke(jokeContent, jokeCommands);
               
-      addJoke(jokeNode.getTextContent());      
+      addJoke(joke);
       
       jokeNode = jokeNode.getNextSibling();      
     }
   }
   
-  public String findAnswer(String keyWords) {
+  public String findAnswer(String keyWords) throws Exception {
+    String answer = null;
+    
     keyWords = LexicalUtils.stripServiceWords(keyWords);
     
     BestAnswerFinder baf = new BestAnswerFinder(keyWords);
     
-    for (String j : jokes) {
-      baf.testCandidate(j, j);
+    for (Joke j : jokes) {
+      baf.testCandidate(j, j.getValue());
     }
     
-    String result = (String)baf.getBestCandidate();
+    Joke result = (Joke)baf.getBestCandidate();
     
-    return result;
-  }
-  
-  public String findJoke(String keyWords) {
+    if (result != null) {
+      answer = result.getValue();
+      CommandsCenter.getInstance().executeCommandList(result.getCommands());
+    }
     
-    setActiveJoke(findAnswer(keyWords));
-    return getActiveJoke();
-  }
+    return answer;
+  }   
 }

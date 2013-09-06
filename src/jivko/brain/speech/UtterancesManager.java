@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import jivko.brain.command.Command;
+import jivko.brain.command.CommandsCenter;
 import jivko.config.ConfigurationManager;
 import jivko.util.Tree;
 import org.w3c.dom.Document;
@@ -71,7 +73,10 @@ public class UtterancesManager {
   
   private void readUtterance(Node node, Utterance utterance) throws Exception {
     assert node.getNodeName() == XML_DOM_NODE_UTTERANCE;
-            
+
+    List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(node);
+    utterance.setCommands(commands);
+    
     NodeList nl = node.getChildNodes();
     for (int i = 0; i < nl.getLength(); ++i) {
       Node n = nl.item(i);

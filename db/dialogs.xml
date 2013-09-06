@@ -5,7 +5,7 @@
     <question>привет как тебя зовут</question>
     <answer>Меня зовут киборг Паша</answer>
   </utterance>  
-  <utterance>
+  <utterance commands="HEAD_ROTATE,HEAD_ROTATE_CENTER">
     <question>Что ты умеешь делать?</question>
     <answer>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</answer>
   </utterance>  

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import jivko.brain.command.Command;
 import jivko.brain.speech.Utterance;
 import static jivko.brain.speech.UtterancesManager.getFailAnswer;
 import jivko.util.Tree;
@@ -37,7 +38,11 @@ public class Sketch extends Utterance {
   }
 
   public void addRobotBoff(String value) {
-    boffs.add(new RobotBoff(value));
+    boffs.add(new RobotBoff(value, null));
+  }
+  
+  public void addRobotBoff(String value, List<Command> commands) {
+    boffs.add(new RobotBoff(value, commands));
   }
 
   public List<Boff> getBoffs() {

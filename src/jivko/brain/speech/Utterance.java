@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import jivko.brain.command.Command;
 import jivko.util.Tree;
 
 /**
@@ -12,7 +13,16 @@ import jivko.util.Tree;
  * @author Sergii Smehov (smehov.com)
  */
 public class Utterance extends jivko.util.Tree {  
-  //quesion associated with answers set
+  List<Command> commands;
+  
+  public List<Command> getCommands() {
+    return commands;
+  }
+
+  public void setCommands(List<Command> commandss) {
+    this.commands = commands;
+  } 
+  //quesion associated with answers set  
   private String question;
 
   public String getQuestion() {

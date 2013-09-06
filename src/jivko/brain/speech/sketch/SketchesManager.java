@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import jivko.brain.command.Command;
+import jivko.brain.command.CommandsCenter;
+import jivko.brain.speech.Joke;
 import jivko.brain.speech.Utterance;
 import jivko.brain.speech.UtterancesManager;
 import jivko.util.BestAnswerFinder;
@@ -101,6 +104,9 @@ public class SketchesManager {
         String nodeVal = n.getTextContent();
         sketch.addHumanBoff(nodeVal);
       } else if (nodeName.contains(XML_DOM_NODE_ROBOT)) {
+        
+        List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(n);              
+      
         String nodeVal = n.getTextContent();
         sketch.addRobotBoff(nodeVal);
       }
