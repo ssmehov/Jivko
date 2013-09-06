@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import jivko.brain.command.Command;
+import jivko.brain.movement.Command;
 import jivko.brain.speech.Utterance;
 import static jivko.brain.speech.UtterancesManager.getFailAnswer;
 import jivko.util.Tree;

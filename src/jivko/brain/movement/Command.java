@@ -1,4 +1,4 @@
-package jivko.brain.command;
+package jivko.brain.movement;
 
 import java.util.ArrayList;
 import java.util.HashMap;

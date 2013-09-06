@@ -1,7 +1,7 @@
 package jivko.brain.speech;
 
 import java.util.List;
-import jivko.brain.command.Command;
+import jivko.brain.movement.Command;
 
 /**
  *

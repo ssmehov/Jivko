@@ -1,7 +1,7 @@
 package jivko.test;
 
-import jivko.brain.command.Command;
-import jivko.brain.command.CommandsCenter;
+import jivko.brain.movement.Command;
+import jivko.brain.movement.CommandsCenter;
 
 /**
  *
