@@ -18,7 +18,7 @@ public class Main {
    */
   public static void main(String[] args) throws MalformedURLException, IOException, Exception {            
     
-    Commands.test();
+    //Commands.test();
                     
     Engine.run(args);       
   }

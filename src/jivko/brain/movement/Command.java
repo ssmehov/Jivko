@@ -46,7 +46,7 @@ public class Command extends jivko.util.Tree {
   private String port;
   private String command;
   
-  Map<String, ComPort> openedPorts = new HashMap<String, ComPort>();
+  private static Map<String, ComPort> openedPorts = new HashMap<String, ComPort>();
 
   public String getName() {
     return name;
@@ -116,7 +116,7 @@ public class Command extends jivko.util.Tree {
   public void compile() throws Exception {
     //System.err.println("before:" + command);
     
-    if (command == null || command == "")
+    if (command == null || "".equals(command))
       return;
     
     Integer val;
@@ -130,8 +130,9 @@ public class Command extends jivko.util.Tree {
     } 
     
     command = command.replaceAll("xxx", val.toString());
+    command += "\r\n";
     
-    if (port == null)
+    if (port == null || port == "")
       port = DEFAULT_PORT_NAME;
     
     addPort(port);
@@ -142,7 +143,7 @@ public class Command extends jivko.util.Tree {
   public void execute() throws  Exception {
     System.out.println("Executing command: " + getName());
     //this work only for unix
-    if (command != null && command != "") {
+    if (command != null && !"".equals(command)) {
       if (OsUtils.isUnix()) {
         ComPort comPort = openedPorts.get(port);
         comPort.getOut().write(command.getBytes());

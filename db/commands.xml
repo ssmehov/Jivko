@@ -3,24 +3,26 @@
   <command name="HEAD_ROTATE" 
            min="600"
            max ="2500"
-           command="#8PxxxT100"/>
+           command="#7PxxxT100"/>
   <command name="HEAD_ROTATE_CENTER"
+           min="600"
+           max ="2500"
            val="1650"
-           command="#8PxxxT100"/>
+           command="#7PxxxT100"/>
   <command name="HEAD_TILT" 
            min="1400" 
            max ="1700"
-           command="#9PxxxT100"/>
+           command="#8PxxxT100"/>
   <command name="HEAD_TILT_CENTER"
            val="1550"
-           command="#9PxxxT100"/>
+           command="#8PxxxT100"/>
   <command name="HEAD_TIP" 
            min="1300" 
            max ="1700"
-           command="#10PxxxT100"/>
+           command="#9PxxxT100"/>
   <command name="HEAD_TIP_CENTER"
            val="1500"
-           command="#10PxxxT100"/>
+           command="#9PxxxT100"/>
            
   <command name="COMPLEX_COMMAD_EXAMPLE">
     <commands>
@@ -34,5 +36,5 @@
   </command>
   
   <command name="MOVE_FORWARD"
-           port = "/dev/ttyUSB0">88</command>
+           port = "/dev/ttyACM0">88</command>
 </commands>
