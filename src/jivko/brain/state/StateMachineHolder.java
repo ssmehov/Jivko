@@ -70,8 +70,13 @@ public class StateMachineHolder {
         }
       }
 
-      String answer = Brain.getInstance().getSketchesManager().findAnswer(
+      String answer = null;
+      try {
+        Brain.getInstance().getSketchesManager().findAnswer(
               Brain.getInstance().getQuestion());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
       if (answer == null) {
         actionResult = "спасибо за внимание";       
@@ -138,9 +143,13 @@ public class StateMachineHolder {
       
   Action dialogTellAction = new Action() {
     @Override
-    public void doIt() {
-      actionResult = Brain.getInstance().getUtterancesManager().findAnswer(
-              Brain.getInstance().getQuestion());     
+    public void doIt() {      
+        try {
+          actionResult = Brain.getInstance().getUtterancesManager().findAnswer(
+                Brain.getInstance().getQuestion());     
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
   };
   
