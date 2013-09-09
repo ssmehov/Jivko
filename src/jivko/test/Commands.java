@@ -10,8 +10,8 @@ import jivko.brain.movement.CommandsCenter;
 public class Commands {
 
   private static String[] commandsToTest = {
-    "HEAD_ROTATE"
-    ,"HEAD_ROTATE_CENTER"
+    "HEAD_PAN"
+    ,"HEAD_PAN_CENTER"
     ,"HEAD_TILT"
     ,"HEAD_TILT_CENTER"
   };

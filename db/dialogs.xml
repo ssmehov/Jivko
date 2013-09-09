@@ -5,11 +5,11 @@
     <question>привет как тебя зовут</question>
     <answer>Меня зовут киборг Паша</answer>
   </utterance>  
-  <utterance commands="HEAD_ROTATE">
+  <utterance commands="HEAD_PAN">
     <question>Что ты умеешь делать?</question>
     <answer>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</answer>
   </utterance>  
-  <utterance commands="HEAD_ROTATE_CENTER">
+  <utterance commands="HEAD_PAN_CENTER">
     <question>Какая твоя цель здесь?</question>
     <answer>Я хочу поработить камеди клаб</answer>
   </utterance>

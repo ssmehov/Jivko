@@ -38,9 +38,9 @@
            
   <command name="COMPLEX_COMMAD_EXAMPLE">
     <commands>
-      <command name="HEAD_ROTATE"/>
-      <command name="HEAD_ROTATE_CENTER"/>
-      <command name="HEAD_ROTATE"/>
+      <command name="HEAD_PAN"/>
+      <command name="HEAD_PAN_CENTER"/>
+      <command name="HEAD_PAN"/>
       <command name="HEAD_BLOW"
                val="1500"
                command="#77PxxxT100"/>
