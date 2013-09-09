@@ -12,7 +12,7 @@ import jivko.brain.morpher.Morpher;
  */
 public class JokeCreator {
 
-  private class Scheme {
+  public class Scheme {
     List<Dictionary.Component> components = new ArrayList<Dictionary.Component>();
     
     public void addComponent(Dictionary.Component c) {

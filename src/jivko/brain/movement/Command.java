@@ -1,15 +1,12 @@
 package jivko.brain.movement;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import jivko.util.ComPort;
 import jivko.util.OsUtils;
 import jivko.util.Tree;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+
 
 /**
  *
@@ -30,7 +27,7 @@ public class Command extends jivko.util.Tree {
   }
   
   public Command(String name, String value) {
-    setName(name);
+    this(name);
     setValue(value);
   }
 
@@ -46,7 +43,7 @@ public class Command extends jivko.util.Tree {
   private String port;
   private String command;
   
-  private static Map<String, ComPort> openedPorts = new HashMap<String, ComPort>();
+  private static Map<String, ComPort> openedPorts = new HashMap<>();
 
   public String getName() {
     return name;
@@ -69,7 +66,7 @@ public class Command extends jivko.util.Tree {
   }
 
   public void setMin(String min) {
-    if (min != null && min != "") {
+    if (min != null && !"".equals(min)) {
       this.min = Integer.parseInt(min);
     }
   }
@@ -79,7 +76,7 @@ public class Command extends jivko.util.Tree {
   }
 
   public void setMax(String max) {    
-    if (max != null && max != "") {
+    if (max != null && !"".equals(max)) {
       this.max = Integer.parseInt(max);
     }
   }
@@ -89,7 +86,7 @@ public class Command extends jivko.util.Tree {
   }
 
   public void setValue(String value) {
-    if (value != null && value != "") {
+    if (value != null && !"".equals(value)) {
       this.value = Integer.parseInt(value);
     }
   }
@@ -132,7 +129,7 @@ public class Command extends jivko.util.Tree {
     command = command.replaceAll("xxx", val.toString());
     command += "\r\n";
     
-    if (port == null || port == "")
+    if (port == null || "".equals(port))
       port = DEFAULT_PORT_NAME;
     
     addPort(port);

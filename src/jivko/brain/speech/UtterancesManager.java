@@ -6,7 +6,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
-import jivko.config.ConfigurationManager;
 import jivko.util.Tree;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -66,13 +65,13 @@ public class UtterancesManager {
             && firstUtterancesNode.getNextSibling() != null)
       firstUtterancesNode = firstUtterancesNode.getNextSibling();
     
-    assert firstUtterancesNode.getNodeName() == XML_DOM_NODE_UTTERANCE;
+    assert XML_DOM_NODE_UTTERANCE.equals(firstUtterancesNode.getNodeName());
     
     readUtterance(firstUtterancesNode, rootUtterance);
   }
   
   private void readUtterance(Node node, Utterance utterance) throws Exception {
-    assert node.getNodeName() == XML_DOM_NODE_UTTERANCE;
+    assert XML_DOM_NODE_UTTERANCE.equals(node.getNodeName());
 
     List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(node);
     utterance.setCommands(commands);
@@ -85,29 +84,35 @@ public class UtterancesManager {
         continue;
         
       String nodeName = n.getNodeName();            
-      
-      if (nodeName == XML_DOM_NODE_QUESTION) {
-        String nodeVal = n.getTextContent();
-        utterance.setQuestion(nodeVal);
-      } else if (nodeName == XML_DOM_NODE_ANSWER) {
-        String nodeVal = n.getTextContent();
-        utterance.setAnswer(nodeVal);
-      } else if (nodeName == XML_DOM_NODE_UTTERANCES) {
-        
-        NodeList nnl = n.getChildNodes();
-        for (int j = 0; j < nnl.getLength(); ++j) {
-          Node chNode = nnl.item(j);
-          
-          if (chNode.getNodeType() != Document.ELEMENT_NODE 
-                  || chNode.getNodeName() != XML_DOM_NODE_UTTERANCE)
-            continue;
-          
-          Utterance chUtterance = new Utterance();
-          readUtterance(chNode, chUtterance);
-          
-          utterance.addNode(chUtterance);
-        }                        
-      }      
+      switch (nodeName) {
+        case XML_DOM_NODE_QUESTION:
+          {
+            String nodeVal = n.getTextContent();
+            utterance.setQuestion(nodeVal);
+            break;
+          }
+        case XML_DOM_NODE_ANSWER:
+          {
+            String nodeVal = n.getTextContent();
+            utterance.setAnswer(nodeVal);
+            break;
+          }
+        case XML_DOM_NODE_UTTERANCES:
+          NodeList nnl = n.getChildNodes();
+          for (int j = 0; j < nnl.getLength(); ++j) {
+            Node chNode = nnl.item(j);
+            
+            if (chNode.getNodeType() != Document.ELEMENT_NODE 
+                    || XML_DOM_NODE_UTTERANCE.equals(chNode.getNodeName()))
+              continue;
+            
+            Utterance chUtterance = new Utterance();      
+            readUtterance(chNode, chUtterance);
+            
+            utterance.addNode(chUtterance);
+          }
+          break;
+      }
     }
   }
 

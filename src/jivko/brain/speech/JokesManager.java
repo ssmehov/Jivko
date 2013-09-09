@@ -30,7 +30,7 @@ public class JokesManager {
     this.activeJoke = activeJoke;
   }
     
-  List<Joke> jokes = new ArrayList<Joke>();
+  List<Joke> jokes = new ArrayList<>();
   
   public void initialize(String path) throws Exception {
     readJokes(path);
@@ -56,7 +56,7 @@ public class JokesManager {
             && jokesNode.getNextSibling() != null)
       jokesNode = jokesNode.getNextSibling();
     
-    assert jokesNode.getNodeName() == XML_DOM_NODE_JOKES;
+    assert XML_DOM_NODE_JOKES.equals(jokesNode.getNodeName());
     
     Node jokeNode = jokesNode.getFirstChild();
     

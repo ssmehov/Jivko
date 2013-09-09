@@ -7,14 +7,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
-import jivko.brain.speech.Joke;
-import jivko.brain.speech.Utterance;
-import jivko.brain.speech.UtterancesManager;
 import jivko.util.BestAnswerFinder;
-import jivko.util.Tree;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -30,7 +25,7 @@ public class SketchesManager {
   static private final String XML_DOM_NODE_ROBOT = "robot";
   static private final String XML_DOM_ATTRIBUTE_NAME = "name";
   
-  private List<Sketch> sketches = new ArrayList<Sketch>();
+  private List<Sketch> sketches = new ArrayList<>();
   private Sketch activeSketch = null;
 
   public void addSketch(Sketch sketch) {
@@ -60,7 +55,7 @@ public class SketchesManager {
       sketchesNode = sketchesNode.getNextSibling();
     }
 
-    assert sketchesNode.getNodeName() == XML_DOM_NODE_SKETCHES;
+    assert XML_DOM_NODE_SKETCHES.equals(sketchesNode.getNodeName());
 
     Node sketchNode = sketchesNode.getFirstChild();
 
@@ -85,7 +80,7 @@ public class SketchesManager {
   }
 
   private void readSketch(Node node, Sketch sketch) throws Exception {
-    assert node.getNodeName() == XML_DOM_NODE_SKETCH;
+    assert XML_DOM_NODE_SKETCH.equals(node.getNodeName());
             
     String name = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_NAME);
     sketch.setName(name);

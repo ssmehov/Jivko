@@ -4,8 +4,6 @@ import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 
-import java.io.FileDescriptor;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -36,7 +34,7 @@ public class ComPort {
     connect(portName, speed);
   }
   
-  void connect(String portName, int speed) throws Exception {
+  private void connect(String portName, int speed) throws Exception {
     CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
     if (portIdentifier.isCurrentlyOwned()) {
       System.out.println("Error: Port is currently in use");

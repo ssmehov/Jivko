@@ -27,7 +27,7 @@ public class ConfigurationManager {
   private final String XML_DOM_JOKES_DB_PATH_MARKER = "JokesDB";
   private final String XML_DOM_SCETCHES_DB_PATH_MARKER = "SketchesDB";
 
-  private Map<String, String> properties = new HashMap<String, String>();
+  private Map<String, String> properties = new HashMap<>();
   
   public String getCfgPath() throws Exception {
     String path = System.getenv(JIVKO_HOME_ENV);
@@ -62,14 +62,14 @@ public class ConfigurationManager {
     readConfiguration();
   }
 
-  public void readConfiguration() throws Exception {
+  private void readConfiguration() throws Exception {
     DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
     f.setValidating(false);
     DocumentBuilder builder = f.newDocumentBuilder();
     Document doc = builder.parse(new File(getCfgPath()));
     
     Node root = doc.getFirstChild();
-    assert root.getNodeName() == XML_DOM_NODE_CONFIGURATION;
+    assert XML_DOM_NODE_CONFIGURATION.equals(root.getNodeName());
     
     NodeList nl = root.getChildNodes();
     for (int i = 0; i < nl.getLength(); ++i) {      
@@ -78,7 +78,7 @@ public class ConfigurationManager {
       if (n.getNodeType() != Document.ELEMENT_NODE)
         continue;
       
-      assert n.getNodeName() == XML_DOM_NODE_ITEM;
+      assert XML_DOM_NODE_ITEM.equals(n.getNodeName());
             
       NamedNodeMap map = n.getAttributes();
       Node nameAttrib = map.getNamedItem(XML_DOM_NODE_ITEM_NAME_ATTR);

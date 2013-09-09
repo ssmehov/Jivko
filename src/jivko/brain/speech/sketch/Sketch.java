@@ -1,17 +1,9 @@
 package jivko.brain.speech.sketch;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.movement.Command;
 import jivko.brain.speech.Utterance;
-import static jivko.brain.speech.UtterancesManager.getFailAnswer;
-import jivko.util.Tree;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
@@ -20,7 +12,7 @@ import org.w3c.dom.NodeList;
 public class Sketch extends Utterance {
   private String name;  
   private int curBufIdx = 0;  
-  private List<Boff> boffs = new ArrayList<Boff>();
+  private List<Boff> boffs = new ArrayList<>();
 
   public Sketch() {
   }

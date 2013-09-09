@@ -13,7 +13,7 @@ public class CommandRecognizer {
   private static Map<String, Command> commands;
   
   static {
-    commands = new HashMap<String, Command>();
+    commands = new HashMap<>();
     
     commands.put("Давай сначала", Command.RESET);
     commands.put("Ладно, стоп", Command.RESET);

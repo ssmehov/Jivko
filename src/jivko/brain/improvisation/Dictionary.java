@@ -62,7 +62,7 @@ public class Dictionary {
     }
 
     private List<String> readTextFile(String fileName) throws Exception {
-      List<String> out = new ArrayList<String>();
+      List<String> out = new ArrayList<>();
       BufferedReader br = new BufferedReader(new FileReader(fileName));
 
       String line;

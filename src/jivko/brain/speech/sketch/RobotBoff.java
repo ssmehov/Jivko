@@ -24,7 +24,7 @@ public class RobotBoff extends Boff {
     return commands;
   }
 
-  public void setCommands(List<Command> commandss) {
+  public void setCommands(List<Command> commands) {
     this.commands = commands;
   }
 }

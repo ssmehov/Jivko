@@ -6,10 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import jivko.brain.speech.Utterance;
 import jivko.config.ConfigurationManager;
 import jivko.util.Tree;
 import org.w3c.dom.Document;
@@ -33,19 +31,16 @@ public class CommandsCenter {
   static public final String XML_DOM_ATTRIBUTE_PORT = "port";
   static public final String XML_DOM_ATTRIBUTE_COMMAND = "command";  
   
-  private Map<String, Command> commands = new HashMap<String, Command>();     
+  private Map<String, Command> commands = new HashMap<>();     
       
   public CommandsCenter() throws Exception {
     ConfigurationManager cm = ConfigurationManager.getInstance();
     initialize(cm.getCommandsDBPath());
   }
-  
-  private boolean isInitialized = false;
-  
-  public void initialize(String path) throws Exception {    
-    readCommands(path);  
-    print();
-    isInitialized = true;
+     
+  private void initialize(String path) throws Exception {    
+    readCommands(path);
+    print();    
   }
   
   public Command getCommand(String commandName) {
@@ -83,7 +78,7 @@ public class CommandsCenter {
             && commandsNode.getNextSibling() != null)
       commandsNode = commandsNode.getNextSibling();
     
-    assert commandsNode.getNodeName() == XML_DOM_NODE_COMMANDS;
+    assert XML_DOM_NODE_COMMANDS.equals(commandsNode.getNodeName());
     
     Node commandNode = commandsNode.getFirstChild();
     while (commandNode != null) {
@@ -109,7 +104,7 @@ public class CommandsCenter {
   private Command readCommand(Node node) throws Exception {
     Command command = new Command();
     
-    assert node.getNodeName() == XML_DOM_NODE_COMMAND;
+    assert XML_DOM_NODE_COMMAND.equals(node.getNodeName());
     
     String name = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_NAME);
     command.setName(name);
@@ -143,13 +138,13 @@ public class CommandsCenter {
         
       String nodeName = n.getNodeName();            
       
-      if (nodeName == XML_DOM_NODE_COMMAND) {        
+      if (XML_DOM_NODE_COMMAND.equals(nodeName)) {        
         NodeList nnl = n.getChildNodes();
         for (int j = 0; j < nnl.getLength(); ++j) {
           Node chNode = nnl.item(j);
           
           if (chNode.getNodeType() != Document.ELEMENT_NODE 
-                  || chNode.getNodeName() != XML_DOM_NODE_COMMAND)
+                  || !XML_DOM_NODE_COMMAND.equals(chNode.getNodeName()))
             continue;
           
           Command chCommand = readCommand(chNode);
@@ -164,16 +159,16 @@ public class CommandsCenter {
   }
   
   public List<Command> getCommandsFromXmlElement(Node element) {
-    List<Command> commands = new ArrayList<Command>();
+    List<Command> commandsFromXml = new ArrayList<>();
     
     String commandsStr = ((Element)element).getAttribute(CommandsCenter.XML_DOM_NODE_COMMANDS);
     String[] commandsVals = commandsStr.split(",");
     
     for (String s : commandsVals) {
-      commands.add(getCommand(s));
+      commandsFromXml.add(getCommand(s));
     }
     
-    return commands;
+    return commandsFromXml;
   }
   
   public void print() {

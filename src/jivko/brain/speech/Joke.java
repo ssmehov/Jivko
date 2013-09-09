@@ -33,7 +33,7 @@ public class Joke {
     return commands;
   }
 
-  public void setCommands(List<Command> commandss) {
+  public void setCommands(List<Command> commands) {
     this.commands = commands;
   } 
 }

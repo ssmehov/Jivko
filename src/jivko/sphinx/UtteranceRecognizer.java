@@ -4,11 +4,6 @@ import edu.cmu.sphinx.frontend.*;
 import edu.cmu.sphinx.frontend.endpoint.SpeechEndSignal;
 import edu.cmu.sphinx.frontend.endpoint.SpeechStartSignal;
 import edu.cmu.sphinx.frontend.util.DataUtil;
-import edu.cmu.sphinx.frontend.util.Microphone;
-import static edu.cmu.sphinx.frontend.util.WavWriter.PROP_BITS_PER_SAMPLE;
-import static edu.cmu.sphinx.frontend.util.WavWriter.PROP_CAPTURE_UTTERANCES;
-import static edu.cmu.sphinx.frontend.util.WavWriter.PROP_IS_COMPLETE_PATH;
-import static edu.cmu.sphinx.frontend.util.WavWriter.PROP_SIGNED_DATA;
 import edu.cmu.sphinx.util.props.*;
 
 import javax.sound.sampled.AudioFileFormat;
@@ -16,9 +11,6 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
-import java.net.URL;
-
-import jivko.sphinx.UtteranceFromWavData;
 
 /**
  * Stores audio data into numbered (MS-)wav files. TODO: currently the WavWriter
@@ -80,6 +72,18 @@ public class UtteranceRecognizer extends BaseDataProcessor {
   }
 
   public UtteranceRecognizer() {
+  }
+  
+  /**
+   * Initializes this DataProcessor. This is typically called after the
+   * DataProcessor has been configured.
+   */
+  @Override
+  public void initialize() {
+    super.initialize();
+
+    assert outFileNamePattern != null;
+    baos = new ByteArrayOutputStream();
   }
 
   /*
@@ -179,18 +183,6 @@ public class UtteranceRecognizer extends BaseDataProcessor {
     }
 
     return fileName;
-  }
-
-  /**
-   * Initializes this DataProcessor. This is typically called after the
-   * DataProcessor has been configured.
-   */
-  @Override
-  public void initialize() {
-    super.initialize();
-
-    assert outFileNamePattern != null;
-    baos = new ByteArrayOutputStream();
   }
 
   /**

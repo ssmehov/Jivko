@@ -27,5 +27,4 @@ public class RecognizerGoogleImpl implements Recognizer {
   public String recognize(InputStream inputStream) throws Exception {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-
 }

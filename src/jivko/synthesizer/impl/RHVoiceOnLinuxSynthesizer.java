@@ -1,12 +1,8 @@
 package jivko.synthesizer.impl;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jivko.synthesizer.Synthesizer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -22,7 +18,7 @@ public class RHVoiceOnLinuxSynthesizer implements Synthesizer {
     @Override
     public void talk(String text) {
 
-        if (text == null || text == "") {
+        if (text == null || "".equals(text)) {
             return;
         }
 
@@ -45,8 +41,8 @@ public class RHVoiceOnLinuxSynthesizer implements Synthesizer {
                 throw new Exception("cann't run RHVoice");
             }
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -3,7 +3,6 @@ package jivko.brain.speech;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import jivko.brain.movement.Command;
 import jivko.util.Tree;
@@ -19,7 +18,7 @@ public class Utterance extends jivko.util.Tree {
     return commands;
   }
 
-  public void setCommands(List<Command> commandss) {
+  public void setCommands(List<Command> commands) {
     this.commands = commands;
   } 
   //quesion associated with answers set  
@@ -77,7 +76,7 @@ public class Utterance extends jivko.util.Tree {
       String[] utteranceQuestionSplitted;
       utteranceQuestionSplitted = u.getQuestion().split(delimiter);
 
-      LinkedHashSet<String> lhl = new LinkedHashSet<String>();
+      LinkedHashSet<String> lhl = new LinkedHashSet<>();
 
       for (String s : questionSplitted) {
         lhl.add(s.toLowerCase());

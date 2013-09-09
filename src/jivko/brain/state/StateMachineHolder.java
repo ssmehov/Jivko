@@ -1,11 +1,5 @@
 package jivko.brain.state;
 
-import java.awt.Desktop;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import jivko.brain.Brain;
 import jivko.brain.improvisation.JokeCreator;
 import jivko.brain.speech.sketch.Sketch;
@@ -150,7 +144,7 @@ public class StateMachineHolder {
       }
   };
   
-  StateMachine<State, Command> stateMachine = new StateMachine<State, Command>(State.DIALOG);
+  StateMachine<State, Command> stateMachine = new StateMachine<>(State.DIALOG);
   {
     try {
       stateMachine.Configure(State.INITIAL)
@@ -163,6 +157,7 @@ public class StateMachineHolder {
               .Permit(Command.PAUSE, State.PAUSED)
               .Permit(Command.SKETCH, State.SKETCH_CHOICE)
               .Permit(Command.JOKE, State.JOKE_CHOICE)
+              .Permit(Command.IMPROVISE, State.IMPROVISE_CHOICE)
               .OnEntry(dialogTellAction);
 
       stateMachine.Configure(State.SKETCH_CHOICE)
