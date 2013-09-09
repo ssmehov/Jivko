@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 
 import jivko.sphinx.Engine;
 
-import jivko.test.Commands;
+import jivko.test.TestManager;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Main {
    */
   public static void main(String[] args) throws MalformedURLException, IOException, Exception {            
     
-    //Commands.test();
+    TestManager.run();
                     
     Engine.run(args);       
   }
