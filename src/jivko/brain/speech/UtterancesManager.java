@@ -120,7 +120,7 @@ public class UtterancesManager {
     return FAIL_ANSWER;
   }
 
-  public String findAnswer(String question) {
+  public String findAnswer(String question) throws Exception {
     String answer = null;
 
     if (question == null) {
@@ -134,12 +134,13 @@ public class UtterancesManager {
     return answer;
   }
   
-  public String findAnswer(Utterance utterance, String question) {
+  public String findAnswer(Utterance utterance, String question) throws Exception {
     String answer = null;
     Utterance uWithAnswer = utterance.findUtteranceWithAnswer(question);
     
     if (uWithAnswer != null) {
       answer = uWithAnswer.getRandomValue();
+      CommandsCenter.getInstance().executeCommandList(uWithAnswer.getCommands());
       
       //update current pointer if this is a dialog
       if (uWithAnswer.getNodes() != null)

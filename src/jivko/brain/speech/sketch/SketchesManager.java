@@ -129,16 +129,18 @@ public class SketchesManager {
     return bestCandidate;
   }    
   
-  public String findAnswer(String question) {
+  public String findAnswer(String question) throws Exception {
     String result = null;
     
     if (activeSketch != null) {
       RobotBoff answer = activeSketch.nextRobotBoff();
       
-      if (answer == null) 
+      if (answer == null) { 
         setActiveSketch(null);
-      else
+      } else {
         result = answer.getValue();
+        CommandsCenter.getInstance().executeCommandList(answer.getCommands());
+      }
     }
 
     return result;
