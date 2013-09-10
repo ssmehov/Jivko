@@ -13,13 +13,10 @@ public class Commands {
 
   private static String[] commandsToTest = {
     "HEAD_PAN_CENTER"
-    ,"HEAD_PAN=500"
-    ,"HEAD_PAN=200"
-    ,"HEAD_PAN=300"
-    ,"HEAD_PAN=300"
-    ,"HEAD_PAN_CENTER"
+    ,"HEAD_PAN=2500"        
+    ,"HEAD_PAN_CENTER=3000"
     ,"HEAD_TILT"
-    ,"HEAD_TILT_CENTER"
+    ,"HEAD_TILT_CENTER"        
   };
   
   public static void test() throws Exception {

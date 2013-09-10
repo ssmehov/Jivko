@@ -1,8 +1,15 @@
 package jivko.brain.movement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_MAX;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_MIN;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_NAME;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_PORT;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_VAL;
+import static jivko.brain.movement.CommandsCenter.XML_DOM_NODE_COMMAND;
 import jivko.util.ComPort;
 import jivko.util.OsUtils;
 import jivko.util.Tree;
@@ -21,7 +28,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
   private static final String COMMAND_SPEED_PREFIX = "T";
   private static final int DEFAULT_COMMAND_SPEED = 100;
   
-  private static final int DEFAULT_COMMAND_DURATION = 200;
+  private static final int DEFAULT_COMMAND_DURATION = 1500;
   
   private static Random rand = new Random();    
                 
@@ -167,8 +174,29 @@ public class Command extends jivko.util.Tree implements Cloneable {
     //System.err.println("after:" + command);
   }
   
+  public void print() {
+    print("");  
+  }
+  
+  public void print(String identity) {
+    System.out.println(identity + XML_DOM_ATTRIBUTE_NAME + ": "+ getName());
+    System.out.println(identity + XML_DOM_ATTRIBUTE_MAX + ": "+ getMax());
+    System.out.println(identity + XML_DOM_ATTRIBUTE_MIN + ": "+ getMin());
+    System.out.println(identity + XML_DOM_ATTRIBUTE_PORT + ": "+ getPort());
+    System.out.println(identity + XML_DOM_ATTRIBUTE_VAL + ": "+ getValue());
+    System.out.println(identity + XML_DOM_NODE_COMMAND + ": "+ getCommand());
+                
+    identity = identity + "  ";        
+    List<Tree> chNodes = getNodes();
+    for (Tree t : chNodes) {
+      ((Command)t).print(identity);
+    }  
+  }
+  
   public void execute() throws  Exception {
     System.out.println("Executing command: " + getName());
+    print();
+    
     //this work only for unix
     if (command != null && !"".equals(command)) {
       if (OsUtils.isUnix()) {

@@ -233,18 +233,7 @@ public class CommandsCenter {
   }
   
   public void printNode(Command c, String identity) {        
-    System.out.println(identity + XML_DOM_ATTRIBUTE_NAME + ": "+ c.getName());
-    System.out.println(identity + XML_DOM_ATTRIBUTE_MAX + ": "+ c.getMax());
-    System.out.println(identity + XML_DOM_ATTRIBUTE_MIN + ": "+ c.getMin());
-    System.out.println(identity + XML_DOM_ATTRIBUTE_PORT + ": "+ c.getPort());
-    System.out.println(identity + XML_DOM_ATTRIBUTE_VAL + ": "+ c.getValue());
-    System.out.println(identity + XML_DOM_NODE_COMMAND + ": "+ c.getCommand());
-                
-    identity = identity + "  ";        
-    List<Tree> chNodes = c.getNodes();
-    for (Tree t : chNodes) {
-      printNode((Command)t, identity);
-    }        
+    c.print(identity);
   }
   
   private CommandsExecutor commandsExecutor = new CommandsExecutor();
@@ -270,16 +259,22 @@ public class CommandsCenter {
             
     @Override
     public void run() {
-      while (true) {
-        Command command = queue.poll();
+      while (true) {        
         try {
+          Command command = queue.take();          
           command.execute();
 
           Command nextCommand = queue.peek();
-          Thread.sleep(nextCommand.getDuration());
+          
+          if (nextCommand != null) {
+            Integer duration = nextCommand.getDuration();
+            System.out.println("duration = " + duration);
+            Thread.sleep(duration);
+          }
         } catch (Exception ex) {
+          ex.printStackTrace();
           Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);
-        }            
+        }          
       }
     }
   }
