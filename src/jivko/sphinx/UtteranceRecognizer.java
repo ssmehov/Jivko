@@ -11,6 +11,8 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Stores audio data into numbered (MS-)wav files. TODO: currently the WavWriter
@@ -122,13 +124,19 @@ public class UtteranceRecognizer extends BaseDataProcessor {
 
 
     if ((data instanceof DataEndSignal && !captureUtts) || (data instanceof SpeechEndSignal && captureUtts)) {
-
+      
       String wavName;
-      if (isCompletePath) {
-        wavName = outFileNamePattern;
-      } else {
-        //wavName = getNextFreeIndex(outFileNamePattern);
-        wavName = outFileNamePattern + ".wav";
+
+      try {
+        wavName = jivko.config.ConfigurationManager.getInstance().getSpinxUtteranceRecognizerWavFileName();        
+      } catch (Exception ex) {
+        Logger.getLogger(UtteranceRecognizer.class.getName()).log(Level.SEVERE, null, ex);
+        if (isCompletePath) {
+          wavName = outFileNamePattern;
+        } else {
+          //wavName = getNextFreeIndex(outFileNamePattern);
+          wavName = outFileNamePattern + ".wav";
+        }
       }
 
       writeFile(wavName);
