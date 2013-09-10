@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,10 +50,10 @@ public class CommandsCenter {
     print();    
   }
   
-  public Command getCommand(String commandName) {
+  private Command getCommand(String commandName) {
     return commands.get(commandName);
   }
-  
+      
   public void execute(String commandName) throws Exception {
     Command c = commands.get(commandName);
     if (c == null) {
@@ -175,40 +177,51 @@ public class CommandsCenter {
     String commandsStr = ((Element)element).getAttribute(CommandsCenter.XML_DOM_NODE_COMMANDS);
     String[] commandsVals = commandsStr.split(",");
     
-    for (String s : commandsVals) {
-      addCommandWithDifDelay(s);
-      commandsFromXml.add(getCommand(s));
+    for (String s : commandsVals) {      
+      commandsFromXml.add(getCommandEx(s));
     }
     
     return commandsFromXml;
   }
   
+  public Command getCommandEx(String commandName) throws Exception {
+    commandName = addCommandWithDifDelay(commandName);
+    return commands.get(commandName);
+  }
+  
   //adds commads with different to default delay. If command with such delay exists nothing changes
-  public void addCommandWithDifDelay(String command) throws Exception {
-    if (getCommand(command) != null)
-      return;
+  public String addCommandWithDifDelay(String commandName) throws Exception {        
+    String result = commandName;
     
-    int idx = command.indexOf("=");
+    Command command = getCommand(commandName);
+    if (command != null)
+      return command.getName();
+    
+    int idx = commandName.indexOf("=");
     
     if (idx > 0) {
-      String durationStr = command.substring(idx);
+      String durationStr = commandName.substring(idx + 1);
       Integer duration = Integer.parseInt(durationStr);    
-      String commandName = command.substring(0, idx-1);      
+      String commandBaseName = commandName.substring(0, idx);      
       
-      Command c = getCommand(commandName);
+      command = getCommand(commandBaseName);
       
-      if (c == null)
-        throw new Exception("Command " + commandName + " not found!!");
+      if (command == null)
+        throw new Exception("Command " + commandBaseName + " not found!!");
       
-      if (c.getDuration() != duration) {
-        Command newCommand = (Command)c.clone();
+      if (!command.getDuration().equals(duration)) {
+        Command newCommand = (Command)command.clone();
         
         //set full comand name for future
-        newCommand.setName(command);        
+        newCommand.setName(commandName);        
         newCommand.setDuration(durationStr);
         commands.put(newCommand.getName(), newCommand);        
-      }
-    }    
+      } else {
+        result = commandBaseName;
+      }            
+    }  
+    
+    return result;
   }
   
   public void print() {
@@ -234,7 +247,10 @@ public class CommandsCenter {
     }        
   }
   
-  private CommandsExecutor commandsExecutor = new CommandsExecutor();  
+  private CommandsExecutor commandsExecutor = new CommandsExecutor();
+  {
+      commandsExecutor.start();
+  }
   
   public void executeCommandList(List<Command> commandsToExecute) throws Exception {
     if (commandsToExecute != null) {
@@ -245,8 +261,8 @@ public class CommandsCenter {
     }
   }
   
-  private class CommandsExecutor implements Runnable {
-    public BlockingQueue<Command> queue;    
+  private class CommandsExecutor extends Thread implements Runnable {
+    public BlockingQueue<Command> queue = new ArrayBlockingQueue<>(1024);    
 
     public void addCommand(Command c) {
       queue.offer(c);
@@ -254,15 +270,17 @@ public class CommandsCenter {
             
     @Override
     public void run() {
-      Command command = queue.poll();
-      try {
-        command.execute();
-        
-        Command nextCommand = queue.peek();
-        Thread.sleep(nextCommand.getDuration());
-      } catch (Exception ex) {
-        Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);
-      }            
+      while (true) {
+        Command command = queue.poll();
+        try {
+          command.execute();
+
+          Command nextCommand = queue.peek();
+          Thread.sleep(nextCommand.getDuration());
+        } catch (Exception ex) {
+          Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);
+        }            
+      }
     }
   }
 }

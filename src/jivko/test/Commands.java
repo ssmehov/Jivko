@@ -1,5 +1,7 @@
 package jivko.test;
 
+import java.util.ArrayList;
+import java.util.List;
 import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
 
@@ -10,8 +12,10 @@ import jivko.brain.movement.CommandsCenter;
 public class Commands {
 
   private static String[] commandsToTest = {
-    "HEAD_PAN"
+    "HEAD_PAN_CENTER"
+    ,"HEAD_PAN=500"
     ,"HEAD_PAN=200"
+    ,"HEAD_PAN=300"
     ,"HEAD_PAN=300"
     ,"HEAD_PAN_CENTER"
     ,"HEAD_TILT"
@@ -19,11 +23,13 @@ public class Commands {
   };
   
   public static void test() throws Exception {
-    Command command;
+    List<Command> commands = new ArrayList<>();
     
     for (String s : commandsToTest) {
-      command = CommandsCenter.getInstance().getCommand(s);
-      command.execute();
+      Command command = CommandsCenter.getInstance().getCommandEx(s);
+      commands.add(command);
     }
+    
+    CommandsCenter.getInstance().executeCommandList(commands);
   }
 }
