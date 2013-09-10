@@ -26,7 +26,10 @@ public class Command extends jivko.util.Tree implements Cloneable {
   
   
   private static final String COMMAND_SPEED_PREFIX = "T";
-  public static final int DEFAULT_COMMAND_SPEED = 1500;
+  public static final int DEFAULT_COMMAND_SPEED = 200;
+  public static final double DEFAULT_COMMAND_SPEED_KOEF = 1.2;
+  
+  
   
   private static final int DEFAULT_COMMAND_DURATION = 1500;
   
@@ -203,15 +206,15 @@ public class Command extends jivko.util.Tree implements Cloneable {
     
     String commandSaved = command;
     
-    if (min != null && max != null) {
-      Integer newVal = min + rand.nextInt(max - min);
-      command = command.replaceAll("xxx", newVal.toString());
-      
-      int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
-      int idx = command.indexOf('T');
-      command = command.substring(0, idx+1);
-      command += newSpeed;
-    }
+    
+    Integer newVal = (min != null && max != null) ? min + rand.nextInt(max - min) : value;
+    command = command.replaceAll("xxx", newVal.toString());
+
+    int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
+    int idx = command.indexOf('T');
+    command = command.substring(0, idx+1);
+    command += newSpeed;
+    command += "\r\n";    
     
     print();
     

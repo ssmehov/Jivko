@@ -16,10 +16,14 @@ public class Commands {
     ,"HEAD_PAN"
     ,"HEAD_PAN"
     ,"HEAD_PAN"
-    ,"HEAD_PAN"
+    ,"HEAD_PAN=100"
     ,"HEAD_PAN_CENTER=3000"
     ,"HEAD_TILT"
+    ,"HEAD_TIP=400"
+    ,"HEAD_TIP=400"
+    ,"HEAD_TIP=400"          
     ,"HEAD_TILT_CENTER"        
+    ,"HEAD_TIP_CENTER=400"
   };
   
   public static void test() throws Exception {
