@@ -103,7 +103,7 @@ public class UtterancesManager {
             Node chNode = nnl.item(j);
             
             if (chNode.getNodeType() != Document.ELEMENT_NODE 
-                    || XML_DOM_NODE_UTTERANCE.equals(chNode.getNodeName()))
+                    || !XML_DOM_NODE_UTTERANCE.equals(chNode.getNodeName()))
               continue;
             
             Utterance chUtterance = new Utterance();      
