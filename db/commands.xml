@@ -3,47 +3,48 @@
   <command name="HEAD_PAN" 
            min="600"
            max="2500"
-           command="#7PxxxT100"/>
+           duration="200"
+           command="#7Pxxx"/>
   <command name="HEAD_PAN_CENTER"
            val="1650"
-           command="#7PxxxT100"/>
+           command="#7Pxxx"/>
   <command name="HEAD_TILT" 
            min="1400" 
            max="1700"
-           command="#8PxxxT100"/>
+           command="#8Pxxx"/>
   <command name="HEAD_TILT_CENTER"
            val="1550"
-           command="#8PxxxT100"/>
+           command="#8Pxxx"/>
   <command name="HEAD_TIP" 
            min="1300" 
            max="1700"
-           command="#9PxxxT100"/>
+           command="#9Pxxx"/>
   <command name="HEAD_TIP_CENTER"
            val="1500"
-           command="#9PxxxT100"/>
+           command="#9Pxxx"/>
   <command name="RIGHT_EYE_TILT" 
            min="800" 
            max="1200"
-           command="#10PxxxT100"/>
+           command="#10Pxxx"/>
   <command name="RIGHT_EYE_TILT_CENTER"
            val="1000"
-           command="#10PxxxT100"/>
+           command="#10Pxxx"/>
   <command name="RIGHT_EYE_PAN" 
            min="1265" 
            max="1765"
-           command="#11PxxxT100"/>
+           command="#11Pxxx"/>
   <command name="RAGHT_EYE_PAN_CENTER"
            val="1565"
-           command="#11PxxxT100"/>
+           command="#11Pxxx"/>
            
   <command name="COMPLEX_COMMAD_EXAMPLE">
     <commands>
-      <command name="HEAD_PAN"/>
-      <command name="HEAD_PAN_CENTER"/>
-      <command name="HEAD_PAN"/>
+      <command name="HEAD_PAN=200"/>
+      <command name="HEAD_PAN_CENTER=300"/>
+      <command name="HEAD_PAN=100"/>
       <command name="HEAD_BLOW"
                val="1500"
-               command="#77PxxxT100"/>
+               command="#77Pxxx"/>
     </commands>
   </command>
   

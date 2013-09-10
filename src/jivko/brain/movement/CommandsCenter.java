@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.BlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.config.ConfigurationManager;
@@ -29,6 +32,8 @@ public class CommandsCenter {
   static public final String XML_DOM_ATTRIBUTE_MIN = "min";
   static public final String XML_DOM_ATTRIBUTE_MAX = "max";
   static public final String XML_DOM_ATTRIBUTE_PORT = "port";
+  static public final String XML_DOM_ATTRIBUTE_SPEED = "speed";
+  static public final String XML_DOM_ATTRIBUTE_DURATION = "duration";  
   static public final String XML_DOM_ATTRIBUTE_COMMAND = "command";  
   
   private Map<String, Command> commands = new HashMap<>();     
@@ -126,6 +131,12 @@ public class CommandsCenter {
     String value = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_VAL);
     command.setValue(value);
     
+    String speed = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_SPEED);
+    command.setValue(speed);
+    
+    String duration = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_DURATION);
+    command.setValue(duration);
+    
     String cmd = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_COMMAND);
     command.setCommand(cmd);
     
@@ -158,17 +169,46 @@ public class CommandsCenter {
     return command;
   }
   
-  public List<Command> getCommandsFromXmlElement(Node element) {
+  public List<Command> getCommandsFromXmlElement(Node element) throws Exception {
     List<Command> commandsFromXml = new ArrayList<>();
     
     String commandsStr = ((Element)element).getAttribute(CommandsCenter.XML_DOM_NODE_COMMANDS);
     String[] commandsVals = commandsStr.split(",");
     
     for (String s : commandsVals) {
+      addCommandWithDifDelay(s);
       commandsFromXml.add(getCommand(s));
     }
     
     return commandsFromXml;
+  }
+  
+  //adds commads with different to default delay. If command with such delay exists nothing changes
+  public void addCommandWithDifDelay(String command) throws Exception {
+    if (getCommand(command) != null)
+      return;
+    
+    int idx = command.indexOf("=");
+    
+    if (idx > 0) {
+      String durationStr = command.substring(idx);
+      Integer duration = Integer.parseInt(durationStr);    
+      String commandName = command.substring(0, idx-1);      
+      
+      Command c = getCommand(commandName);
+      
+      if (c == null)
+        throw new Exception("Command " + commandName + " not found!!");
+      
+      if (c.getDuration() != duration) {
+        Command newCommand = (Command)c.clone();
+        
+        //set full comand name for future
+        newCommand.setName(command);        
+        newCommand.setDuration(durationStr);
+        commands.put(newCommand.getName(), newCommand);        
+      }
+    }    
   }
   
   public void print() {
@@ -194,11 +234,35 @@ public class CommandsCenter {
     }        
   }
   
+  private CommandsExecutor commandsExecutor = new CommandsExecutor();  
+  
   public void executeCommandList(List<Command> commandsToExecute) throws Exception {
     if (commandsToExecute != null) {
       for (Command c : commandsToExecute) {
-        c.execute();
+        //c.execute();
+        commandsExecutor.addCommand(c);
       }
+    }
+  }
+  
+  private class CommandsExecutor implements Runnable {
+    public BlockingQueue<Command> queue;    
+
+    public void addCommand(Command c) {
+      queue.offer(c);
+    }
+            
+    @Override
+    public void run() {
+      Command command = queue.poll();
+      try {
+        command.execute();
+        
+        Command nextCommand = queue.peek();
+        Thread.sleep(nextCommand.getDuration());
+      } catch (Exception ex) {
+        Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);
+      }            
     }
   }
 }

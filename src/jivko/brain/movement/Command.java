@@ -12,13 +12,19 @@ import jivko.util.Tree;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class Command extends jivko.util.Tree {
+public class Command extends jivko.util.Tree implements Cloneable {
   
   private static final String DEFAULT_PORT_NAME = "/dev/ttyACM0";
   private static final int DEFAULT_PORT_SPEED = 9600;
   
+  
+  private static final String COMMAND_SPEED_PREFIX = "T";
+  private static final int DEFAULT_COMMAND_SPEED = 100;
+  
+  private static final int DEFAULT_COMMAND_DURATION = 200;
+  
   private static Random rand = new Random();    
-            
+                
   public Command() {
   }
   
@@ -41,7 +47,10 @@ public class Command extends jivko.util.Tree {
   private Integer max;  
   private Integer value;
   private String port;
-  private String command;
+  private Integer duration = DEFAULT_COMMAND_DURATION;
+  private Integer speed = DEFAULT_COMMAND_SPEED;
+  
+  private String command;  
   
   private static Map<String, ComPort> openedPorts = new HashMap<>();
 
@@ -98,6 +107,26 @@ public class Command extends jivko.util.Tree {
   public void setPort(String port) {
     this.port = port;
   }
+
+  public Integer getDuration() {
+    return duration;
+  }
+
+  public void setDuration(String duration) {
+    if (duration != null && !"".equals(duration)) {
+      this.duration = Integer.parseInt(duration);
+    }
+  }
+
+  public Integer getSpeed() {
+    return speed;
+  }
+
+  public void setSpeed(String speed) {    
+    if (speed != null && !"".equals(speed)) {
+      this.speed = Integer.parseInt(speed);
+    }
+  }
   
   public void addPort(String portName) throws Exception {
     //this work only for unix
@@ -127,6 +156,7 @@ public class Command extends jivko.util.Tree {
     } 
     
     command = command.replaceAll("xxx", val.toString());
+    command += COMMAND_SPEED_PREFIX + speed.toString();
     command += "\r\n";
     
     if (port == null || "".equals(port))
@@ -150,6 +180,6 @@ public class Command extends jivko.util.Tree {
     for (Tree t : getNodes()) {
       ((Command)t).execute();
     }
-  }        
+  }          
 }
 
