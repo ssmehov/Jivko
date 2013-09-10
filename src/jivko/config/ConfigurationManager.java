@@ -56,7 +56,24 @@ public class ConfigurationManager {
   
   public String getScetchesDBPath() {
     return properties.get(XML_DOM_SCETCHES_DB_PATH_MARKER);    
-  }  
+  }
+  
+  private static final String TMP_DIR ="tmp/";
+  private static final String RHVOICE_TEXT_TO_SAY_FILENAME = "textToSay.txt";
+  private static final String RHVOICE_RESULT_WAV_FILENAME = "out.wav";
+  private static final String SPHINX_RECOGNIZER_WAV_FILENAME = "sphinx_recog.wav";
+  
+  public String getRhVoiceTextToSayFileName() {
+    return TMP_DIR + RHVOICE_TEXT_TO_SAY_FILENAME;    
+  }
+  
+  public String getRhVoiceResultWavFileName() {
+    return TMP_DIR + RHVOICE_RESULT_WAV_FILENAME;    
+  }
+  
+  public String getSpinxUtteranceRecognizerWavFileName() {
+    return TMP_DIR + SPHINX_RECOGNIZER_WAV_FILENAME;    
+  }    
 
   private ConfigurationManager() throws Exception {
     readConfiguration();

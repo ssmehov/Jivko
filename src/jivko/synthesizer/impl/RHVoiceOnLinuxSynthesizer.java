@@ -3,6 +3,7 @@ package jivko.synthesizer.impl;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import jivko.config.ConfigurationManager;
 import jivko.synthesizer.Synthesizer;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
@@ -23,20 +24,20 @@ public class RHVoiceOnLinuxSynthesizer implements Synthesizer {
         }
 
         try {
-            String TEXT_TO_SAY_FILENAME = "textToSay.txt";
-            String RESULT_WAV_FILENAME = "out.wav";
+            String textToSayFileName = ConfigurationManager.getInstance().getRhVoiceTextToSayFileName();
+            String resultWavFileName = ConfigurationManager.getInstance().getRhVoiceResultWavFileName();
 
-            PrintWriter writer = new PrintWriter(TEXT_TO_SAY_FILENAME, "UTF-8");
+            PrintWriter writer = new PrintWriter(textToSayFileName, "UTF-8");
             writer.println(text);
             writer.close();
 
-            Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "RHVoice -i " + TEXT_TO_SAY_FILENAME + " -o " + RESULT_WAV_FILENAME});
+            Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "RHVoice -i " + textToSayFileName + " -o " + resultWavFileName});
             p.waitFor();
             
             int exitCode = p.exitValue();
 
             if (exitCode == 0) {
-              playWav(RESULT_WAV_FILENAME);
+              playWav(resultWavFileName);
             } else {
                 throw new Exception("cann't run RHVoice");
             }
