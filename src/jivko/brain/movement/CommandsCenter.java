@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -251,26 +252,23 @@ public class CommandsCenter {
   }
   
   private class CommandsExecutor extends Thread implements Runnable {
-    public BlockingQueue<Command> queue = new ArrayBlockingQueue<>(1024);    
+    public BlockingQueue<Command> queue = new LinkedBlockingQueue<>();    
 
-    public void addCommand(Command c) {
-      queue.offer(c);
+    public void addCommand(Command c) throws InterruptedException {
+      queue.put(c);
     }
             
     @Override
     public void run() {
       while (true) {        
         try {
-          Command command = queue.take();          
+          Command command = queue.take();        
           command.execute();
-
-          Command nextCommand = queue.peek();
           
-          if (nextCommand != null) {
-            Integer duration = nextCommand.getDuration();
-            System.out.println("duration = " + duration);
-            Thread.sleep(duration);
-          }
+          Integer duration = command.getDuration();
+          System.out.println("duration = " + duration);
+          Thread.sleep(duration);
+          
         } catch (Exception ex) {
           ex.printStackTrace();
           Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);

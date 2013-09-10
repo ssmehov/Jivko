@@ -26,7 +26,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
   
   
   private static final String COMMAND_SPEED_PREFIX = "T";
-  private static final int DEFAULT_COMMAND_SPEED = 100;
+  private static final int DEFAULT_COMMAND_SPEED = 600;
   
   private static final int DEFAULT_COMMAND_DURATION = 1500;
   
@@ -145,24 +145,29 @@ public class Command extends jivko.util.Tree implements Cloneable {
       }
     }
   }
-  
+      
   public void compile() throws Exception {
     //System.err.println("before:" + command);
     
     if (command == null || "".equals(command))
       return;
     
+    if (!command.contains("xxx")) {
+      throw new Exception("Wrong command format -no xxx");  
+    }
+    
     Integer val;
     if (value != null) {
       val = value;
+      
+      if (min == null && max == null)
+        command = command.replaceAll("xxx", val.toString());
     } else {
       if (min == null || max == null)
-        throw new Exception("Command: " + name + ": if now val preset at least min or max should be!");
-      
-      val = Math.max(min, rand.nextInt(max));
+        throw new Exception("Command: " + name + ": if now val preset at least min or max should be!");            
     } 
     
-    command = command.replaceAll("xxx", val.toString());
+    
     command += COMMAND_SPEED_PREFIX + speed.toString();
     command += "\r\n";
     
@@ -177,7 +182,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
   public void print() {
     print("");  
   }
-  
+      
   public void print(String identity) {
     System.out.println(identity + XML_DOM_ATTRIBUTE_NAME + ": "+ getName());
     System.out.println(identity + XML_DOM_ATTRIBUTE_MAX + ": "+ getMax());
@@ -194,7 +199,15 @@ public class Command extends jivko.util.Tree implements Cloneable {
   }
   
   public void execute() throws  Exception {
-    System.out.println("Executing command: " + getName());
+    System.out.println("Executing command: " + getName());    
+    
+    String commandSaved = command;
+    
+    if (min != null && max != null) {
+      Integer val = min + rand.nextInt(max - min);
+      command = command.replaceAll("xxx", val.toString());
+    }
+    
     print();
     
     //this work only for unix
@@ -205,9 +218,11 @@ public class Command extends jivko.util.Tree implements Cloneable {
       }
     }
     
+    command = commandSaved;
+    
     for (Tree t : getNodes()) {
       ((Command)t).execute();
-    }
+    }        
   }          
 }
 
