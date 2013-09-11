@@ -2,4 +2,4 @@
 /dist
 *.wav
 /config/config.xml
-/tmp/
+/tmp
