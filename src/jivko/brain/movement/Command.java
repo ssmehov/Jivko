@@ -148,30 +148,37 @@ public class Command extends jivko.util.Tree implements Cloneable {
       }
     }
   }
+  
+  public boolean isHardcoded() {
+    return command.split("#").length > 2;
+  }
       
   public void compile() throws Exception {
     //System.err.println("before:" + command);
     
-    if (command == null || "".equals(command))
-      return;
+    if (!isHardcoded()) {      
     
-    if (!command.contains("xxx")) {
-      throw new Exception("Wrong command format -no xxx");  
+      if (command == null || "".equals(command))
+        return;
+
+      if (!command.contains("xxx")) {
+        throw new Exception("Wrong command format -no xxx");  
+      }
+
+      Integer val;
+      if (value != null) {
+        val = value;
+
+        if (min == null && max == null)
+          command = command.replaceAll("xxx", val.toString());
+      } else {
+        if (min == null || max == null)
+          throw new Exception("Command: " + name + ": if now val preset at least min or max should be!");            
+      } 
+
+      command += COMMAND_SPEED_PREFIX + speed.toString();
     }
     
-    Integer val;
-    if (value != null) {
-      val = value;
-      
-      if (min == null && max == null)
-        command = command.replaceAll("xxx", val.toString());
-    } else {
-      if (min == null || max == null)
-        throw new Exception("Command: " + name + ": if now val preset at least min or max should be!");            
-    } 
-    
-    
-    command += COMMAND_SPEED_PREFIX + speed.toString();
     command += "\r\n";
     
     if (port == null || "".equals(port))
@@ -206,14 +213,15 @@ public class Command extends jivko.util.Tree implements Cloneable {
     
     String commandSaved = command;
     
-    
-    Integer newVal = (min != null && max != null) ? min + rand.nextInt(max - min) : value;
-    command = command.replaceAll("xxx", newVal.toString());
+    if (!isHardcoded()) {
+      Integer newVal = (min != null && max != null) ? min + rand.nextInt(max - min) : value;
+      command = command.replaceAll("xxx", newVal.toString());
 
-    int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
-    int idx = command.indexOf('T');
-    command = command.substring(0, idx+1);
-    command += newSpeed;
+      int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
+      int idx = command.indexOf('T');
+      command = command.substring(0, idx+1);
+      command += newSpeed;
+    }
     command += "\r\n";    
     
     //print();
