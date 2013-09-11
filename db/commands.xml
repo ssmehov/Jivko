@@ -7,7 +7,7 @@
   <command name="RIGHT_HAND_FUCK"
            command="#1P2200#2P2400#3P2200#4P2500#5P1000T800"/>
   <command name="RIGHT_HAND_THUMB_CLOSE"
-           command="#1P2200T1200"/>
+           command="#1P2200#32P1500T1200"/>
   <command name="RIGHT_HAND_ROCK">
   <commands>
     <command name="RIGHT_HAND_ROCK_PART1"
@@ -31,7 +31,7 @@
   <command name="LEFT_HAND_FUCK"
            command="#16P1100#17P600#18P2000#19P800#20P2400T1000"/>
   <command name="LEFT_HAND_THUMB_CLOSE"
-           command="#16P1100T1200"/>
+           command="#16P1100#32P1500T1200"/>
   <command name="LEFT_HAND_ROCK">
   <commands>
     <command name="LEFT_HAND_ROCK_PART1"
