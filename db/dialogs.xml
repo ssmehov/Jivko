@@ -22,8 +22,16 @@
     <answer>я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
   </utterance>    
   <utterance commands="RIGHT_HAND_FUCK">
-    <question>А про Путина можешь пошутить</question>
+    <question>А можешь пошутить про Путина</question>
     <answer>Я хоть и робот, но не совсем безбашенный</answer>
+  </utterance>
+  <utterance commands="RIGHT_HAND_FUCK">
+    <question>Я думаю, пора приступать</question>
+    <answer>Перед тем, как мы начнем. Я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
+  </utterance>
+  <utterance commands="RIGHT_HAND_FUCK">
+    <question>Поведай о себе</question>
+    <answer>Я вернулся из прошлого! У нас с Россией 1 час разница. И сразу обратил внимание, на вашу сцену. Я бы с ней пошалил. Мы бы испробовали с ней больше чем три позиции</answer>
   </utterance>
 </utterances>
 </utterance>
