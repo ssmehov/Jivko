@@ -1,5 +1,10 @@
 package jivko.brain.state;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import jivko.brain.Brain;
 import jivko.brain.improvisation.JokeCreator;
 import jivko.brain.speech.sketch.Sketch;
@@ -24,8 +29,8 @@ public class StateMachineHolder {
       Brain.getInstance().reset();
 
       try {
-        //stateMachine.Fire(Command.DIALOG);
-        setNextCommand(Command.DIALOG);
+        resetCommandsQueue();
+        stateMachine.Fire(Command.DIALOG);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -40,7 +45,7 @@ public class StateMachineHolder {
         actionResult = "Какую миниатюру?";        
       }
      
-      setNextCommand(Command.START);
+      addNextCommand(Command.START);
     }
   };
   
@@ -49,7 +54,7 @@ public class StateMachineHolder {
     public void doIt() {            
       actionResult = "";
       
-      setNextCommand(Command.SKETCH);
+      addNextCommand(Command.SKETCH);
               
       if (Brain.getInstance().getSketchesManager().getActiveSketch() == null) {
         
@@ -73,18 +78,18 @@ public class StateMachineHolder {
 
       String answer = null;
       try {
-        answer = Brain.getInstance().getSketchesManager().findAnswer(
+        Brain.getInstance().getSketchesManager().findAnswer(
               Brain.getInstance().getQuestion());
-        
-        if (answer == null) {
-          actionResult = "спасибо за внимание";                 
-          stateMachine.Fire(Command.RESET);
-        } else {
-          actionResult += answer;
-        }      
       } catch (Exception e) {
         e.printStackTrace();
-      }     
+      }
+
+      if (answer == null) {
+        actionResult = "спасибо за внимание";       
+        addNextCommand(Command.RESET);        
+      } else {
+        actionResult += answer;
+      }      
     }    
   };
   
@@ -97,7 +102,7 @@ public class StateMachineHolder {
       }
 
       try {
-        setNextCommand(Command.START);
+        addNextCommand(Command.START);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -110,16 +115,16 @@ public class StateMachineHolder {
       try {
         actionResult = Brain.getInstance().getJokesManager().findAnswer(
               Brain.getInstance().getQuestion());
-        
-        if (actionResult == null) {
-          actionResult = "повторите, про что шутку?";
-        } else {
-          actionResult = "слушайте. " + actionResult;                
-          stateMachine.Fire(Command.RESET);
-        }        
       } catch (Exception e) {
         e.printStackTrace();
-      }      
+      }
+
+      if (actionResult == null) {
+        actionResult = "повторите, про что шутку?";
+      } else {
+        actionResult = "слушайте. " + actionResult;        
+        addNextCommand(Command.RESET);
+      }
     }
   };     
   
@@ -129,16 +134,16 @@ public class StateMachineHolder {
       
       try {
         actionResult = JokeCreator.getInstance().createJokeWHoWhere(Brain.getInstance().getQuestion());
-        
-        if (actionResult == null) {
-          actionResult = "повторите, про что шутку?";
-        } else {
-          actionResult = "слушайте. " + actionResult;        
-          stateMachine.Fire(Command.RESET);
-        }
       } catch (Exception e) {
         e.printStackTrace();
-      }      
+      }
+
+      if (actionResult == null) {
+        actionResult = "повторите, про что шутку?";
+      } else {
+        actionResult = "слушайте. " + actionResult;        
+        addNextCommand(Command.RESET);
+      }
     }
   };
       
@@ -147,7 +152,9 @@ public class StateMachineHolder {
     public void doIt() {      
         try {
           actionResult = Brain.getInstance().getUtterancesManager().findAnswer(
-                Brain.getInstance().getQuestion());     
+                Brain.getInstance().getQuestion()); 
+          
+          addNextCommand(Command.DIALOG);
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -159,9 +166,6 @@ public class StateMachineHolder {
     try {
       stateMachine.Configure(State.INITIAL)
               .Permit(Command.DIALOG, State.DIALOG)
-              .Permit(Command.JOKE, State.JOKE_CHOICE)
-              .Permit(Command.SKETCH, State.SKETCH_CHOICE)
-              .Permit(Command.IMPROVISE, State.IMPROVISE_CHOICE)
               .OnEntry(resetAction);
 
       stateMachine.Configure(State.DIALOG)
@@ -192,7 +196,6 @@ public class StateMachineHolder {
 
       stateMachine.Configure(State.JOKING)
               .PermitReentry(Command.START)
-              .Permit(Command.JOKE, State.JOKE_CHOICE)
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
               .OnEntry(jokeTellAction);
@@ -203,7 +206,6 @@ public class StateMachineHolder {
               .OnEntry(jokeChooseAction);
 
       stateMachine.Configure(State.IMPROVISE)
-              .Permit(Command.IMPROVISE, State.IMPROVISE_CHOICE)
               .PermitReentry(Command.START)
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
@@ -215,26 +217,44 @@ public class StateMachineHolder {
   }
   private State prevState = State.INITIAL;
 
-  private String nextCommand = Command.DIALOG;
+  
+  private Queue<String> postCommadsQueue = new LinkedList<>();
+  
+  private Queue<String> commandsQueue = new LinkedList<>();
+  {
+    resetCommandsQueue();
+  }
+  
+  private void resetCommandsQueue() {
+    commandsQueue.clear();
+    String s = Command.DIALOG;
+    commandsQueue.offer(s);
+  }
 
-  public void setNextCommand(String nextCommand) {
-    this.nextCommand = nextCommand;
-  }  
+  public void addNextCommand(String nextCommand) {
+    commandsQueue.add(nextCommand);
+  }
 
-  public String getNextCommand() {
-    return nextCommand;
+  private String getNextCommand() {
+    return commandsQueue.poll();
+  }
+  
+  private boolean hasNextCommand() {
+    return !commandsQueue.isEmpty();
   }
         
   public String execute(String command) {
 
     if (!Command.UNKNOWN_COMMAND.equals(command)) {
-      setNextCommand(command);
+      addNextCommand(command);
     }      
     
     try {
-      State curState = stateMachine.getState();
-      stateMachine.Fire(getNextCommand());
-      prevState = curState;
+      while (hasNextCommand()) {
+        State curState = stateMachine.getState();
+        stateMachine.Fire(getNextCommand());
+        prevState = curState;
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
