@@ -13,7 +13,7 @@
     <question>Какая твоя цель здесь</question>
     <answer>Я хочу поработить камеди клаб</answer>
   </utterance>
-  <utterance commands="HEAD_TILT_UP=500,HEAD_TILT_DOWN=500,HEAD_TILT_CENTER">
+  <utterance commands="HEAD_TIP_UP=500,HEAD_TIP_DOWN=500,HEAD_TIP_CENTER">
     <question>Готов зажечь</question>
     <answer>Я хочу чтоб все людишки порвали свои животики</answer>
   </utterance>
