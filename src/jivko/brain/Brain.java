@@ -1,6 +1,6 @@
 package jivko.brain;
 
-import jivko.brain.state.CommandRecognizer;
+import jivko.brain.state.CommandsCenter;
 import jivko.brain.state.StateMachineHolder;
 import jivko.brain.speech.sketch.SketchesManager;
 import java.io.File;
@@ -68,7 +68,7 @@ public class Brain {
     jokesManager.reset();
   }
 
-  public String findAnswer(String question) {
+  public String findAnswer(String question) throws Exception {
     String result = "";
     
     if (question == null) 
@@ -76,7 +76,7 @@ public class Brain {
     
     setQuestion(question);
     
-    Command command = CommandRecognizer.getCommand(question);
+    String command = CommandsCenter.getInstance().getCommand(question);
     result = stateMachineHolder.execute(command);        
 
     return result;

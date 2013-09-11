@@ -9,7 +9,7 @@ import jivko.brain.movement.CommandsCenter;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class Commands {
+public class Commands implements Testable {
 
   private static String[] commandsToTest = {
     "HEAD_PAN_CENTER"      
@@ -26,7 +26,11 @@ public class Commands {
     ,"HEAD_TIP_CENTER=400"
   };
   
-  public static void test() throws Exception {
+  /**
+   *
+   * @throws Exception
+   */
+  public void test() throws Exception {
     List<Command> commands = new ArrayList<>();
     
     for (String s : commandsToTest) {

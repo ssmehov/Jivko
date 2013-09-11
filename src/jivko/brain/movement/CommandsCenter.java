@@ -39,7 +39,7 @@ public class CommandsCenter {
   static public final String XML_DOM_ATTRIBUTE_DURATION = "duration";  
   static public final String XML_DOM_ATTRIBUTE_COMMAND = "command";  
   
-  private Map<String, Command> commands = new HashMap<>();     
+  private Map<String, Command> commands = new HashMap<>();   
       
   public CommandsCenter() throws Exception {
     ConfigurationManager cm = ConfigurationManager.getInstance();

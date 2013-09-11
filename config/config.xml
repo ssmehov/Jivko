@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<configuraion>    
+<configuraion>      
+  <item name="VoiceCommandsDB">db/voice_commands.xml</item>
   <item name="CommandsDB">db/commands.xml</item>
   <item name="DictionariesDB">db/dictinaries</item>
   <item name="DialogsDB">db/dialogs.xml</item>

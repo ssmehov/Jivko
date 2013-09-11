@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<commands>
+  <command name="START">поехали</command>
+  
+  <command name="RESET">Давай сначала</command>
+  <command name="RESET">Ладно, стоп</command>
+  <command name="RESET">Перезагрузка</command>
+      
+  <command name="JOKE">можешь рассказать шутку</command>
+  <command name="JOKE">Расскажи шутку</command>
+  <command name="JOKE">Расскажи шутка</command>
+  
+  <command name="IMPROVISE">Можешь придумать шутку</command>
+  <command name="IMPROVISE">Придумай шутку</command>
+  <command name="IMPROVISE">Придумай шутка</command>
+  
+  <command name="SKETCH">Давай покажем миниатюру</command>
+  <command name="SKETCH">Давай покажем миниатюра</command>
+  <command name="SKETCH">Давай покажем сценку</command>
+  <command name="SKETCH">Давай покажем</command>
+  
+  <command name="START">поехали</command>
+  <command name="START">поехали</command>
+  <command name="START">поехали</command>
+</commands>

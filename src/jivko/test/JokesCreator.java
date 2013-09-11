@@ -6,8 +6,9 @@ import jivko.brain.improvisation.JokeCreator;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class JokesCreator {
+public class JokesCreator implements Testable {
 
+  @Override
   public void test() throws Exception {
     String joke;
     for (int i = 0; i < 10; ++i) {

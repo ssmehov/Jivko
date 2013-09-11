@@ -153,7 +153,7 @@ public class StateMachineHolder {
       }
   };
   
-  StateMachine<State, Command> stateMachine = new StateMachine<>(State.DIALOG);
+  StateMachine<State, String> stateMachine = new StateMachine<>(State.DIALOG);
   {
     try {
       stateMachine.Configure(State.INITIAL)
@@ -209,19 +209,19 @@ public class StateMachineHolder {
   }
   private State prevState = State.INITIAL;
 
-  private Command nextCommand = Command.DIALOG;
+  private String nextCommand = Command.DIALOG;
 
-  public void setNextCommand(Command nextCommand) {
+  public void setNextCommand(String nextCommand) {
     this.nextCommand = nextCommand;
   }  
 
-  public Command getNextCommand() {
+  public String getNextCommand() {
     return nextCommand;
   }
         
-  public String execute(Command command) {
+  public String execute(String command) {
 
-    if (command != Command.UNKNOWN_COMMAND) {
+    if (!Command.UNKNOWN_COMMAND.equals(command)) {
       setNextCommand(command);
     }      
     
