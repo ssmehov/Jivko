@@ -14,6 +14,7 @@ public class StateMachine implements Testable {
   
   @Override
   public void test() throws Exception {    
+    next("Про Путина");
     next("Привет, как тебя зовут");
     next("Что ты умеешь делать");
     next("Расскажи шутку");

@@ -5,12 +5,12 @@
   <command name="RIGHT_HAND_CLOSE"
            command="#1P2200#2P2000#3P1000#4P2200#5P1500T1000"/>
   <command name="RIGHT_HAND_FUCK">
-  <commands>
-  <command name="RIGHT_HAND_FUCK_FINGERS"
-	   duration="3000"
-           command="#1P2200#2P2400#3P2200#4P2500#5P1000T800"/>
-  <command name="RIGHT_HAND_OPEN"/>
-  </commands>
+    <commands>
+      <command name="RIGHT_HAND_FUCK_FINGERS"
+           duration="3000"
+               command="#1P2200#2P2400#3P2200#4P2500#5P1000T800"/>
+      <command name="RIGHT_HAND_OPEN"/>
+    </commands>
   </command>
   <command name="RIGHT_HAND_THUMB_CLOSE"
            command="#1P2200#32P1500T1200"/>

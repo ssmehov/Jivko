@@ -211,31 +211,34 @@ public class Command extends jivko.util.Tree implements Cloneable {
   public void execute() throws  Exception {
     System.out.println("Executing command: " + getName());    
     
-    String commandSaved = command;
-    
-    if (!isHardcoded()) {
-      Integer newVal = (min != null && max != null) ? min + rand.nextInt(max - min) : value;
-      command = command.replaceAll("xxx", newVal.toString());
-
-      int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
-      int idx = command.indexOf('T');
-      command = command.substring(0, idx+1);
-      command += newSpeed;
-    }
-    command += "\r\n";    
-    
-    //print();
-    
-    //this work only for unix
     if (command != null && !"".equals(command)) {
+      String commandSaved = command;
+    
+      if (!isHardcoded()) {
+        Integer newVal = value;
+        if (min != null && max != null) {
+            newVal = min + rand.nextInt(max - min); 
+        }
+        command = command.replaceAll("xxx", newVal.toString());
+
+        int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
+        int idx = command.indexOf('T');
+        command = command.substring(0, idx+1);
+        command += newSpeed;
+      }
+      command += "\r\n";    
+    
+      //print();
+            
+      //this work only for unix
       if (OsUtils.isUnix()) {
         ComPort comPort = openedPorts.get(port);
         comPort.getOut().write(command.getBytes());
       }
+      
+      command = commandSaved;
     }
-    
-    command = commandSaved;
-    
+            
     for (Tree t : getNodes()) {
       ((Command)t).execute();
     }        

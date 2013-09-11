@@ -142,6 +142,19 @@ public class CommandsCenter {
     
     String cmd = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_COMMAND);
     command.setCommand(cmd);
+        
+    
+    /*//descend to commands node
+    NodeList nl = node.getChildNodes();
+    for (int i = 0; i < nl.getLength(); ++i) {
+      Node n = nl.item(i);
+      String nodeName = n.getNodeName();
+      if (n.getNodeType() == Document.ELEMENT_NODE
+              && XML_DOM_NODE_COMMANDS.equals(nodeName)) {
+        node = n;
+        break;
+      }        
+    }*/
     
     NodeList nl = node.getChildNodes();
     for (int i = 0; i < nl.getLength(); ++i) {
@@ -150,9 +163,9 @@ public class CommandsCenter {
       if (n.getNodeType() != Document.ELEMENT_NODE) 
         continue;
         
-      String nodeName = n.getNodeName();            
+      String nodeName = n.getNodeName();
       
-      if (XML_DOM_NODE_COMMAND.equals(nodeName)) {        
+      if (XML_DOM_NODE_COMMANDS.equals(nodeName)) {        
         NodeList nnl = n.getChildNodes();
         for (int j = 0; j < nnl.getLength(); ++j) {
           Node chNode = nnl.item(j);
