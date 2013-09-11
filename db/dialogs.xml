@@ -6,16 +6,24 @@
     <answer>Меня зовут киборг Паша</answer>
   </utterance>  
   <utterance commands="HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>Что ты умеешь делать?</question>
+    <question>Что ты умеешь делать</question>
     <answer>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</answer>
   </utterance>  
   <utterance commands="HEAD_PAN_CENTER">
-    <question>Какая твоя цель здесь?</question>
+    <question>Какая твоя цель здесь</question>
     <answer>Я хочу поработить камеди клаб</answer>
   </utterance>
   <utterance>
-    <question>Готов зажечь?</question>
+    <question>Готов зажечь</question>
     <answer>Я хочу чтоб все людишки порвали свои животики</answer>
+  </utterance>
+  <utterance>
+    <question>С чего начнем</question>
+    <answer>я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
+  </utterance>    
+  <utterance>
+    <question>А про Путина можешь пошутить</question>
+    <answer>Я хоть и робот, но не совсем безбашенный</answer>
   </utterance>
 </utterances>
 </utterance>
