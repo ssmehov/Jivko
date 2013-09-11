@@ -92,6 +92,12 @@
   <command name="HEAD_TIP_CENTER"
            val="1500"
            command="#9Pxxx"/>
+  <command name="HEAD_TIP_UP"
+           val="1300"
+           command="#9Pxxx"/>
+  <command name="HEAD_TIP_DOWN"
+           val="1700"
+           command="#9Pxxx"/>
   <command name="RIGHT_EYE_TILT" 
            min="800" 
            max="1200"
