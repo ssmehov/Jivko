@@ -13,11 +13,11 @@
     <question>Какая твоя цель здесь</question>
     <answer>Я хочу поработить камеди клаб</answer>
   </utterance>
-  <utterance>
+  <utterance commands="HEAD_PAN">
     <question>Готов зажечь</question>
     <answer>Я хочу чтоб все людишки порвали свои животики</answer>
   </utterance>
-  <utterance>
+  <utterance commands="HEAD_PAN">
     <question>С чего начнем</question>
     <answer>я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
   </utterance>    
@@ -25,11 +25,15 @@
     <question>А можешь пошутить про Путина</question>
     <answer>Я хоть и робот, но не совсем безбашенный</answer>
   </utterance>
-  <utterance commands="RIGHT_HAND_FUCK">
+  <utterance commands="HEAD_PAN">
+    <question>В каком году ты появился на свет</question>
+    <answer>в сто пятьдесят третьем от рождества Теслы</answer>
+  </utterance>
+  <utterance commands="HEAD_PAN">
     <question>Я думаю, пора приступать</question>
     <answer>Перед тем, как мы начнем. Я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
   </utterance>
-  <utterance commands="RIGHT_HAND_FUCK">
+  <utterance commands="HEAD_PAN">
     <question>Поведай о себе</question>
     <answer>Я вернулся из прошлого! У нас с Россией 1 час разница. И сразу обратил внимание, на вашу сцену. Я бы с ней пошалил. Мы бы испробовали с ней больше чем три позиции</answer>
   </utterance>
