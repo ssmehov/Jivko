@@ -67,16 +67,25 @@ public class ConfigurationManager {
   private static final String RHVOICE_RESULT_WAV_FILENAME = "out.wav";
   private static final String SPHINX_RECOGNIZER_WAV_FILENAME = "sphinx_recog.wav";
   
+  
+  public String getTmpDir() {
+    File theDir = new File(TMP_DIR);    
+    if (!theDir.exists())
+      theDir.mkdir();  
+
+    return TMP_DIR;
+  }
+  
   public String getRhVoiceTextToSayFileName() {
-    return TMP_DIR + RHVOICE_TEXT_TO_SAY_FILENAME;    
+    return getTmpDir() + RHVOICE_TEXT_TO_SAY_FILENAME;    
   }
   
   public String getRhVoiceResultWavFileName() {
-    return TMP_DIR + RHVOICE_RESULT_WAV_FILENAME;    
+    return getTmpDir() + RHVOICE_RESULT_WAV_FILENAME;    
   }
   
   public String getSpinxUtteranceRecognizerWavFileName() {
-    return TMP_DIR + SPHINX_RECOGNIZER_WAV_FILENAME;    
+    return getTmpDir() + SPHINX_RECOGNIZER_WAV_FILENAME;    
   }    
 
   private ConfigurationManager() throws Exception {
