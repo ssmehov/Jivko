@@ -29,33 +29,37 @@ public class ConfigurationManager {
 
   private Map<String, String> properties = new HashMap<>();
   
-  public String getCfgPath() throws Exception {
+  
+  public String getHome() throws Exception {
     String path = System.getenv(JIVKO_HOME_ENV);
     if (path == null) {
       throw new Exception(JIVKO_HOME_ENV + " is not set");
-    }
-    
-    return path + CFG_NAME;
+    }    
+    return path + "/";
+  }
+  
+  public String getCfgPath() throws Exception {    
+    return getHome() + CFG_NAME;
   }
    
-  public String getCommandsDBPath() {
-    return properties.get(XML_DOM_COMMANDS_DB_PATH_MARKER);    
+  public String getCommandsDBPath() throws Exception {
+    return getHome() + properties.get(XML_DOM_COMMANDS_DB_PATH_MARKER);    
   }
   
-  public String getDictionariesDBPath() {
-    return properties.get(XML_DOM_DICTIONARIES_DB_PATH_MARKER);    
+  public String getDictionariesDBPath() throws Exception {
+    return getHome() + properties.get(XML_DOM_DICTIONARIES_DB_PATH_MARKER);    
   }
           
-  public String getDialogsDBPath() {
-    return properties.get(XML_DOM_DIALOGS_DB_PATH_MARKER);    
+  public String getDialogsDBPath() throws Exception {
+    return getHome() + properties.get(XML_DOM_DIALOGS_DB_PATH_MARKER);    
   }  
   
-  public String getJokesDBPath() {
-    return properties.get(XML_DOM_JOKES_DB_PATH_MARKER);    
+  public String getJokesDBPath() throws Exception {
+    return getHome() + properties.get(XML_DOM_JOKES_DB_PATH_MARKER);    
   }
   
-  public String getScetchesDBPath() {
-    return properties.get(XML_DOM_SCETCHES_DB_PATH_MARKER);    
+  public String getScetchesDBPath() throws Exception {
+    return getHome() + properties.get(XML_DOM_SCETCHES_DB_PATH_MARKER);    
   }
   
   private static final String TMP_DIR ="tmp/";

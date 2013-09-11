@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <configuraion>    
-  <item name="CommandsDB">D:\work\Jivko\db\commands.xml</item>
-  <item name="DictionariesDB">D:\work\Jivko\db\dictinaries</item>
-  <item name="DialogsDB">D:\work\Jivko\db\dialogs.xml</item>
-  <item name="JokesDB">D:\work\Jivko\db\jokes.xml</item>
-  <item name="SketchesDB">D:\work\Jivko\db\sketches.xml</item>
+  <item name="CommandsDB">db/commands.xml</item>
+  <item name="DictionariesDB">db/dictinaries</item>
+  <item name="DialogsDB">db/dialogs.xml</item>
+  <item name="JokesDB">db/jokes.xml</item>
+  <item name="SketchesDB">db/sketches.xml</item>
 </configuraion>
