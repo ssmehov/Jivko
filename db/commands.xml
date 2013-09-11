@@ -1,5 +1,53 @@
 <?xml version='1.0' encoding='utf-8'?>
 <commands>
+  <command name="RIGHT_HAND_OPEN"
+           command="#1P1100#2P700#3P2200#4P800#5P2400T1000"/>
+  <command name="RIGHT_HAND_CLOSE"
+           command="#1P2200#2P2000#3P1000#4P2200#5P1500T1000"/>
+  <command name="RIGHT_HAND_FUCK"
+           command="#1P2200#2P2400#3P2200#4P2500#5P1000T800"/>
+  <command name="RIGHT_HAND_THUMB_CLOSE"
+           command="#1P2200T1200"/>
+  <command name="RIGHT_HAND_ROCK">
+  <commands>
+    <command name="RIGHT_HAND_ROCK_PART1"
+           duration="800"
+           command="#2P600#3P1000#4P2400#5P2400T800"/>
+    <command name="RIGHT_HAND_THUMB_CLOSE"/>
+  </command>
+
+  <command name="RIGHT_HAND_INDEX">
+  <commands>
+    <command name="RIGHT_HAND_INDEX_FINGER"
+           duration="800"
+           command="#2P700#3P1000#4P2500#5P1500T800"/>
+    <command name="RIGHT_HAND_THUMB_CLOSE"/>
+  </command>
+  
+  <command name="LEFT_HAND_OPEN"
+           command="#16P1800#17P1600#18P2000#19P2000#20P600T1000"/>
+  <command name="LEFT_HAND_CLOSE"
+           command="#16P1100#17P600#18P800#19P800#20P2400T1000"/>
+  <command name="LEFT_HAND_FUCK"
+           command="#16P1100#17P600#18P2000#19P800#20P2400T1000"/>
+  <command name="LEFT_HAND_THUMB_CLOSE"
+           command="#16P1100T1200"/>
+  <command name="LEFT_HAND_ROCK">
+  <commands>
+    <command name="LEFT_HAND_ROCK_PART1"
+           duration="1000"
+           command="#17P1600#18P800#19P800#20P600T1000"/>
+    <command name="LEFT_HAND_THUMB_CLOSE"/>
+  </command>
+  
+  <command name="LEFT_HAND_INDEX">
+  <commands>
+    <command name="LEFT_HAND_INDEX_FINGER"
+           duration="1000"
+           command="#17P1600#18P800#19P800#20P2300T1000"/>
+    <command name="LEFT_HAND_THUMB_CLOSE"/>
+  </command>
+
   <command name="HEAD_PAN" 
            min="600"
            max="2500"
