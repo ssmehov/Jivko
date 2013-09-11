@@ -3,6 +3,7 @@ package jivko.brain.state;
 import jivko.brain.Brain;
 import jivko.brain.improvisation.JokeCreator;
 import jivko.brain.speech.sketch.Sketch;
+import jivko.recognizer.RecognizerFactory;
 import org.customsoft.stateless4j.StateMachine;
 import org.customsoft.stateless4j.delegates.Action;
 
@@ -69,8 +70,10 @@ public class StateMachineHolder {
         } else {
           actionResult = "окей. погнали.  ";
         }
+        
+        RecognizerFactory.getRecognizer().muteNext();
       }
-
+      
       String answer = null;
       try {
         answer = Brain.getInstance().getSketchesManager().findAnswer(
@@ -81,7 +84,8 @@ public class StateMachineHolder {
           stateMachine.Fire(Command.RESET);
         } else {
           actionResult += answer;
-        }      
+          RecognizerFactory.getRecognizer().muteNext();
+        }
       } catch (Exception e) {
         e.printStackTrace();
       }     

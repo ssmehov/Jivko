@@ -144,7 +144,7 @@ public class UtteranceRecognizer extends BaseDataProcessor {
       isInSpeech = false;
 
       //TODO: fix this
-      try {
+      try {        
         data = new UtteranceFromWavData(wavName);
       } catch (Exception e) {
         e.printStackTrace();

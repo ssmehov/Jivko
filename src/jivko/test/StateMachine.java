@@ -28,6 +28,11 @@ public class StateMachine implements Testable {
     next("бла бла");
     next("бла бла");
     next("бла бла");
+    next("бла бла");
+    next("бла бла");
+    next("бла бла");
+    next("бла бла");
+    next("бла бла");
     next("стоп");
   }
   
