@@ -246,7 +246,8 @@ public class CommandsCenter {
     if (commandsToExecute != null) {
       for (Command c : commandsToExecute) {
         //c.execute();
-        commandsExecutor.addCommand(c);
+        if (c != null)
+          commandsExecutor.addCommand(c);
       }
     }
   }

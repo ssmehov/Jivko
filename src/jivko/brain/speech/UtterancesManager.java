@@ -43,7 +43,7 @@ public class UtterancesManager {
   }  
   
   public void initialize(String path) throws Exception {    
-    readDialogList(path);    
+    readDialogList(path);
     print();
     currentUtterance = rootUtterance;
   }

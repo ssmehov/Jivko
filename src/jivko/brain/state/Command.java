@@ -49,7 +49,7 @@ public class Command {
   public boolean isContainValue(String value) {
     boolean result = false;
     for (String s : possibleValues) {
-      if (s.toLowerCase().contains(value)) {
+      if (s.toLowerCase().contains(value.toLowerCase())) {
         result = true;
         break;
       }

@@ -216,7 +216,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
     command += newSpeed;
     command += "\r\n";    
     
-    print();
+    //print();
     
     //this work only for unix
     if (command != null && !"".equals(command)) {

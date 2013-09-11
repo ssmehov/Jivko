@@ -5,6 +5,8 @@ import jivko.brain.state.StateMachineHolder;
 import jivko.brain.speech.sketch.SketchesManager;
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.speech.JokesManager;
@@ -22,8 +24,7 @@ import org.w3c.dom.NodeList;
  * @author Sergii Smehov (smehov.com)
  */
 public class Brain {
-
-  static private final String DATABASE_PATH = "D:/work/Jivko/db";
+  
   private StateMachineHolder stateMachineHolder = new StateMachineHolder();
   private UtterancesManager utterancesManager = new UtterancesManager();
   private JokesManager jokesManager = new JokesManager();
@@ -51,7 +52,8 @@ public class Brain {
     return sketchesManager;
   }
     
-  private Brain() {
+  private Brain() throws Exception {
+    initialize();
   }
 
   public void initialize() throws Exception {
@@ -86,7 +88,11 @@ public class Brain {
 
   public static Brain getInstance() {
     if (instance == null) {
-      instance = new Brain();
+      try {
+        instance = new Brain();
+      } catch (Exception ex) {
+        Logger.getLogger(Brain.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
 
     return instance;
