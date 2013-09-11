@@ -21,7 +21,7 @@
     <question>С чего начнем</question>
     <answer>я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
   </utterance>    
-  <utterance commands="RIGHT_HAND_FUCK">
+  <utterance commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN">
     <question>А можешь пошутить про Путина</question>
     <answer>Я хоть и робот, но не совсем безбашенный</answer>
   </utterance>
