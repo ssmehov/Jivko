@@ -2,7 +2,7 @@
 <sketches>
   <sketch name="default">
     <human>привет как тебя зовут</human>
-    <robot commands="MOVE_LEFT=300,MOVE_STOP,HEAD_PAN_RIGHT,RIGHT_ARM_UP=150,RIGHT_ARM_STOP,RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300">Меня зовут киборг Паша</robot>
+    <robot commands="MOVE_LEFT=900,MOVE_STOP=0,HEAD_PAN_RIGHT=0,RIGHT_ARM_UP=700,RIGHT_ARM_STOP=0,RIGHT_HAND_FUCK,DUMMY=3000,RIGHT_HAND_OPEN=300,HEAD_PAN_CENTER=0,MOVE_RIGHT=900,MOVE_STOP=0,RIGHT_ARM_DOWN=50,RIGHT_ARM_STOP=0">Меня зовут киборг Паша</robot>
     <human>Что ты умеешь делать</human>
     <robot>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</robot>
     <human>Какая твоя цель здесь</human>
