@@ -118,6 +118,10 @@ public class SketchesManager {
     activeSketch = s;
   }
   
+  public Sketch findDefaultSketch() {
+    return findSketch("default");
+  }
+  
   public Sketch findSketch(String name) {
     BestAnswerFinder baf = new BestAnswerFinder(name);
     

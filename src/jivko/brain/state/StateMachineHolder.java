@@ -65,13 +65,61 @@ public class StateMachineHolder {
         Brain.getInstance().getSketchesManager().setActiveSketch(sketch);
 
         if (sketch.doesHumanStart()) {
-          actionResult = "ок! начинай";
+          //actionResult = "ок! начинай";
+          actionResult = "окей. погнали.  ";
           return;
         } else {
           actionResult = "окей. погнали.  ";
         }
         
         RecognizerFactory.getRecognizer().muteNext();
+      }
+      
+      String answer = null;
+      try {
+        answer = Brain.getInstance().getSketchesManager().findAnswer(
+              Brain.getInstance().getQuestion());
+        
+        if (answer == null) {
+          actionResult = "спасибо за внимание";                 
+          stateMachine.Fire(Command.RESET);
+        } else {
+          actionResult += answer;
+          RecognizerFactory.getRecognizer().muteNext();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }     
+    }    
+  };
+  
+  Action sketchTellDefaultAction = new Action() {
+    @Override
+    public void doIt() {          
+      actionResult = "";
+      
+      setNextCommand(Command.SKETCH);
+              
+      if (Brain.getInstance().getSketchesManager().getActiveSketch() == null) {
+        
+        Sketch sketch = Brain.getInstance().getSketchesManager().findDefaultSketch();        
+        if (sketch == null) {
+          actionResult = "Я обосрасля. Пойду менять белье";
+          return;
+        }
+                
+        Brain.getInstance().getSketchesManager().setActiveSketch(sketch);
+
+        //don't need to recognize next utterance
+        RecognizerFactory.getRecognizer().muteNext();
+        
+        if (sketch.doesHumanStart()) {
+          //actionResult = "ок! начинай";
+          actionResult = "окей. погнали.  ";
+          return;
+        } else {
+          actionResult = "окей. погнали.  ";
+        }                
       }
       
       String answer = null;
@@ -164,7 +212,7 @@ public class StateMachineHolder {
       stateMachine.Configure(State.INITIAL)
               .Permit(Command.DIALOG, State.DIALOG)
               .Permit(Command.JOKE, State.JOKE_CHOICE)
-              .Permit(Command.SKETCH, State.SKETCH_CHOICE)
+              .Permit(Command.SKETCH, State.SKETCHING)
               .Permit(Command.IMPROVISE, State.IMPROVISE_CHOICE)
               .OnEntry(resetAction);
 
@@ -172,7 +220,7 @@ public class StateMachineHolder {
               .PermitReentry(Command.DIALOG)
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
-              .Permit(Command.SKETCH, State.SKETCH_CHOICE)
+              .Permit(Command.SKETCH, State.SKETCHING)
               .Permit(Command.JOKE, State.JOKE_CHOICE)
               .Permit(Command.IMPROVISE, State.IMPROVISE_CHOICE)
               .OnEntry(dialogTellAction);
@@ -187,7 +235,7 @@ public class StateMachineHolder {
               .PermitReentry(Command.SKETCH)
               .Permit(Command.RESET, State.INITIAL)
               .Permit(Command.PAUSE, State.PAUSED)
-              .OnEntry(sketchTellAction);
+              .OnEntry(sketchTellDefaultAction);
 
       stateMachine.Configure(State.JOKE_CHOICE)
               .Permit(Command.RESET, State.INITIAL)
@@ -243,7 +291,9 @@ public class StateMachineHolder {
       e.printStackTrace();
     }
 
-    return actionResult;
+    String result = actionResult;
+    actionResult = "";
+    return result;
   }
 
   public State getState() {

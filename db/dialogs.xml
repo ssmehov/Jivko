@@ -2,44 +2,8 @@
 <utterance>
 <utterances>
   <utterance>
-    <question>привет как тебя зовут</question>
-    <answer>Меня зовут киборг Паша</answer>
+    <question>Что еще можешь сделать</question>
+    <answer>Могу передать привет!</answer>
   </utterance>  
-  <utterance commands="HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>Что ты умеешь делать</question>
-    <answer>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</answer>
-  </utterance>  
-  <utterance commands="HEAD_PAN_CENTER">
-    <question>Какая твоя цель здесь</question>
-    <answer>Я хочу поработить камеди клаб</answer>
-  </utterance>
-  <utterance commands="HEAD_TIP_UP=500,HEAD_TIP_DOWN=500,HEAD_TIP_CENTER">
-    <question>Готов зажечь</question>
-    <answer>Я хочу чтоб все людишки порвали свои животики</answer>
-  </utterance>
-  <utterance commands="HEAD_PAN=200,HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>С чего начнем</question>
-    <answer>я хочу передать себе привет в 3013 год, потому что я доживу, а вы нет. бугага</answer>
-  </utterance>    
-  <utterance commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300,HEAD_PAN_LEFT=300,HEAD_PAN_RIGHT">
-    <question>А можешь пошутить про Путина</question>
-    <answer>Я хоть и робот, но не совсем безбашенный</answer>
-  </utterance>
-  <utterance commands="HEAD_PAN=200,HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>В каком году ты появился на свет</question>
-    <answer>в сто пятьдесят третьем от рождества Тэслы</answer>
-  </utterance>
-  <utterance commands="HEAD_PAN=200,HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>Я думаю, пора приступать</question>
-    <answer>Перед тем, как мы начнем. Я хочу передать себе привет в три тысячи тринадцатом году, потому что я доживу, а вы нет. бугага</answer>
-  </utterance>
-  <utterance commands="HEAD_PAN=200,HEAD_PAN=200,HEAD_PAN_CENTER">
-    <question>Поведай о себе</question>
-    <answer>Я вернулся из прошлого! У нас с Россией 1 час разница. И сразу обратил внимание, на вашу сцену. Я бы с ней пошалил. Мы бы испробовали с ней больше чем три позиции</answer>
-  </utterance>
-  <utterance commands="RIGHT_HAND_ROCK=5000,RIGHT_HAND_OPEN">
-    <question>Знаешь как понравиться жюри</question>
-    <answer>Нужно надрать всем жопу. Рокэнролл</answer>
-  </utterance>
 </utterances>
 </utterance>
