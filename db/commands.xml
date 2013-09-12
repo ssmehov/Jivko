@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <commands>
+  <command name="DUMMY"/>
   <command name="RIGHT_HAND_OPEN"
            command="#1P1100#2P700#3P2200#4P800#5P2400T1000"/>
   <command name="RIGHT_HAND_CLOSE"
