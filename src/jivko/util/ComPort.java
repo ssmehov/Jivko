@@ -56,23 +56,53 @@ public class ComPort {
   
   public void write(String data) throws Exception {
     out.write(data.getBytes());
-    printInBuffer();
-  }
-  
-  public void writeCharByChar(String data, int delay) throws Exception {
-    for (int i = 0; i < data.length(); ++i) {
-      out.write(data.charAt(i));
-      Thread.sleep(delay);
-    }
+    
+    Thread.sleep(150);
     
     printInBuffer();
   }
   
-  private void printInBuffer() throws Exception {
-    while (in.available() != 0) {
-      byte[] bytes = {};
-      in.read(bytes);
-      System.err.println("read bytes:" + bytes.toString());
+  public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
+    String buffer;
+        
+    for (int i = 0; i < maxRetries; ++i) {
+      writeCharByChar(data, delay);
+      buffer = readInBuffer();
+      if (data.contains("\r\n"))
+        break;
+    }        
+  }
+  
+  public void writeCharByChar(String data, int delay) throws Exception {
+    for (int i = 0; i < data.length(); ++i) {
+      out.write(data.charAt(i));      
+      Thread.sleep(delay);
     }
+    
+    Thread.sleep(150);        
+  }  
+  
+  private String readInBuffer() throws Exception {
+    String bufferStr = "";
+    byte[] bytes = new byte[1024];
+    while (in.available() != 0) {      
+      int readBytes = in.read(bytes);
+      for (int i = 0; i < readBytes; ++i) {
+        bufferStr += (char)bytes[i];       
+      }      
+    }
+    return bufferStr;
+  }
+  
+  private void printInBuffer() throws Exception {
+    byte[] bytes = new byte[1024];
+    while (in.available() != 0) {      
+      String bufferStr = "";
+      int readBytes = in.read(bytes);
+      for (int i = 0; i < readBytes; ++i) {
+        bufferStr += (char)bytes[i];       
+      }
+      System.out.println("buffer = " + bufferStr);
+    }    
   }
 }

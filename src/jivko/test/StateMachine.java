@@ -14,7 +14,7 @@ public class StateMachine implements Testable {
   
   @Override
   public void test() throws Exception {    
-    next("Про Путина");
+    /*next("Про Путина");
     next("Привет, как тебя зовут");
     next("Что ты умеешь делать");
     next("Расскажи шутку");
@@ -23,7 +23,8 @@ public class StateMachine implements Testable {
     next("блвыв");
     next("Про пезд");
     next("Придумай шутку");
-    next("Павел воля где в гостиннице");
+    next("Павел воля где в гостиннице");*/
+    next("бла бла");
     next("Давай покажем миниатюру");
     next("бла бла");
     next("бла бла");

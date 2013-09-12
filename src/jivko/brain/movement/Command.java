@@ -250,7 +250,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
         ComPort comPort = openedPorts.get(port);
         
         if (isUsbCommand()) {
-          comPort.writeCharByChar(command, 10);
+          comPort.writeCharByCharUntilReceived(command, 50, 4);
         } else {
           comPort.write(command);
         }
