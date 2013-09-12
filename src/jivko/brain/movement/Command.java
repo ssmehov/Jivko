@@ -179,8 +179,10 @@ public class Command extends jivko.util.Tree implements Cloneable {
 
         if (min == null && max == null) {
           if (isUsbCommand()) {
-            String bytes = HexUtils.hexStringToByteArrayString(val.toString());
-            command = command.replaceAll("xxx", bytes);            
+            //String bytes = HexUtils.hexStringToByteArrayString(val.toString());
+            char ch = (char)(val.intValue());    
+            String s = "" + ch;
+            command = command.replaceAll("xxx", s);           
           } else {
             command = command.replaceAll("xxx", val.toString());
           }
