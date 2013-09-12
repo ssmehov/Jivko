@@ -56,12 +56,23 @@ public class ComPort {
   
   public void write(String data) throws Exception {
     out.write(data.getBytes());
+    printInBuffer();
   }
   
   public void writeCharByChar(String data, int delay) throws Exception {
     for (int i = 0; i < data.length(); ++i) {
       out.write(data.charAt(i));
       Thread.sleep(delay);
-    }    
+    }
+    
+    printInBuffer();
+  }
+  
+  private void printInBuffer() throws Exception {
+    while (in.available() != 0) {
+      byte[] bytes = {};
+      in.read(bytes);
+      System.err.println("read bytes:" + bytes.toString());
+    }
   }
 }
