@@ -25,7 +25,7 @@ public class StateMachine implements Testable {
     next("Придумай шутку");
     next("Павел воля где в гостиннице");
     next("Давай покажем миниатюру");
-    next("музыкант");
+    next("бла бла");
     next("бла бла");
     next("бла бла");
     next("бла бла");

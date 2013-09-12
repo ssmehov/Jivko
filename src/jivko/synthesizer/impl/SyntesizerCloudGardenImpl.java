@@ -9,7 +9,7 @@ import javax.speech.synthesis.*;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class SyntesizerCloudGardenImpl implements Synthesizer {
+public class SyntesizerCloudGardenImpl extends BaseSynthesizer {
 
   private javax.speech.synthesis.Synthesizer synth = null;
   private Voice voice = null;

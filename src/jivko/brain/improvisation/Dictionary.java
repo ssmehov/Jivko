@@ -15,16 +15,12 @@ import jivko.config.ConfigurationManager;
  */
 public class Dictionary {
 
+  public static final String TAIL = "tail";
   public static final String VERB = "verb";
   public static final String NOUN = "noun";
   public static final String ADJECTIVE = "adjective";
   public static final String PERSONA = "persona";
-  public static final String PLACE = "place";
-  private static final String VERBS_FILE = "verbs.txt";
-  private static final String NOUNS_FILE = "nouns.txt";
-  private static final String ADJECTIVES_FILE = "adjectives.txt";
-  private static final String PERSONAS_FILE = "personas.txt";
-  private static final String PLACES_FILE = "places.txt";
+  public static final String PLACE = "place";  
   
   private static Random rand = new Random();
 
@@ -75,6 +71,15 @@ public class Dictionary {
     }
   }
 
+  static public class Tails extends Component {
+
+    private static final String CONTENT_FILE = "tails.txt";
+
+    public Tails() throws Exception {
+      super(CONTENT_FILE);
+    }
+  }
+  
   static public class Verbs extends Component {
 
     private static final String CONTENT_FILE = "verbs.txt";
@@ -120,6 +125,7 @@ public class Dictionary {
     }
   }
   
+  private Tails tails;
   private Verbs verbs;
   private Nouns nouns;
   private Adjectives adjectives;
@@ -127,6 +133,9 @@ public class Dictionary {
   private Places places;
 
   public Dictionary() throws Exception {
+    tails = new Tails();
+    tails.initializeFromDb();
+    
     verbs = new Verbs();
     verbs.initializeFromDb();
     
@@ -143,6 +152,10 @@ public class Dictionary {
     places.initializeFromDb();
   }
 
+  public Tails getTails() {
+    return tails;
+  }
+  
   public Verbs getVerbs() {
     return verbs;
   }

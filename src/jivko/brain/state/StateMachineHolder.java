@@ -1,9 +1,11 @@
 package jivko.brain.state;
 
 import jivko.brain.Brain;
+import jivko.brain.improvisation.Dictionary;
 import jivko.brain.improvisation.JokeCreator;
 import jivko.brain.speech.sketch.Sketch;
 import jivko.recognizer.RecognizerFactory;
+import jivko.synthesizer.SynthesizerFactory;
 import org.customsoft.stateless4j.StateMachine;
 import org.customsoft.stateless4j.delegates.Action;
 
@@ -168,7 +170,7 @@ public class StateMachineHolder {
         } else {
           actionResult = "слушайте. " + actionResult;                
           stateMachine.Fire(Command.RESET);
-        }        
+        }
       } catch (Exception e) {
         e.printStackTrace();
       }      
@@ -185,7 +187,9 @@ public class StateMachineHolder {
         if (actionResult == null) {
           actionResult = "повторите, про что шутку?";
         } else {
-          actionResult = "слушайте. " + actionResult;        
+          actionResult = "слушайте. " + actionResult;
+          SynthesizerFactory.getSynthesizer().talkWithPause(actionResult, 1000);
+          actionResult = Dictionary.getInstance().getTails().getRandValue();
           stateMachine.Fire(Command.RESET);
         }
       } catch (Exception e) {

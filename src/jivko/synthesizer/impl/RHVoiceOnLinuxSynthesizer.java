@@ -14,7 +14,7 @@ import jivko.util.MakeSound;
  *
  * @author Sergii Smehov (smehov.com)
  */
-public class RHVoiceOnLinuxSynthesizer implements Synthesizer {
+public class RHVoiceOnLinuxSynthesizer extends BaseSynthesizer {
 
     @Override
     public void talk(String text) {
