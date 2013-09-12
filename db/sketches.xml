@@ -2,7 +2,7 @@
 <sketches>
   <sketch name="default">
     <human>привет как тебя зовут</human>
-    <robot commands="MOVE_FORWARD=200,MOVE_STOP">Меня зовут киборг Паша</robot>
+    <robot commands="MOVE_LEFT=300,MOVE_STOP,HEAD_PAN_RIGHT,RIGHT_ARM_UP=150,RIGHT_ARM_STOP,RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300">Меня зовут киборг Паша</robot>
     <human>Что ты умеешь делать</human>
     <robot>Я умею читать шутки, показывать миниатюры, в общем всячески веселить людишек</robot>
     <human>Какая твоя цель здесь</human>
@@ -10,7 +10,7 @@
     <human>Начинай</human>
     <robot>Сначала,я хочу передать себе привет в три тысячи тринадцатом году, потому что я доживу, а вы нет. бу-га-га</robot>
     <human>А можешь пошутить про Путина</human>
-    <robot music="SVETLAKOV" commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300,HEAD_PAN_LEFT=300,HEAD_PAN_RIGHT"
+    <robot music="SVETLAKOV" commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300"
       >Я хоть и робот, но не совсем безбашенный</robot>
     <human>В каком году ты появился на свет</human>
     <robot>В сто пятьдесят третьем от рождества Тэсл ы</robot>
