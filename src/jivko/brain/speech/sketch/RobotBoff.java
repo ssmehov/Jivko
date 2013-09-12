@@ -2,6 +2,7 @@ package jivko.brain.speech.sketch;
 
 import java.util.List;
 import jivko.brain.movement.Command;
+import jivko.brain.music.MusicCommand;
 
 /**
  *
@@ -17,6 +18,22 @@ public class RobotBoff extends Boff {
     super(v);
     this.commands = commands;
   }    
+  
+  public RobotBoff(String v, List<Command> commands, MusicCommand musicCommand) {
+    super(v);
+    this.commands = commands;
+    this.musicCommand = musicCommand;
+  }    
+  
+  MusicCommand musicCommand;
+
+  public MusicCommand getMusicCommand() {
+    return musicCommand;
+  }
+
+  public void setMusicCommand(MusicCommand musicCommand) {
+    this.musicCommand = musicCommand;
+  }
   
   List<Command> commands;
   

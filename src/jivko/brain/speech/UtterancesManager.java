@@ -6,6 +6,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
+import jivko.brain.music.MusicCommand;
+import jivko.brain.music.MusicCommandsCenter;
 import jivko.util.Tree;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -73,6 +75,9 @@ public class UtterancesManager {
   private void readUtterance(Node node, Utterance utterance) throws Exception {
     assert XML_DOM_NODE_UTTERANCE.equals(node.getNodeName());
 
+    MusicCommand musicCommand = MusicCommandsCenter.getInstance().getCommandFromXmlElement(node);
+    utterance.setMusicCommand(musicCommand);
+    
     List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(node);
     utterance.setCommands(commands);
     
@@ -141,6 +146,7 @@ public class UtterancesManager {
     if (uWithAnswer != null) {
       answer = uWithAnswer.getRandomValue();
       CommandsCenter.getInstance().executeCommandList(uWithAnswer.getCommands());
+      MusicCommandsCenter.getInstance().executeCommand(uWithAnswer.getMusicCommand());
       
       //update current pointer if this is a dialog
       if (uWithAnswer.getNodes() != null)

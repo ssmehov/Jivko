@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <configuraion>      
+  <item name="MusicCommandsDB">db/music/</item>
   <item name="VoiceCommandsDB">db/voice_commands.xml</item>
   <item name="CommandsDB">db/commands.xml</item>
   <item name="DictionariesDB">db/dictinaries</item>

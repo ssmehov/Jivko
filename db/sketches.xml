@@ -9,9 +9,9 @@
     <robot>Я хочу поработить камеди клаб, чтоб все людишки порвали свои животики</robot>
     <human>Начинай</human>
     <robot>Сначала,я хочу передать себе привет в три тысячи тринадцатом году, потому что я доживу, а вы нет. бу-га-га</robot>
-    <human commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300,HEAD_PAN_LEFT=300,HEAD_PAN_RIGHT"
-      >А можешь пошутить про Путина</human>
-    <robot>Я хоть и робот, но не совсем безбашенный</robot>
+    <human>А можешь пошутить про Путина</human>
+    <robot music="SVETLAKOV" commands="RIGHT_HAND_FUCK=5000,RIGHT_HAND_OPEN=300,HEAD_PAN_LEFT=300,HEAD_PAN_RIGHT"
+      >Я хоть и робот, но не совсем безбашенный</robot>
     <human>В каком году ты появился на свет</human>
     <robot>В сто пятьдесят третьем от рождества Тэсл ы</robot>
     <human>Расскажи о себе</human>

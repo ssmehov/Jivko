@@ -20,7 +20,7 @@ public class MakeSound {
     /**
      * @param filename the name of the file that is going to be played
      */
-    public static void playSound(String filename) {
+    public static void playWav(String filename) {
 
         String strFilename = filename;
 

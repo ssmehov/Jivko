@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import jivko.brain.movement.Command;
+import jivko.brain.music.MusicCommand;
 import jivko.util.Tree;
 
 /**
@@ -12,8 +13,17 @@ import jivko.util.Tree;
  * @author Sergii Smehov (smehov.com)
  */
 public class Utterance extends jivko.util.Tree {  
+  MusicCommand musicCommand;
   List<Command> commands;
-  
+
+  public MusicCommand getMusicCommand() {
+    return musicCommand;
+  }
+
+  public void setMusicCommand(MusicCommand musicCommand) {
+    this.musicCommand = musicCommand;
+  }
+    
   public List<Command> getCommands() {
     return commands;
   }

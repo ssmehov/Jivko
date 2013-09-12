@@ -5,5 +5,9 @@
     <question>Что еще можешь сделать</question>
     <answer>Могу передать привет!</answer>
   </utterance>  
+  <utterance music="MARTIROSYAN">
+    <question>Спародируй Мартиросяна</question>
+    <answer>Лада-калина-вопрос</answer>
+  </utterance>
 </utterances>
 </utterance>

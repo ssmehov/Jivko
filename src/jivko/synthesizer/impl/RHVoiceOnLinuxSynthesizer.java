@@ -48,7 +48,7 @@ public class RHVoiceOnLinuxSynthesizer extends BaseSynthesizer {
     }
 
     public static void playWav(String fileName) throws Exception {
-        MakeSound.playSound(fileName);
+        MakeSound.playWav(fileName);
     }
 
     public static void playWav2(String fileName) throws Exception {

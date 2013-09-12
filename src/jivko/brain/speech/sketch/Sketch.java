@@ -3,6 +3,7 @@ package jivko.brain.speech.sketch;
 import java.util.ArrayList;
 import java.util.List;
 import jivko.brain.movement.Command;
+import jivko.brain.music.MusicCommand;
 import jivko.brain.speech.Utterance;
 
 /**
@@ -35,6 +36,10 @@ public class Sketch extends Utterance {
   
   public void addRobotBoff(String value, List<Command> commands) {
     boffs.add(new RobotBoff(value, commands));
+  }
+  
+  public void addRobotBoff(String value, List<Command> commands, MusicCommand musicCommand) {
+    boffs.add(new RobotBoff(value, commands, musicCommand));
   }
 
   public List<Boff> getBoffs() {

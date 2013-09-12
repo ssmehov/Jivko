@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
+import jivko.brain.music.MusicCommand;
+import jivko.brain.music.MusicCommandsCenter;
 import jivko.util.BestAnswerFinder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -100,10 +102,11 @@ public class SketchesManager {
         sketch.addHumanBoff(nodeVal);
       } else if (nodeName.contains(XML_DOM_NODE_ROBOT)) {
         
-        List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(n);              
+        MusicCommand musicCommand = MusicCommandsCenter.getInstance().getCommandFromXmlElement(n);            
+        List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(n);        
       
         String nodeVal = n.getTextContent();
-        sketch.addRobotBoff(nodeVal);
+        sketch.addRobotBoff(nodeVal, commands, musicCommand);
       }
     }
     
@@ -144,6 +147,7 @@ public class SketchesManager {
       } else {
         result = answer.getValue();
         CommandsCenter.getInstance().executeCommandList(answer.getCommands());
+        MusicCommandsCenter.getInstance().executeCommand(answer.getMusicCommand());
       }
     }
 
