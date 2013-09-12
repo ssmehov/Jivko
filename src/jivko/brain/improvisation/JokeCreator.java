@@ -116,7 +116,7 @@ public class JokeCreator {
       if (component.getValue() != null) {
         word = component.getValue();
       } else {
-        word = component.getRandValue();
+        word = component.getRandValueAndRemove();
 
         if (prev instanceof Dictionary.Verbs) {
           Morpher m = new Morpher(word);

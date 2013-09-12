@@ -52,6 +52,16 @@ public class Dictionary {
       return values;
     }
 
+    public String getRandValueAndRemove() throws Exception {
+      int idx = rand.nextInt(values.size());
+      String result = values.get(idx);
+      values.remove(idx);
+      if (values.size() == 0) {
+        initializeFromDb();
+      }
+      return result;      
+    }
+    
     public String getRandValue() {
       int idx = rand.nextInt(values.size());
       return values.get(idx);

@@ -189,7 +189,7 @@ public class StateMachineHolder {
         } else {
           actionResult = "слушайте. " + actionResult;
           SynthesizerFactory.getSynthesizer().talkWithPause(actionResult, 1000);
-          actionResult = Dictionary.getInstance().getTails().getRandValue();
+          actionResult = Dictionary.getInstance().getTails().getRandValueAndRemove();
           stateMachine.Fire(Command.RESET);
         }
       } catch (Exception e) {
