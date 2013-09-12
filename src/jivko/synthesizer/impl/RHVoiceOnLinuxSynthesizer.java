@@ -31,7 +31,7 @@ public class RHVoiceOnLinuxSynthesizer extends BaseSynthesizer {
             writer.println(text);
             writer.close();
 
-            Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "RHVoice -i " + textToSayFileName + " --voice=Aleksandr -o " + resultWavFileName});
+            Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "RHVoice -r 55 -p 60 -v 80 -i " + textToSayFileName + " --voice=Aleksandr -o " + resultWavFileName});
             p.waitFor();
             
             int exitCode = p.exitValue();
