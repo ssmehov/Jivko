@@ -11,6 +11,7 @@ import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_PORT;
 import static jivko.brain.movement.CommandsCenter.XML_DOM_ATTRIBUTE_VAL;
 import static jivko.brain.movement.CommandsCenter.XML_DOM_NODE_COMMAND;
 import jivko.util.ComPort;
+import jivko.util.HexUtils;
 import jivko.util.OsUtils;
 import jivko.util.Tree;
 
@@ -152,12 +153,19 @@ public class Command extends jivko.util.Tree implements Cloneable {
   public boolean isHardcoded() {
     return command.split("#").length > 2;
   }
+  
+  public boolean isUsbCommand() {
+    return port.contains("USB");
+  }
       
   public void compile() throws Exception {
     //System.err.println("before:" + command);
+    if (port == null || "".equals(port))
+    port = DEFAULT_PORT_NAME;    
+    addPort(port);
     
     if (!isHardcoded()) {      
-    
+         
       if (command == null || "".equals(command))
         return;
 
@@ -169,22 +177,26 @@ public class Command extends jivko.util.Tree implements Cloneable {
       if (value != null) {
         val = value;
 
-        if (min == null && max == null)
-          command = command.replaceAll("xxx", val.toString());
+        if (min == null && max == null) {
+          if (isUsbCommand()) {
+            String bytes = HexUtils.hexStringToByteArrayString(val.toString());
+            command = command.replaceAll("xxx", bytes);            
+          } else {
+            command = command.replaceAll("xxx", val.toString());
+          }
+        }
+        
       } else {
         if (min == null || max == null)
           throw new Exception("Command: " + name + ": if now val preset at least min or max should be!");            
       } 
 
-      command += COMMAND_SPEED_PREFIX + speed.toString();
+      if (!isUsbCommand()) {
+        command += COMMAND_SPEED_PREFIX + speed.toString();
+      }
     }
     
-    command += "\r\n";
-    
-    if (port == null || "".equals(port))
-      port = DEFAULT_PORT_NAME;
-    
-    addPort(port);
+    command += "\r\n";    
     
     //System.err.println("after:" + command);
   }
@@ -214,26 +226,32 @@ public class Command extends jivko.util.Tree implements Cloneable {
     if (command != null && !"".equals(command)) {
       String commandSaved = command;
     
-      if (!isHardcoded()) {
-        Integer newVal = value;
-        if (min != null && max != null) {
-            newVal = min + rand.nextInt(max - min); 
-        }
-        command = command.replaceAll("xxx", newVal.toString());
+      if (!isUsbCommand()) {
+        if (!isHardcoded()) {
+          Integer newVal = value;
+          if (min != null && max != null) {
+              newVal = min + rand.nextInt(max - min); 
+          }
+          command = command.replaceAll("xxx", newVal.toString());
 
-        int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
-        int idx = command.indexOf('T');
-        command = command.substring(0, idx+1);
-        command += newSpeed;
-      }
-      command += "\r\n";    
-    
+          int newSpeed = CommandSpeedDeterminator.getReccomendSpeed(this, newVal);
+          int idx = command.indexOf('T');
+          command = command.substring(0, idx+1);
+          command += newSpeed;
+        }
+        command += "\r\n";
+      }    
       //print();
             
       //this work only for unix
       if (OsUtils.isUnix()) {
         ComPort comPort = openedPorts.get(port);
-        comPort.getOut().write(command.getBytes());
+        
+        if (isUsbCommand()) {
+          comPort.writeCharByChar(command, 10);
+        } else {
+          comPort.write(command);
+        }
       }
       
       command = commandSaved;

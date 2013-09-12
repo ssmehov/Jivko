@@ -52,5 +52,16 @@ public class ComPort {
         System.out.println("Error: Only serial ports are handled");
       }
     }
-  }    
+  }
+  
+  public void write(String data) throws Exception {
+    out.write(data.getBytes());
+  }
+  
+  public void writeCharByChar(String data, int delay) throws Exception {
+    for (int i = 0; i < data.length(); ++i) {
+      out.write(data.charAt(i));
+      Thread.sleep(delay);
+    }    
+  }
 }
