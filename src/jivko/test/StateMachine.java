@@ -55,6 +55,8 @@ public class StateMachine implements Testable {
     next("Павел воля где в секс шопе");
     next("Придумай шутку");
     next("Павел воля где в секс шопе");    
+    next("Придумай шутку");
+    next("Павел воля где в секс шопе");    
   }
   
 }
