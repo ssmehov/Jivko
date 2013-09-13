@@ -12,7 +12,8 @@ import jivko.brain.movement.CommandsCenter;
 public class Commands implements Testable {
 
   private static String[] commandsToTest = {
-    "HEAD_PAN_CENTER"      
+    "HEAD_PAN_CENTER"                
+    ,"COMPLEX_COMMAD_EXAMPLE"
     ,"HEAD_PAN"
     ,"HEAD_PAN"
     ,"HEAD_PAN"

@@ -53,15 +53,14 @@ public class Command extends jivko.util.Tree implements Cloneable {
     return super.clone(); //To change body of generated methods, choose Tools | Templates.
   }  
   
-  private String name;
+  private String command = "";  
+  private String name = "";
   private Integer min;
   private Integer max;  
   private Integer value;
-  private String port;
+  private String port = "";
   private Integer duration = DEFAULT_COMMAND_DURATION;
-  private Integer speed = DEFAULT_COMMAND_SPEED;
-  
-  private String command;  
+  private Integer speed = DEFAULT_COMMAND_SPEED;    
   
   private static Map<String, ComPort> openedPorts = new HashMap<>();
 
@@ -69,16 +68,18 @@ public class Command extends jivko.util.Tree implements Cloneable {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setName(String newName) {
+    if (newName != null && !"".equals(newName))
+      this.name = newName;
   }    
 
   public String getCommand() {
     return command;
   }
 
-  public void setCommand(String command) {
-    this.command = command;
+  public void setCommand(String newCommand) {
+    if (newCommand != null && !"".equals(newCommand))
+      this.command = newCommand;
   }
 
   public Integer getMin() {
@@ -115,8 +116,9 @@ public class Command extends jivko.util.Tree implements Cloneable {
     return port;
   }
 
-  public void setPort(String port) {
-    this.port = port;
+  public void setPort(String newPort) {
+    if (newPort != null && !"".equals(newPort))
+    this.port = newPort;
   }
 
   public Integer getDuration() {
@@ -261,7 +263,10 @@ public class Command extends jivko.util.Tree implements Cloneable {
             
     for (Tree t : getNodes()) {
       ((Command)t).execute();
-    }        
+    }
+        
+    System.out.println("duration = " + getDuration());
+    Thread.sleep(getDuration());
   }          
 }
 

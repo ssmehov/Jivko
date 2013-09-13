@@ -117,9 +117,22 @@ public class CommandsCenter {
     String name = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_NAME);
     command.setName(name);
     
-    Command commandToCheck = commands.get(name);
-    if (commandToCheck != null) {
-      return commandToCheck;
+    Command baseCommand = commands.get(name);
+    if (baseCommand != null) {
+      return baseCommand;
+    }
+    
+    //check for base comand (without duration)
+    String duration = null;
+    int idx = name.indexOf("=");
+    if (idx != -1) {
+      String simpleName = name.substring(0, idx);
+      duration = name.substring(idx + 1);
+      baseCommand = commands.get(simpleName);
+      if (baseCommand != null) {
+        command = (Command)baseCommand.clone();
+      }
+      command.setName(name);
     }
     
     String max = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_MAX);
@@ -137,9 +150,11 @@ public class CommandsCenter {
     String speed = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_SPEED);
     command.setValue(speed);
     
-    String duration = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_DURATION);
-    command.setValue(duration);
-    
+    if (duration == null) {
+      duration = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_DURATION);
+    } 
+    command.setDuration(duration);
+       
     String cmd = ((Element)node).getAttribute(XML_DOM_ATTRIBUTE_COMMAND);
     command.setCommand(cmd);
         
@@ -181,7 +196,10 @@ public class CommandsCenter {
       }      
     }
     
-    command.compile();//NB!!!
+    //this means that command is already compiled as base command but probably with different duration
+    if (baseCommand == null)
+      command.compile();//NB!!!
+    
     return command;
   }
   
@@ -277,12 +295,7 @@ public class CommandsCenter {
       while (true) {        
         try {
           Command command = queue.take();        
-          command.execute();
-          
-          Integer duration = command.getDuration();
-          System.out.println("duration = " + duration);
-          Thread.sleep(duration);
-          
+          command.execute();          
         } catch (Exception ex) {
           ex.printStackTrace();
           Logger.getLogger(CommandsCenter.class.getName()).log(Level.SEVERE, null, ex);
