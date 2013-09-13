@@ -38,8 +38,12 @@ public class Sketch extends Utterance {
     boffs.add(new RobotBoff(value, commands));
   }
   
+  public void addRobotBoff(RobotBoff robotBoff) {
+    boffs.add(robotBoff);
+  }
+  
   public void addRobotBoff(String value, List<Command> commands, MusicCommand musicCommand) {
-    boffs.add(new RobotBoff(value, commands, musicCommand));
+    addRobotBoff(new RobotBoff(value, commands, musicCommand));
   }
 
   public List<Boff> getBoffs() {

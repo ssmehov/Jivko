@@ -20,10 +20,14 @@ public class RobotBoff extends Boff {
   }    
   
   public RobotBoff(String v, List<Command> commands, MusicCommand musicCommand) {
-    super(v);
-    this.commands = commands;
+    this(v, commands);    
     this.musicCommand = musicCommand;
-  }    
+  }
+
+  public RobotBoff(String v, List<Command> commands, MusicCommand musicCommand, Integer speachDelay) {
+    this(v, commands, musicCommand);    
+    this.speachDelay = speachDelay;
+  }
   
   MusicCommand musicCommand;
 
@@ -43,5 +47,17 @@ public class RobotBoff extends Boff {
 
   public void setCommands(List<Command> commands) {
     this.commands = commands;
+  }
+  
+  private Integer speachDelay;
+    
+  public Integer getSpeachDelay() {
+    return speachDelay;
+  }
+
+  public void setSpeachDelay(String speachDelay) {
+    if (speachDelay != null && !"".equals(speachDelay)) {
+      this.speachDelay = Integer.parseInt(speachDelay);
+    }
   }
 }

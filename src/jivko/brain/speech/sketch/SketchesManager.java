@@ -26,6 +26,9 @@ public class SketchesManager {
   static private final String XML_DOM_NODE_HUMAN = "human";
   static private final String XML_DOM_NODE_ROBOT = "robot";
   static private final String XML_DOM_ATTRIBUTE_NAME = "name";
+  static private final String XML_DOM_ATTRIBUTE_SPEACH_DELAY = "speachdelay";
+  
+  static private final Integer MAX_SPEACH_DELAY = 4000;
   
   private List<Sketch> sketches = new ArrayList<>();
   private Sketch activeSketch = null;
@@ -106,7 +109,13 @@ public class SketchesManager {
         List<Command> commands = CommandsCenter.getInstance().getCommandsFromXmlElement(n);        
       
         String nodeVal = n.getTextContent();
-        sketch.addRobotBoff(nodeVal, commands, musicCommand);
+        
+        String speachDelay = ((Element)n).getAttribute(XML_DOM_ATTRIBUTE_SPEACH_DELAY);
+        
+        RobotBoff robotBoff = new RobotBoff(nodeVal, commands, musicCommand);
+        robotBoff.setSpeachDelay(speachDelay);
+        
+        sketch.addRobotBoff(robotBoff);
       }
     }
     
@@ -148,6 +157,10 @@ public class SketchesManager {
         result = answer.getValue();
         CommandsCenter.getInstance().executeCommandList(answer.getCommands());
         MusicCommandsCenter.getInstance().executeCommand(answer.getMusicCommand());
+        if (answer.getSpeachDelay() != null) {
+          int delay = answer.getSpeachDelay();
+          Thread.sleep(Math.min(delay, MAX_SPEACH_DELAY));
+        }
       }
     }
 
