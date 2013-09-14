@@ -20,7 +20,7 @@ public class RecognizerGoogleImpl implements Recognizer {
     if (isMuteNext) {
       System.err.println("Utterence is mutted to be recognized");
       isMuteNext = false;
-      return "bla";
+      return MUTED;
     }
     
     com.darkprograms.speech.recognizer.Recognizer recognizer = 
@@ -45,5 +45,15 @@ public class RecognizerGoogleImpl implements Recognizer {
   @Override
   public void muteNext() {
     isMuteNext = true;
-  }    
+  }
+  
+  @Override
+  public void unmuteNext() {
+    isMuteNext = false;
+  }
+
+  @Override
+  public boolean isMuteNext() {
+    return isMuteNext;
+  }
 }

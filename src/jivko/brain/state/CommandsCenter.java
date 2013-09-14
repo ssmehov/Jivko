@@ -110,6 +110,10 @@ public class CommandsCenter {
     
   public String getCommand(String utterance) {
     String result = Command.UNKNOWN_COMMAND;
+    
+    if (isAlreadyCommand(utterance)) {
+      return utterance;
+    }
         
     for (Entry <String, Command> e : commands.entrySet()) {
       if (e.getValue().isContainValue(utterance)) {
@@ -118,5 +122,9 @@ public class CommandsCenter {
     }
     
     return result;
+  }
+  
+  public boolean isAlreadyCommand(String c) {
+    return commands.containsKey(c);
   }
 }

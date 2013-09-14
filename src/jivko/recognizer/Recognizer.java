@@ -12,9 +12,14 @@ import java.io.InputStream;
  */
 public interface Recognizer {
   
+  public static final String MUTED = "muted";
+  
   public String recognize(final String fileName) throws Exception;
   
   public String recognize(InputStream inputStream) throws Exception;
   
   public void muteNext();
+  public void unmuteNext();
+  
+  public boolean isMuteNext();
 }

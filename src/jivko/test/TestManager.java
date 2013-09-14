@@ -10,7 +10,8 @@ import java.util.List;
 public class TestManager {
   private static List<Testable> tests = new ArrayList<>();
   static {
-    tests.add(new StateMachine());
+    //tests.add(new StdIn());
+    //tests.add(new StateMachine());
     //tests.add(new Commands());    
     //tests.add(new JokesCreator());
   }

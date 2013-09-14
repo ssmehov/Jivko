@@ -18,4 +18,12 @@ public class OsUtils {
   public static boolean isUnix() {
     return !isWindows();
   }
+  
+  public static String getStdinEncoding() {
+    if (isWindows()) {
+      return "windows-1251";
+    } else {
+      return "UTF-8";
+    }
+  }
 }
