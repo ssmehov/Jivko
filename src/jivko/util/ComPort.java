@@ -62,7 +62,35 @@ public class ComPort {
     printInBuffer();
   }
   
+  public boolean sentReceivedEquals(String sent, String received) {        
+    if (!received.contains("\r\n"))
+      return false;
+    
+    if (!sent.startsWith("#") || received.startsWith("#"))
+      return false;
+    
+    boolean result = false;
+    
+    char sentCode = sent.charAt(1);
+    
+    String receivedCodeStr = received.substring(1).split(" ")[0];
+    int receivedCode = Integer.parseInt(receivedCodeStr);
+    
+    return sentCode == (char)receivedCode;
+  }
+  
   public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
+    String buffer;
+        
+    for (int i = 0; i < maxRetries; ++i) {
+      writeCharByChar(data, delay);
+      buffer = readInBuffer();
+      if (sentReceivedEquals(data, buffer))
+        break;
+    }        
+  }
+  
+  /*public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
     String buffer;
         
     for (int i = 0; i < maxRetries; ++i) {
@@ -71,7 +99,7 @@ public class ComPort {
       if (data.contains("\r\n"))
         break;
     }        
-  }
+  }*/
   
   public void writeCharByChar(String data, int delay) throws Exception {
     for (int i = 0; i < data.length(); ++i) {
