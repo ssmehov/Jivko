@@ -63,6 +63,10 @@ public class Sketch extends Utterance {
     return result;
   }
   
+  public boolean isNextRobotBoff() {
+    return boffs.get(curBufIdx) instanceof RobotBoff;
+  }
+  
   public RobotBoff nextRobotBoff() {
     Boff result = null;
     

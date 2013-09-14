@@ -9,6 +9,7 @@ import jivko.brain.movement.Command;
 import jivko.brain.movement.CommandsCenter;
 import jivko.brain.music.MusicCommand;
 import jivko.brain.music.MusicCommandsCenter;
+import jivko.synthesizer.SynthesizerFactory;
 import jivko.util.BestAnswerFinder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -144,23 +145,32 @@ public class SketchesManager {
     Sketch bestCandidate = (Sketch)baf.getBestCandidate();
     return bestCandidate;
   }    
-  
+      
   public String findAnswer(String question) throws Exception {
     String result = null;
     
-    if (activeSketch != null) {
-      RobotBoff answer = activeSketch.nextRobotBoff();
-      
-      if (answer == null) { 
-        setActiveSketch(null);
-      } else {
-        result = answer.getValue();
-        CommandsCenter.getInstance().executeCommandList(answer.getCommands());
-        MusicCommandsCenter.getInstance().executeCommand(answer.getMusicCommand());
-        if (answer.getSpeachDelay() != null) {
-          int delay = answer.getSpeachDelay();
-          Thread.sleep(Math.min(delay, MAX_SPEACH_DELAY));
+    if (activeSketch != null) {      
+      while (true) {
+        result = null;
+        RobotBoff answer = activeSketch.nextRobotBoff();
+        
+        if (answer == null) { 
+          setActiveSketch(null);
+        } else {
+          result = answer.getValue();
+          CommandsCenter.getInstance().executeCommandList(answer.getCommands());
+          MusicCommandsCenter.getInstance().executeCommand(answer.getMusicCommand());
+          if (answer.getSpeachDelay() != null) {
+            int delay = answer.getSpeachDelay();
+            Thread.sleep(Math.min(delay, MAX_SPEACH_DELAY));
+          }
         }
+        
+        if (activeSketch.isNextRobotBoff()) {
+          SynthesizerFactory.getSynthesizer().talk(result);
+        } else {
+          break;
+        }          
       }
     }
 
