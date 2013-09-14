@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import jivko.sphinx.Engine;
+import jivko.sphinx.TextEngine;
 
 import jivko.test.TestManager;
 
@@ -19,7 +20,7 @@ public class Main {
   public static void main(String[] args) throws MalformedURLException, IOException, Exception {            
     
     TestManager.run();
-                    
-    Engine.run(args);       
+    TextEngine.getInstance().start();              
+    Engine.run(args);   
   }
 }

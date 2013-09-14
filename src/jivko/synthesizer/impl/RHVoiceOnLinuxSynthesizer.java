@@ -17,7 +17,7 @@ import jivko.util.MakeSound;
 public class RHVoiceOnLinuxSynthesizer extends BaseSynthesizer {
 
     @Override
-    public void talk(String text) {
+    public synchronized void talk(String text) {
 
         if (text == null || "".equals(text)) {
             return;

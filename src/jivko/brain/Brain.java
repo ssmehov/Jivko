@@ -70,7 +70,7 @@ public class Brain {
     jokesManager.reset();
   }
 
-  public String findAnswer(String question) throws Exception {
+  public synchronized String findAnswer(String question) throws Exception {
     String result = "";
     
     if (question == null) 
