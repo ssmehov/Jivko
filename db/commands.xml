@@ -5,8 +5,8 @@
   <command name="RIGHT_HAND_OPEN"
            command="#1P1200#2P1065#3P2130#4P1609#26P2174T1000"/>
 
-    <command name="RIGHT_HAND_IDLE"
-           command="#1P2022#2P1065#3P2130#4P1609#26P2174T1000"/>
+  <command name="RIGHT_HAND_IDLE"
+             command="#1P2022#2P1065#3P2130#4P1609#26P2174T1000"/>
 
   <command name="RIGHT_HAND_CLOSE"
            command="#1P2109#2P2500#3P1130#4P2400#26P1326T1000"/>
@@ -20,8 +20,8 @@
   <command name="RIGHT_HAND_ROCK">
     <commands>
       <command name="RIGHT_HAND_ROCK_PART1"
-             duration="800"
-             command="#2P1065#3P1130#4P2400#26P2174T800"/>
+               duration="800"
+               command="#2P1065#3P1130#4P2400#26P2174T800"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -29,8 +29,8 @@
   <command name="RIGHT_HAND_INDEX">
     <commands>
       <command name="RIGHT_HAND_INDEX_FINGER"
-             duration="800"
-             command="#2P1065#3P1130#4P2400#5P1326T800"/>
+               duration="800"
+               command="#2P1065#3P1130#4P2400#5P1326T800"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -46,8 +46,8 @@
   <command name="LEFT_HAND_ROCK">
     <commands>
       <command name="LEFT_HAND_ROCK_PART1"
-            duration="1000"
-             command="#17P1600#18P800#19P800#20P600T1000"/>
+               duration="1000"
+               command="#17P1600#18P800#19P800#20P600T1000"/>
       <command name="LEFT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -55,8 +55,8 @@
   <command name="LEFT_HAND_INDEX">
     <commands>
       <command name="LEFT_HAND_INDEX_FINGER"
-             duration="1000"
-             command="#17P1600#18P800#19P800#20P2300T1000"/>
+               duration="1000"
+               command="#17P1600#18P800#19P800#20P2300T1000"/>
       <command name="LEFT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -71,196 +71,194 @@
            val="1609"
            command="#7Pxxx"/>
 
-  <command name="HEAD_PAN_RIGHT"/>
-  <commands>
-    <command name="HEAD_PAN_RIGHT_45"/>
-  </commands>
+  <command name="HEAD_PAN_RIGHT">
+    <commands>
+      <command name="HEAD_PAN_RIGHT_45"/>
+    </commands>
   </command>
 
-  <command name="HEAD_PAN_LEFT"/>
-  <commands>
-    <command name="HEAD_PAN_LEFT_45"/>
-  </commands>
+  <command name="HEAD_PAN_LEFT">
+    <commands>
+      <command name="HEAD_PAN_LEFT_45"/>
+    </commands>
   </command>
 
-    <command name="HEAD_PAN_RIGHT_90"
-           val="800"
-           command="#7Pxxx"/>
+<command name="HEAD_PAN_RIGHT_90"
+             val="800"
+             command="#7Pxxx"/>
 
-  <command name="HEAD_PAN_LEFT_90"
+<command name="HEAD_PAN_LEFT_90"
            val="2250"
            command="#7Pxxx"/>
 
-    <command name="HEAD_PAN_RIGHT_45"
-           val="1152"
-           command="#7Pxxx"/>
+<command name="HEAD_PAN_RIGHT_45"
+             val="1152"
+             command="#7Pxxx"/>
 
-  <command name="HEAD_PAN_LEFT_45"
+<command name="HEAD_PAN_LEFT_45"
            val="2022"
            command="#7Pxxx"/>
 <!-- 
   Head tilt наклон головы вперед назад (вверх вниз)
 !-->
-  <command name="HEAD_TILT" 
+<command name="HEAD_TILT" 
            min="1130" 
            max="1935"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_UP" />
+<command name="HEAD_TILT_UP">
   <commands>
     <command name="HEAD_TILT_UP_30"/>
   </commands>
-  </command>
+</command>
 
-  <command name="HEAD_TILT_DOWN" />
+<command name="HEAD_TILT_DOWN">
   <commands>
     <command name="HEAD_TILT_DOWN_30"/>
   </commands>
-  </command>
+</command>
 
-  <command name="HEAD_TILT_UP_60" 
+<command name="HEAD_TILT_UP_60" 
            val="1130"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_DOWN_60" 
+<command name="HEAD_TILT_DOWN_60" 
            val="1935"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_UP_30" 
+<command name="HEAD_TILT_UP_30" 
            val="1326"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_DOWN_30" 
+<command name="HEAD_TILT_DOWN_30" 
            val="1696"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_CENTER"
+<command name="HEAD_TILT_CENTER"
            val="1522"
            command="#9Pxxx"/>
 
 <!-- 
   Head tip наклон головы вправо-влево
 !-->
-
-
-  <command name="HEAD_TIP" 
+<command name="HEAD_TIP" 
            min="1239" 
            max="1978"
            command="#8Pxxx"/>
 
-  <command name="HEAD_TIP_CENTER"
+<command name="HEAD_TIP_CENTER"
            val="1565"
            command="#8Pxxx"/>
 
-  <command name="HEAD_TIP_LEFT"/>
+<command name="HEAD_TIP_LEFT">
   <commands>
     <command name="HEAD_TIP_LEFT_30"/>
   </commands>
-  </command>
+</command>
 
-  <command name="HEAD_TIP_RIGHT"/>
+<command name="HEAD_TIP_RIGHT">
   <commands>
     <command name="HEAD_TIP_RIGHT_30"/>
   </commands>
-  </command>
+</command>
 
-  <command name="HEAD_TIP_LEFT_30"
+<command name="HEAD_TIP_LEFT_30"
            val="1239"
            command="#8Pxxx"/>
-  <command name="HEAD_TIP_RIGHT_30"
+
+<command name="HEAD_TIP_RIGHT_30"
            val="1826"
            command="#8Pxxx"/>
 
-  <command name="HEAD_TIP_LEFT_60"
+<command name="HEAD_TIP_LEFT_60"
            val="1239"
            command="#8Pxxx"/>
-  <command name="HEAD_TIP_RIGHT_60"
+
+<command name="HEAD_TIP_RIGHT_60"
            val="1978"
            command="#8Pxxx"/>
 
-  <!-- 
+<!-- 
   Глаза
 !-->
-
-  <command name="EYES_TILT_DOWN" 
+<command name="EYES_TILT_DOWN" 
            command="#10P1260#12P1220T500"/>
-  <command name="EYES_TILT_UP" 
+<command name="EYES_TILT_UP" 
            command="#10P700#12P1800T500"/>
-   <command name="EYES_TILT_CENTER" 
-           command="#10P1022#12P1500T500"/>
-  <command name="EYES_PAN_LEFT" 
+<command name="EYES_TILT_CENTER" 
+            command="#10P1022#12P1500T500"/>
+<command name="EYES_PAN_LEFT" 
            command="#11P1826#13P1826T500"/>
-   <command name="EYES_PAN_RIGHT" 
-           command="#11P1326#13P1326T500"/>
-   <command name="EYES_PAN_CENTER" 
-           command="#11P1526#13P1526T500"/>
-   <command name="EYES_PAN_FOOL" 
-           command="#11P1826#13P1326T500"/>
+<command name="EYES_PAN_RIGHT" 
+            command="#11P1326#13P1326T500"/>
+<command name="EYES_PAN_CENTER" 
+            command="#11P1526#13P1526T500"/>
+<command name="EYES_PAN_FOOL" 
+            command="#11P1826#13P1326T500"/>
 
-  <!-- 
+<!-- 
   Брови
 !-->
-
-  <command name="BROWS_UP"
-    command="#14P1522#15P1500T100"/>
-  <command name="BROWS_DOWN"
-    command="#14P1935#15P1174T100"/>
-  <command name="BROWS_CENTER"
-    command="#14P1717#15P1348T100"/>
+<command name="BROWS_UP"
+           command="#14P1522#15P1500T100"/>
+<command name="BROWS_DOWN"
+           command="#14P1935#15P1174T100"/>
+<command name="BROWS_CENTER"
+           command="#14P1717#15P1348T100"/>
            
-  <command name="COMPLEX_COMMAD_EXAMPLE">
-    <commands>
-      <command name="HEAD_PAN=200"/>
-      <command name="HEAD_PAN_CENTER=300"/>
-      <command name="HEAD_PAN=100"/>
-      <command name="HEAD_BLOW"
+<command name="COMPLEX_COMMAD_EXAMPLE">
+  <commands>
+    <command name="HEAD_PAN=200"/>
+    <command name="HEAD_PAN_CENTER=300"/>
+    <command name="HEAD_PAN=100"/>
+    <command name="HEAD_BLOW"
                val="1500"
                command="#77Pxxx"/>
-    </commands>
-  </command>
+  </commands>
+</command>
   
-  <command name="MOVE_FORWARD"
+<command name="MOVE_FORWARD"
            port = "/dev/ttyUSB0"
-	   val="88"
-	   command="#xxx"/>
-  <command name="MOVE_STOP" 
-	   port = "/dev/ttyUSB0"
-	   val="55"
-	   command="#xxx"/>
-  <command name="MOVE_RIGHT" 
-	   port = "/dev/ttyUSB0"
-	   val="29"
-	   command="#xxx"/>
-  <command name="MOVE_LEFT" 
-  port = "/dev/ttyUSB0"
-  val="45"
-  command="#xxx"/>
-  <command name="MOVE_BACKWARD" 
-  port = "/dev/ttyUSB0"
-   val="77"
-  command="#xxx"/>
-  <command name="RIGHT_ARM_UP" 
-  port = "/dev/ttyUSB0"
-   val="96"
-  command="#xxx"/>
-  <command name="RIGHT_ARM_STOP" 
-  port = "/dev/ttyUSB0"
-   val="111"
-  command="#xxx"/>
-  <command name="RIGHT_ARM_DOWN" 
-  port = "/dev/ttyUSB0"
-   val="39"
-  command="#xxx"/>
-   <command name="LEFT_ARM_UP" 
-  port = "/dev/ttyUSB0"
-   val="12"
-  command="#xxx"/>
-  <command name="LEFT_ARM_STOP" 
-  port = "/dev/ttyUSB0"
-   val="115"
-  command="#xxx"/>
-  <command name="LEFT_ARM_DOWN" 
-  port = "/dev/ttyUSB0"
-   val="15"
-  command="#xxx"/>
+           val="88"
+           command="#xxx"/>
+<command name="MOVE_STOP" 
+           port = "/dev/ttyUSB0"
+           val="55"
+           command="#xxx"/>
+<command name="MOVE_RIGHT" 
+           port = "/dev/ttyUSB0"
+           val="29"
+           command="#xxx"/>
+<command name="MOVE_LEFT" 
+           port = "/dev/ttyUSB0"
+           val="45"
+           command="#xxx"/>
+<command name="MOVE_BACKWARD" 
+           port = "/dev/ttyUSB0"
+           val="77"
+           command="#xxx"/>
+<command name="RIGHT_ARM_UP" 
+           port = "/dev/ttyUSB0"
+           val="96"
+           command="#xxx"/>
+<command name="RIGHT_ARM_STOP" 
+           port = "/dev/ttyUSB0"
+           val="111"
+           command="#xxx"/>
+<command name="RIGHT_ARM_DOWN" 
+           port = "/dev/ttyUSB0"
+           val="39"
+           command="#xxx"/>
+<command name="LEFT_ARM_UP" 
+            port = "/dev/ttyUSB0"
+            val="12"
+            command="#xxx"/>
+<command name="LEFT_ARM_STOP" 
+           port = "/dev/ttyUSB0"
+           val="115"
+           command="#xxx"/>
+<command name="LEFT_ARM_DOWN" 
+           port = "/dev/ttyUSB0"
+           val="15"
+           command="#xxx"/>
 </commands>
