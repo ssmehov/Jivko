@@ -1,19 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <commands>
   <command name="DUMMY"/>
+
   <command name="RIGHT_HAND_OPEN"
-           command="#1P1100#2P700#3P2200#4P800#5P2400T1000"/>
+           command="#1P1200#2P1065#3P2130#4P1609#26P2174T1000"/>
+
+    <command name="RIGHT_HAND_IDLE"
+           command="#1P2022#2P1065#3P2130#4P1609#26P2174T1000"/>
+
   <command name="RIGHT_HAND_CLOSE"
-           command="#1P2200#2P2000#3P1000#4P2200#5P1500T1000"/>
+           command="#1P2109#2P2500#3P1130#4P2400#26P1326T1000"/>
+
   <command name="RIGHT_HAND_FUCK"
-           command="#1P2200#2P2400#3P2200#4P2500#5P1000T800"/>
+           command="#1P2109#2P2500#3P2130#4P2400#26P1326T800"/>
+
   <command name="RIGHT_HAND_THUMB_CLOSE"
-           command="#1P2200#32P1500T1200"/>
+           command="#1P2109#32P1500T1200"/>
+
   <command name="RIGHT_HAND_ROCK">
     <commands>
       <command name="RIGHT_HAND_ROCK_PART1"
              duration="800"
-             command="#2P600#3P1000#4P2400#5P2400T800"/>
+             command="#2P1065#3P1130#4P2400#26P2174T800"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -22,7 +30,7 @@
     <commands>
       <command name="RIGHT_HAND_INDEX_FINGER"
              duration="800"
-             command="#2P700#3P1000#4P2500#5P1500T800"/>
+             command="#2P1065#3P1130#4P2400#5P1326T800"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -54,59 +62,151 @@
   </command>
 
   <command name="HEAD_PAN" 
-           min="600"
-           max="2500"
+           min="800"
+           max="2250"
            duration="200"
            command="#7Pxxx"/>
+
   <command name="HEAD_PAN_CENTER"
-           val="1650"
+           val="1609"
            command="#7Pxxx"/>
-  <command name="HEAD_PAN_RIGHT"
-           val="1100"
+
+  <command name="HEAD_PAN_RIGHT"/>
+  <commands>
+    <command name="HEAD_PAN_RIGHT_45"/>
+  </commands>
+  </command>
+
+  <command name="HEAD_PAN_LEFT"/>
+  <commands>
+    <command name="HEAD_PAN_LEFT_45"/>
+  </commands>
+  </command>
+
+    <command name="HEAD_PAN_RIGHT_90"
+           val="800"
            command="#7Pxxx"/>
-  <command name="HEAD_PAN_LEFT"
-           val="2100"
+
+  <command name="HEAD_PAN_LEFT_90"
+           val="2250"
            command="#7Pxxx"/>
+
+    <command name="HEAD_PAN_RIGHT_45"
+           val="1152"
+           command="#7Pxxx"/>
+
+  <command name="HEAD_PAN_LEFT_45"
+           val="2022"
+           command="#7Pxxx"/>
+<!-- 
+  Head tilt наклон головы вперед назад (вверх вниз)
+!-->
   <command name="HEAD_TILT" 
-           min="1400" 
-           max="1700"
-           command="#8Pxxx"/>
-  <command name="HEAD_TILT_UP" 
-           val="1400"
-           command="#8Pxxx"/>
-  <command name="HEAD_TILT_DOWN" 
-           val="1700"
-           command="#8Pxxx"/>
+           min="1130" 
+           max="1935"
+           command="#9Pxxx"/>
+
+  <command name="HEAD_TILT_UP" />
+  <commands>
+    <command name="HEAD_TILT_UP_30"/>
+  </commands>
+  </command>
+
+  <command name="HEAD_TILT_DOWN" />
+  <commands>
+    <command name="HEAD_TILT_DOWN_30"/>
+  </commands>
+  </command>
+
+  <command name="HEAD_TILT_UP_60" 
+           val="1130"
+           command="#9Pxxx"/>
+
+  <command name="HEAD_TILT_DOWN_60" 
+           val="1935"
+           command="#9Pxxx"/>
+
+  <command name="HEAD_TILT_UP_30" 
+           val="1326"
+           command="#9Pxxx"/>
+
+  <command name="HEAD_TILT_DOWN_30" 
+           val="1696"
+           command="#9Pxxx"/>
+
   <command name="HEAD_TILT_CENTER"
-           val="1550"
-           command="#8Pxxx"/>
+           val="1522"
+           command="#9Pxxx"/>
+
+<!-- 
+  Head tip наклон головы вправо-влево
+!-->
+
+
   <command name="HEAD_TIP" 
-           min="1300" 
-           max="1700"
-           command="#9Pxxx"/>
+           min="1239" 
+           max="1978"
+           command="#8Pxxx"/>
+
   <command name="HEAD_TIP_CENTER"
-           val="1500"
-           command="#9Pxxx"/>
-  <command name="HEAD_TIP_UP"
-           val="1300"
-           command="#9Pxxx"/>
-  <command name="HEAD_TIP_DOWN"
-           val="1700"
-           command="#9Pxxx"/>
-  <command name="RIGHT_EYE_TILT" 
-           min="800" 
-           max="1200"
-           command="#10Pxxx"/>
-  <command name="RIGHT_EYE_TILT_CENTER"
-           val="1000"
-           command="#10Pxxx"/>
-  <command name="RIGHT_EYE_PAN" 
-           min="1265" 
-           max="1765"
-           command="#11Pxxx"/>
-  <command name="RAGHT_EYE_PAN_CENTER"
            val="1565"
-           command="#11Pxxx"/>
+           command="#8Pxxx"/>
+
+  <command name="HEAD_TIP_LEFT"/>
+  <commands>
+    <command name="HEAD_TIP_LEFT_30"/>
+  </commands>
+  </command>
+
+  <command name="HEAD_TIP_RIGHT"/>
+  <commands>
+    <command name="HEAD_TIP_RIGHT_30"/>
+  </commands>
+  </command>
+
+  <command name="HEAD_TIP_LEFT_30"
+           val="1239"
+           command="#8Pxxx"/>
+  <command name="HEAD_TIP_RIGHT_30"
+           val="1826"
+           command="#8Pxxx"/>
+
+  <command name="HEAD_TIP_LEFT_60"
+           val="1239"
+           command="#8Pxxx"/>
+  <command name="HEAD_TIP_RIGHT_60"
+           val="1978"
+           command="#8Pxxx"/>
+
+  <!-- 
+  Глаза
+!-->
+
+  <command name="EYES_TILT_DOWN" 
+           command="#10P1260#12P1220T500"/>
+  <command name="EYES_TILT_UP" 
+           command="#10P700#12P1800T500"/>
+   <command name="EYES_TILT_CENTER" 
+           command="#10P1022#12P1500T500"/>
+  <command name="EYES_PAN_LEFT" 
+           command="#11P1826#13P1826T500"/>
+   <command name="EYES_PAN_RIGHT" 
+           command="#11P1326#13P1326T500"/>
+   <command name="EYES_PAN_CENTER" 
+           command="#11P1526#13P1526T500"/>
+   <command name="EYES_PAN_FOOL" 
+           command="#11P1826#13P1326T500"/>
+
+  <!-- 
+  Брови
+!-->
+
+  <command name="BROWS_UP"
+    command="#14P1522#15P1500T100"/>
+  <command name="BROWS_DOWN"
+    command="#14P1935#15P1174T100"/>
+  <command name="BROWS_CENTER"
+    command="#14P1717#15P1348T100"/>
            
   <command name="COMPLEX_COMMAD_EXAMPLE">
     <commands>
