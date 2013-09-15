@@ -272,9 +272,9 @@
       <command name="RIGHT_ARM_STOP=0"/>
       <command name="RIGHT_HAND_CLOSE=3000"/>
       <command name="RIGHT_HAND_IDLE=0"/>
-      <command name="MOVE_FORWARD=0"/>
-      <command name="RIGHT_HAND_DOWN=50"/>
-      <command name="RIGHT_HAND_STOP=0"/>
+      <command name="MOVE_BACKWARD=0"/>
+      <command name="RIGHT_ARM_DOWN=50"/>
+      <command name="RIGHT_ARM_STOP=0"/>
       <command name="DUMMY=200"/>
       <command name="MOVE_STOP=0"/>
       <command name="BROWS_CENTER=0"/>
