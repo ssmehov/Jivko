@@ -71,13 +71,13 @@
            val="1609"
            command="#7Pxxx"/>
 
-  <command name="HEAD_PAN_RIGHT"/>
+  <command name="HEAD_PAN_RIGHT">
   <commands>
     <command name="HEAD_PAN_RIGHT_45"/>
   </commands>
   </command>
 
-  <command name="HEAD_PAN_LEFT"/>
+  <command name="HEAD_PAN_LEFT">
   <commands>
     <command name="HEAD_PAN_LEFT_45"/>
   </commands>
@@ -106,13 +106,13 @@
            max="1935"
            command="#9Pxxx"/>
 
-  <command name="HEAD_TILT_UP" />
+  <command name="HEAD_TILT_UP" >
   <commands>
     <command name="HEAD_TILT_UP_30"/>
   </commands>
   </command>
 
-  <command name="HEAD_TILT_DOWN" />
+  <command name="HEAD_TILT_DOWN" >
   <commands>
     <command name="HEAD_TILT_DOWN_30"/>
   </commands>
@@ -151,13 +151,13 @@
            val="1565"
            command="#8Pxxx"/>
 
-  <command name="HEAD_TIP_LEFT"/>
+  <command name="HEAD_TIP_LEFT">
   <commands>
     <command name="HEAD_TIP_LEFT_30"/>
   </commands>
   </command>
 
-  <command name="HEAD_TIP_RIGHT"/>
+  <command name="HEAD_TIP_RIGHT">
   <commands>
     <command name="HEAD_TIP_RIGHT_30"/>
   </commands>
@@ -297,3 +297,5 @@
       <command name="HEAD_TIP_CENTER=0"/>
     </commands>
 </command>
+ </commands>
+ 

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jivko.recognizer.impl.StdInRecognizerDecorator;
+//import jivko.recognizer.impl.StdInRecognizerDecorator;
 import jivko.util.OsUtils;
 
 public class TextFrontend {
@@ -20,7 +20,8 @@ public class TextFrontend {
     try {
       br = new BufferedReader(new InputStreamReader(System.in, OsUtils.getStdinEncoding()));
     } catch (UnsupportedEncodingException ex) {
-      Logger.getLogger(StdInRecognizerDecorator.class.getName()).log(Level.SEVERE, null, ex);
+      ex.printStackTrace();
+      //Logger.getLogger(StdInRecognizerDecorator.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
   

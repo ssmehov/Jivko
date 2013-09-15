@@ -23,18 +23,24 @@ public class RecognizerGoogleImpl implements Recognizer {
       return MUTED;
     }
     
-    com.darkprograms.speech.recognizer.Recognizer recognizer = 
+    try {
+      com.darkprograms.speech.recognizer.Recognizer recognizer = 
             new com.darkprograms.speech.recognizer.Recognizer();
     
-    recognizer.setLanguage("ru-RU");
+      recognizer.setLanguage("ru-RU");
 
-    GoogleResponse googleResponse = recognizer.getRecognizedDataForWave(fileName);
+      GoogleResponse googleResponse = recognizer.getRecognizedDataForWave(fileName);
+
+      long stopTime = System.currentTimeMillis();
+      long elapsedTime = stopTime - startTime;    
+      System.out.println("recognize end. total time = " + elapsedTime);
+
+      return googleResponse.getResponse();
+    } catch (Exception e) {
+      e.printStackTrace();;
+    }
     
-    long stopTime = System.currentTimeMillis();
-    long elapsedTime = stopTime - startTime;    
-    System.out.println("recognize end. total time = " + elapsedTime);
-    
-    return googleResponse.getResponse();
+    return null;
   }
 
   @Override

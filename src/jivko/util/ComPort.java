@@ -79,7 +79,7 @@ public class ComPort {
     return sentCode == (char)receivedCode;
   }
   
-  public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
+  /*public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
     String buffer;
         
     for (int i = 0; i < maxRetries; ++i) {
@@ -88,9 +88,9 @@ public class ComPort {
       if (sentReceivedEquals(data, buffer))
         break;
     }        
-  }
+  }*/
   
-  /*public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
+  public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
     String buffer;
         
     for (int i = 0; i < maxRetries; ++i) {
@@ -99,7 +99,7 @@ public class ComPort {
       if (data.contains("\r\n"))
         break;
     }        
-  }*/
+  }
   
   public void writeCharByChar(String data, int delay) throws Exception {
     for (int i = 0; i < data.length(); ++i) {

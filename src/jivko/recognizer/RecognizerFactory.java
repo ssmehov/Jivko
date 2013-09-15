@@ -1,7 +1,7 @@
 package jivko.recognizer;
 
 import jivko.recognizer.impl.RecognizerGoogleImpl;
-import jivko.recognizer.impl.StdInRecognizerDecorator;
+//import jivko.recognizer.impl.StdInRecognizerDecorator;
 
 /**
  *
