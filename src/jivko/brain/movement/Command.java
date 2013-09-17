@@ -22,7 +22,7 @@ import jivko.util.Tree;
  */
 public class Command extends jivko.util.Tree implements Cloneable {
   
-  private static final String DEFAULT_PORT_NAME = "/dev/ttyACM0";
+  private static final String DEFAULT_PORT_NAME = "/dev/ttyUSB1";
   private static final int DEFAULT_PORT_SPEED = 9600;
   
   
@@ -157,7 +157,7 @@ public class Command extends jivko.util.Tree implements Cloneable {
   }
   
   public boolean isUsbCommand() {
-    return port.contains("USB");
+    return port.contains("USB0");
   }
       
   public void compile() throws Exception {

@@ -3,51 +3,87 @@
   <command name="DUMMY"/>
 
   <command name="RIGHT_HAND_OPEN"
-           command="#1P1200#2P1065#3P2130#4P1609#26P2174T1000"/>
+           command="#1P1200#2P500#3P2130#4P1609#5P2174S1000"/>
 
     <command name="RIGHT_HAND_IDLE"
-           command="#1P2022#2P1065#3P2130#4P1609#26P2174T1000"/>
+           command="#1P2022#2P600#3P2130#4P1609#5P2174S1000"/>
 
   <command name="RIGHT_HAND_CLOSE"
-           command="#1P2109#2P2500#3P1130#4P2400#26P1326T1000"/>
+           command="#1P2109#2P1511#3P1130#4P2400#5P1326S1000"/>
 
   <command name="RIGHT_HAND_FUCK"
-           command="#1P2109#2P2500#3P2130#4P2400#26P1326T800"/>
+           command="#1P2109#2P1511#3P2130#4P2400#5P1326S800"/>
 
-  <command name="RIGHT_HAND_THUMB_CLOSE"
-           command="#1P2109#32P1500T1200"/>
+  
 
   <command name="RIGHT_HAND_ROCK">
     <commands>
       <command name="RIGHT_HAND_ROCK_PART1"
              duration="800"
-             command="#2P1065#3P1130#4P2400#26P2174T800"/>
+             command="#2P500#3P1130#4P2400#5P2174S800"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
-
+  
+   <command name="RIGHT_HAND_THUMB_OPEN"
+            duration="1200"
+            command="#1P1200#32P1500S1200"/>
+   <command name="RIGHT_HAND_INDEX_FINGER_OPEN"
+             duration="800"
+             command="#2P500#32P1500S800"/>
+   <command name="RIGHT_HAND_1_FINGER_OPEN"
+             duration="800"
+             command="#2P500#32P1500S800"/>
+   <command name="RIGHT_HAND_2_FINGER_OPEN"
+             duration="800"
+             command="#3P2130#32P1500S800"/>
+   <command name="RIGHT_HAND_3_FINGER_OPEN"
+             duration="800"
+             command="#4P1609#32P1500S800"/>
+   <command name="RIGHT_HAND_4_FINGER_OPEN"
+             duration="800"
+             command="#5P2174#32P1500S800"/>
+   
+   <command name="RIGHT_HAND_THUMB_CLOSE"
+            duration="1200"
+           command="#1P2109#32P1500S1200"/>
+   <command name="RIGHT_HAND_INDEX_FINGER_CLOSE"
+             duration="800"
+             command="#2P1511#32P1500S800"/>
+   <command name="RIGHT_HAND_1_FINGER_CLOSE"
+             duration="800"
+             command="#2P1511#32P1500S800"/>
+   <command name="RIGHT_HAND_2_FINGER_CLOSE"
+             duration="800"
+             command="#3P1130#32P1500S800"/>
+   <command name="RIGHT_HAND_3_FINGER_CLOSE"
+             duration="800"
+             command="#4P2400#32P1500S800"/>
+   <command name="RIGHT_HAND_4_FINGER_CLOSE"
+             duration="800"
+             command="#5P1326#32P1500S800"/>
+      
   <command name="RIGHT_HAND_INDEX">
     <commands>
-      <command name="RIGHT_HAND_INDEX_FINGER"
-             duration="800"
-             command="#2P1065#3P1130#4P2400#5P1326T800"/>
+      
+      <command name="RIGHT_HAND_INDEX_FINGER_OPEN"/>
       <command name="RIGHT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
   
   <command name="LEFT_HAND_OPEN"
-           command="#16P1800#17P1600#18P2000#19P2000#20P600T1000"/>
+           command="#16P1800#17P1600#18P2000#19P2000#20P600S1000"/>
   <command name="LEFT_HAND_CLOSE"
-           command="#16P1100#17P600#18P800#19P800#20P2400T1000"/>
+           command="#16P1100#17P600#18P800#19P800#20P2400S1000"/>
   <command name="LEFT_HAND_FUCK"
-           command="#16P1100#17P600#18P2000#19P800#20P2400T1000"/>
+           command="#16P1100#17P600#18P2000#19P800#20P2400S1000"/>
   <command name="LEFT_HAND_THUMB_CLOSE"
-           command="#16P1100#32P1500T1200"/>
+           command="#16P1100#32P1500S1200"/>
   <command name="LEFT_HAND_ROCK">
     <commands>
       <command name="LEFT_HAND_ROCK_PART1"
             duration="1000"
-             command="#17P1600#18P800#19P800#20P600T1000"/>
+             command="#17P1600#18P800#19P800#20P600S1000"/>
       <command name="LEFT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -56,7 +92,7 @@
     <commands>
       <command name="LEFT_HAND_INDEX_FINGER"
              duration="1000"
-             command="#17P1600#18P800#19P800#20P2300T1000"/>
+             command="#17P1600#18P800#19P800#20P2300S1000"/>
       <command name="LEFT_HAND_THUMB_CLOSE"/>
     </commands>
   </command>
@@ -182,30 +218,30 @@
 !-->
 
   <command name="EYES_TILT_DOWN" 
-           command="#10P1260#12P1220T500"/>
+           command="#10P1260#12P1220S500"/>
   <command name="EYES_TILT_UP" 
-           command="#10P700#12P1800T500"/>
+           command="#10P700#12P1800S500"/>
    <command name="EYES_TILT_CENTER" 
-           command="#10P1022#12P1500T500"/>
+           command="#10P1022#12P1500S500"/>
   <command name="EYES_PAN_LEFT" 
-           command="#11P1826#13P1826T500"/>
+           command="#11P1826#13P1826S500"/>
    <command name="EYES_PAN_RIGHT" 
-           command="#11P1326#13P1326T500"/>
+           command="#11P1326#13P1326S500"/>
    <command name="EYES_PAN_CENTER" 
-           command="#11P1526#13P1526T500"/>
+           command="#11P1526#13P1526S500"/>
    <command name="EYES_PAN_FOOL" 
-           command="#11P1826#13P1326T500"/>
+           command="#11P1826#13P1326S500"/>
 
   <!-- 
   Брови
 !-->
 
   <command name="BROWS_UP"
-    command="#14P1522#15P1500T100"/>
+    command="#14P1522#15P1500S100"/>
   <command name="BROWS_DOWN"
-    command="#14P1935#15P1174T100"/>
+    command="#14P1935#15P1174S100"/>
   <command name="BROWS_CENTER"
-    command="#14P1717#15P1348T100"/>
+    command="#14P1717#15P1348S100"/>
            
   <command name="COMPLEX_COMMAD_EXAMPLE">
     <commands>
@@ -296,6 +332,52 @@
       <command name="HEAD_PAN_CENTER=0"/>
       <command name="HEAD_TIP_CENTER=0"/>
     </commands>
+</command>
+
+
+<command name="ROBOT_COME_ON">
+    <commands>
+<!-- COME_ON:= INDEX_FING_OPEN, INDEX_FING_CLOSE, INDEX_FING_OPEN, INDEX_FING_CLOSE, INDEX_FING_OPEN, INDEX_FING_CLOSE, INDEX_FING_OPEN !-->
+    <command name="RIGHT_ARM_UP=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+	<command name="RIGHT_HAND_INDEX_FINGER"/>
+	<command name="DUMMY=3000"/>
+	<command name="RIGHT_HAND_CLOSE"/>
+	<command name="RIGHT_HAND_INDEX_FINGER"/>
+	<command name="RIGHT_HAND_CLOSE"/>
+	<command name="RIGHT_HAND_INDEX_FINGER"/>
+	<command name="RIGHT_HAND_CLOSE"/>
+	<command name="RIGHT_HAND_INDEX_FINGER"/>
+	<command name="RIGHT_HAND_CLOSE"/>
+	<command name="RIGHT_HAND_INDEX_FINGER"/>
+	<command name="DUMMY=3000"/>
+	<command name="RIGHT_HAND_CLOSE"/>
+	<command name="RIGHT_ARM_DOWN=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+	<command name="RIGHT_HAND_IDLE"/>
+</commands>
+</command>
+
+ <command name="ROBOT_FUCK">
+    <commands>
+    <command name="RIGHT_ARM_UP=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+	<command name="RIGHT_HAND_FUCK=5000"/>
+	<command name="RIGHT_HAND_OPEN"/>
+	<command name="RIGHT_ARM_DOWN=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+    </commands>
+</command>
+	
+	<command name="ROBOT_ROCKNROLL">
+    <commands>
+    <command name="RIGHT_ARM_UP=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+	<command name="RIGHT_HAND_ROCK=5000"/>
+	<command name="RIGHT_HAND_OPEN"/>
+	<command name="RIGHT_ARM_DOWN=600"/>
+	<command name="RIGHT_ARM_STOP=0"/>
+</commands>
 </command>
  </commands>
  
