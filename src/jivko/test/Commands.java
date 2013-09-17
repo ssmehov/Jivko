@@ -12,19 +12,14 @@ import jivko.brain.movement.CommandsCenter;
 public class Commands implements Testable {
 
   private static String[] commandsToTest = {
-    "HEAD_PAN_CENTER"                
-    ,"COMPLEX_COMMAD_EXAMPLE"
-    ,"HEAD_PAN"
-    ,"HEAD_PAN"
-    ,"HEAD_PAN"
-    ,"HEAD_PAN=100"
-    ,"HEAD_PAN_CENTER=3000"
-    ,"HEAD_TILT"
-    ,"HEAD_TIP=400"
-    ,"HEAD_TIP=400"
-    ,"HEAD_TIP=400"          
-    ,"HEAD_TILT_CENTER"        
-    ,"HEAD_TIP_CENTER=400"
+    //"ROBOT_ANGRY" 
+    "RIGHT_HAND_CLOSE"
+    /*,"ROBOT_THINKING"
+    ,"DUMMY=2000"
+    , "ROBOT_NORMAL"
+    , "RIGHT_HAND_INDEX=2000"
+    , "ROBOT_FUCK_TO_YOU"   
+     ,"EYES_TILT_UP"*/
   };
   
   /**
