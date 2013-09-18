@@ -44,6 +44,25 @@
              duration="800"
              command="#5P2174#32P1500T800"/>
    
+   <command name="RIGHT_HAND_THUMB_HALFCLOSE"
+            duration="1200"
+           command="#1P1650#32P1500T1200"/>
+   <command name="RIGHT_HAND_INDEX_FINGER_HALFCLOSE"
+             duration="800"
+             command="#2P1000#32P1500T800"/>
+   <command name="RIGHT_HAND_1_FINGER_HALFCLOSE"
+             duration="800"
+             command="#2P1000#32P1500T800"/>
+   <command name="RIGHT_HAND_2_FINGER_HALFCLOSE"
+             duration="800"
+             command="#3P1630#32P1500T800"/>
+   <command name="RIGHT_HAND_3_FINGER_HALFCLOSE"
+             duration="800"
+             command="#4P2000#32P1500T800"/>
+   <command name="RIGHT_HAND_4_FINGER_HALFCLOSE"
+             duration="800"
+             command="#5P1750#32P1500T800"/>
+   
    <command name="RIGHT_HAND_THUMB_CLOSE"
             duration="1200"
            command="#1P2109#32P1500T1200"/>
@@ -62,7 +81,7 @@
    <command name="RIGHT_HAND_4_FINGER_CLOSE"
              duration="800"
              command="#5P1326#32P1500T800"/>
-      
+            
   <command name="RIGHT_HAND_INDEX">
     <commands>
       
@@ -376,15 +395,29 @@
     </commands>
 </command>
 	
-	<command name="ROBOT_ROCKNROLL">
+  <command name="ROBOT_ROCKNROLL">
     <commands>
-    <command name="RIGHT_ARM_UP=600"/>
-	<command name="RIGHT_ARM_STOP=0"/>
-	<command name="RIGHT_HAND_ROCK=5000"/>
-	<command name="RIGHT_HAND_OPEN"/>
-	<command name="RIGHT_ARM_DOWN=600"/>
-	<command name="RIGHT_ARM_STOP=0"/>
-</commands>
-</command>
+      <command name="RIGHT_ARM_UP=600"/>
+      <command name="RIGHT_ARM_STOP=0"/>
+      <command name="RIGHT_HAND_ROCK=5000"/>
+      <command name="RIGHT_HAND_OPEN"/>
+      <command name="RIGHT_ARM_DOWN=600"/>
+      <command name="RIGHT_ARM_STOP=0"/>
+    </commands>
+  </command>
+  <command name="RIGHT_HAND_WAVE">
+    <commands>
+      <command name="RIGHT_HAND_4_FINGER_HALFCLOSE"/>
+      <command name="RIGHT_HAND_THUMB_FINGER_OPEN"/>
+      <command name="RIGHT_HAND_3_FINGER_HALFCLOSE"/>
+      <command name="RIGHT_HAND_4_FINGER_OPEN"/>
+      <command name="RIGHT_HAND_2_FINGER_HALFCLOSE"/>
+      <command name="RIGHT_HAND_3_FINGER_OPEN"/>
+      <command name="RIGHT_HAND_1_FINGER_HALFCLOSE"/>
+      <command name="RIGHT_HAND_2_FINGER_OPEN"/>
+      <command name="RIGHT_HAND_THUMB_FINGER_HALFCLOSE"/>
+      <command name="RIGHT_HAND_2_FINGER_OPEN"/>
+    </commands>
+  </command>
  </commands>
  

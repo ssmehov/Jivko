@@ -1,29 +1,29 @@
 <?xml version="1.0"?>
 <sketches>
   <sketch name="default">
-    <human>Добрый вечер дорогие друзья!</human>    
-    <robot commands="HEAD_PAN_RIGHT=2000,HEAD_PAN_CENTER">Здравствуйте, я Универсальная Машина Юмора-1! Я прибыл из Харькова. Вы думаете, роботы придут из Японии? Нет, они наступают из Украины. Я хочу захватить камеди клаб. У-ха-ха-ха-ха!</robot>
-    <robot>Страшно?</robot>
+    <human>Добрый вечер дорогие друзья!</human>
+    <robot commands="MOVE_FORWARD=300,MOVE_STOP,RIGHT_ARM_UP=600,RGHT_ARM_STOP,HEAD_PAN_RIGHT=1000,HEAD_PAN_LEFT=1000,HEAD_PAN_CENTER,DUMMY=3000,RIGHT_ARM_DOWN,RIGHT_ARM_STOP">Здравствуйте, я Универсальная Машина Юмора-1! Я прибыл из Харькова. Вы думаете, роботы придут из Японии? Нет, они наступают из Украины. Я хочу захватить камеди клаб. У-ха-ха-ха-ха!</robot>
+    <robot commands="RIGHT_ARM_UP=600,RIGHT_ARM_STOP,HEAD_TILT_DOWN,RIGHT_HAND_CLOSE">Страшно?</robot>
     <human>Я думаю, никому не страшно. Потому что на сцене с тобой Добрый!</human>
-    <robot commands="RIGHT_ARM_UP, LEFT_ARM_UP, EYES_TILT_DOWN=200">А вот мне страшно. Если вы психанёте и сбросите меня, мне жопа</robot>    
+    <robot commands="RIGHT_HAND_OPEN,MOVE_BACKWARD=300,MOVE_STOP,RIGHT_ARM_DOWN,RIGHT_ARM_STOP,HEAD_TIP_LEFT=300,EYES_PAN_FOOL">А вот мне страшно. Если вы психанёте и сбросите меня, мне жопа</robot>    
     <human>Здесь нужно смешно пошутить, а Гарик и ребята оценят</human>
-    <robot commands="HEAD_PAN_RIGHT">Какие ребята?</robot>    
-    <robot commands="HEAD_PAN_CENTER">ОБнаружено три цели: Мартирос Ян, Светлаков, Слепаков</robot>
-    <robot>Светлаков-Слепаков - ха-ха-ха - каламбур!</robot>
+    <robot commands="HEAD_TIP_CENTER=300,HEAD_TILT_CENTER=300,EYES_PAN_CENTER,HEAD_PAN_LEFT=1000,HEAD_PAN_RIGHT=1000,HEAD_PAN_CENTER,RIGHT_HAND_COSE">Какие ребята?</robot>
+    <robot commands="RIGHT_ARM_UP=500,RIGHT_ARM_STOP,RIGHT_HAND_1_FINGER_OPEN=200,RIGHT_HAND_2_FINGER_OPEN=200,RIGHT_HAND_3_FINGER_OPEN=200">ОБнаружено три цели: Мартирос Ян, Светлаков, Слепаков</robot>
+    <robot commands="HEAD_TIP_RIGHT=200,EYES_PAN_FOOL=200,RIGHT_HAND_OPEN">Светлаков-Слепаков - ха-ха-ха - каламбур!</robot>
     <human>Знаешь, кто из них главный?</human>
-    <robot commands="HEAD_PAN_CENTER">Судя по национальности, главным должен быть Слепаков, а так Мартирос Ян</robot>
-    <robot>Гарик, можете там свои кнопочки даже не нажимать - сцена все-равно не поднимется, потому что мы механизмы как и вы армяне тоже поддерживаем друг друга</robot>
+    <robot commands="EYES_PAN_CENTER=100,HEAD_TIP_CENTER,RGHT_ARM_UP=400,RIGH_ARM_STOP,RIGHT_HAND_INDEX">Судя по национальности, главным должен быть Слепаков, а так Мартирос Ян</robot>
+    <robot commands="HED_PAN_LEFT=200,HEAD_PAN_RIGHT=200,HED_PAN_LEFT=200,HEAD_PAN_RIGHT=200,HEAD_PAN_CENTER">Гарик, можете там свои кнопочки даже не нажимать - сцена все-равно не поднимется, потому что мы механизмы как и вы армяне тоже поддерживаем друг друга</robot>
     <human>Будь повежливее, именно они решают, кто пройдет дальше</human>
-    <robot commands="HEAD_PAN_CENTER">Гарик, возьми меня в камедию, я идеальный резидент, потому что могу любой мат сам за пикать. Например, хуй.</robot>
+    <robot commands="RIGHT_HAND_WAVE,DUMMY=7000,RIGHT_HAND_WAVE">Гарик, возьми меня в камедию, я идеальный резидент, потому что могу любой мат сам за пикать. Например, хуй.</robot>
     <human>Что это было?</human>
-    <robot commands="RIGHT_HAND_ROCK=5000,RIGHT_HAND_OPEN">Сейчас  не захотел</robot>t
+    <robot commands="MOVE_LEFT=200,MOVE_STOP,RIGHT_HAND_ROCK=300,MOVE_RIGHT=200,MOVE_STOP,RIHGT_HAND_IDLE,RIGHT_ARM_DOWN,RIGHT_ARM_STOP">Сейчас  не захотел</robot>t
     <human>Веди себя прилично</human>
-    <robot>Я буду вести себя как рэва. Он тоже робот. Теперь вместо него буду я. Позвони мне, бэйба</robot>
-    <robot commands="SKI_DOWN=50, SKI_UP=500, SKI_DOWN=50, SKI_UP=500">Согрею тебя теплом своих пирожков. Мой номер один ноль один один ноль один ноль один один один ноль один ноль два </robot>   
-    <robot>шутка. в конце один</robot>
-    <robot>Кстати, я могу взять телефон у любой тёлочки, правда меня больше интересует сам телефон.</robot>
+    <robot commands="HEAD_PAN_RIGHT,DUMMY=6000,HEAD_TIP_RIGHT=3000,HEAD_TIP_CENTER">Я буду вести себя как рэва. Он тоже робот. Теперь вместо него буду я. Позвони мне, бэйба</robot>
+    <robot commands="HEAD_PAN_CENTER,SKI_DOWN=50, SKI_UP=500, SKI_DOWN=50, SKI_UP=500, SKI_DOWN=50, SKI_STOP">Согрею тебя теплом своих пирожков. Мой номер один ноль один один ноль один ноль один один один ноль один ноль два </robot>   
+    <robot commands="EYES_PAN_FOOL=4000">шутка. в конце один</robot>
+    <robot commands="EYES_PAN_CENTER,MOVE_FORWARD=300,MOVE_STOP,RIGHT_ARM_UP=500,RIGHT_ARM_STOP, RIGHT_HAND_CLOSE,RIGHT_ARM_OPEN,RIGHT_ARM_CLOSE,RIGHT_ARM_OPEN">Кстати, я могу взять телефон у любой тёлочки, правда меня больше интересует сам телефон.</robot>
     <human>Твои личные проблемы никому не интересны</human>
-    <robot>И это мне говорит человек,  которому не дала проститутка?</robot>
+    <robot commands="MOVE_RIGHT=300,MOVE_STOP, RIGHT_ARM_UP=200, RIGHT_ARM_STOP, RIGHT_HAND_INDEX">И это мне говорит человек,  которому не дала проститутка?</robot>
     <human>Что???!!!</human>
     <robot>Ты думаешь, я тогда был выключен??</robot>
     <human>Если ты такой умный, может скажешь, что ты вчера делал в туалете с каталогом микроволновок?</human>
