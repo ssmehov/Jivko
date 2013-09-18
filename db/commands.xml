@@ -324,6 +324,13 @@
     </commands>
 </command>
 
+<command name="ROBOT_SHAMES">
+    <commands>      
+      <command name="HEAD_TILT_DOWN_30=200"/>
+      <command name="EYES_TILT_DOWN=200"/>
+    </commands>
+</command>
+
 <command name="ROBOT_NORMAL">
     <commands>
       <command name="EYES_TILT_CENTER=0"/>
