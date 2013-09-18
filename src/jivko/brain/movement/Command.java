@@ -142,9 +142,8 @@ public class Command extends jivko.util.Tree implements Cloneable {
     }
   }
   
-  public void addPort(String portName) throws Exception {
-    //this work only for unix
-    if (OsUtils.isUnix()) {
+  public void addPort(String portName) throws Exception {    
+    if (ComPort.isComEnabled()) {
       //if port is not opened yet
       if (openedPorts.get(port) == null) {
         ComPort newPort = new ComPort(portName, DEFAULT_PORT_SPEED);
@@ -247,9 +246,8 @@ public class Command extends jivko.util.Tree implements Cloneable {
         command += "\r\n";
       }    
       //print();
-            
-      //this work only for unix
-      if (OsUtils.isUnix()) {
+                  
+      if (ComPort.isComEnabled()) {
         ComPort comPort = openedPorts.get(port);
         
         if (isUsbCommand()) {
