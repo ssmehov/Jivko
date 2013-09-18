@@ -13,7 +13,9 @@ import jivko.util.ComPort;
 public class Commands implements Testable {
 
   private static String[] commandsToTest = {
-    "DUMMY"     
+    "DUMMY"
+    ,"RIGHT_ARM_UP=500"
+    ,"RIGHT_ARM_STOP=0"    
     ,"ROBOT_THINKING"    
     ,"HEAD_PAN_LEFT_45"
     ,"HEAD_PAN_RIGHT_45"

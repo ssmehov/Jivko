@@ -17,7 +17,7 @@ public class ComPort {
     if (OsUtils.isWindows())
       return false;
     
-    return false;
+    return true;
   }
   
   private InputStream in;
