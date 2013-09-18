@@ -23,7 +23,8 @@ import jivko.util.Tree;
 public class Command extends jivko.util.Tree implements Cloneable {
   
   private static final String DEFAULT_PORT_NAME = "/dev/ttyUSB1";
-  private static final int DEFAULT_PORT_SPEED = 9600;
+  //private static final int DEFAULT_PORT_SPEED = 9600;
+  private static final int DEFAULT_PORT_SPEED = 115200;
   
   
   private static final String COMMAND_SPEED_PREFIX = "T";

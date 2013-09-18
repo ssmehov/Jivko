@@ -12,7 +12,7 @@ public class TestManager {
   static {
     //tests.add(new StdIn());
     //tests.add(new StateMachine());
-    //tests.add(new Commands());    
+    tests.add(new Commands());    
     //tests.add(new JokesCreator());
   }
   
