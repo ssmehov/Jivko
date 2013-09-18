@@ -91,7 +91,7 @@ public class Brain {
       try {
         instance = new Brain();
       } catch (Exception ex) {
-        Logger.getLogger(Brain.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
       }
     }
 

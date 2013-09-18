@@ -12,6 +12,13 @@ import java.io.OutputStream;
  * @author Sergii Smehov (smehov.com)
  */
 public class ComPort {
+    
+  public static boolean isComEnabled() {
+    if (OsUtils.isWindows())
+      return false;
+    
+    return false;
+  }
   
   private InputStream in;
   private OutputStream out;
@@ -35,6 +42,9 @@ public class ComPort {
   }
   
   private void connect(String portName, int speed) throws Exception {
+    if (!isComEnabled())
+      return;
+    
     CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(portName);
     if (portIdentifier.isCurrentlyOwned()) {
       System.out.println("Error: Port is currently in use");
@@ -55,6 +65,9 @@ public class ComPort {
   }
   
   public void write(String data) throws Exception {
+    if (!isComEnabled())
+      return;
+    
     out.write(data.getBytes());
     
     Thread.sleep(150);
@@ -62,7 +75,10 @@ public class ComPort {
     printInBuffer();
   }
   
-  public boolean sentReceivedEquals(String sent, String received) {        
+  public boolean sentReceivedEquals(String sent, String received) {
+    if (!isComEnabled())
+      return true;
+    
     if (!received.contains("\r\n"))
       return false;
     
@@ -91,6 +107,9 @@ public class ComPort {
   }*/
   
   public void writeCharByCharUntilReceived(String data, int delay, int maxRetries) throws Exception {
+    if (!isComEnabled())
+      return;
+    
     String buffer;
         
     for (int i = 0; i < maxRetries; ++i) {
@@ -102,6 +121,9 @@ public class ComPort {
   }
   
   public void writeCharByChar(String data, int delay) throws Exception {
+    if (!isComEnabled())
+      return;
+    
     for (int i = 0; i < data.length(); ++i) {
       out.write(data.charAt(i));      
       Thread.sleep(delay);
@@ -111,6 +133,9 @@ public class ComPort {
   }  
   
   private String readInBuffer() throws Exception {
+    if (!isComEnabled())
+      return "";
+    
     String bufferStr = "";
     byte[] bytes = new byte[1024];
     while (in.available() != 0) {      
@@ -123,6 +148,9 @@ public class ComPort {
   }
   
   private void printInBuffer() throws Exception {
+    if (!isComEnabled())
+      return;
+    
     byte[] bytes = new byte[1024];
     while (in.available() != 0) {      
       String bufferStr = "";
